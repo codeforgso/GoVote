@@ -1,0 +1,53 @@
+{
+  "name": "nc-reentry-resources-hub",
+  "version": "0.0.1",
+  "private": true,
+  "proxy": "http://localhost:3001/",
+  "dependencies": {
+    "coa-command-line-args": "^1.0.1",
+    "es6-promise": "^4.0.5",
+    "express": "4.13.3",
+    "express-handlebars": "^3.0.0",
+    "fs": "0.0.2",
+    "axios": "^0.16.2",
+    "node-jsx": "^0.13.3",
+    "path": "^0.12.7",
+    "prop-types": "^15.5.10",
+    "react": "^15.4.1",
+    "react-bootstrap": "^0.30.7",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.3",
+    "react-render-html": "^0.1.6",
+    "react-router": "^3.0.2",
+    "react-router-bootstrap": "^0.23.1",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0"
+  },
+  "scripts": {
+    "start": "npm run client && concurrently \"npm run server\"",
+    "server": "NODE_ENV=production node_modules/.bin/babel-node src/server.js",
+    "client": "NODE_ENV=production node_modules/.bin/webpack --config webpack.config.js",
+    "dev": "echo \"This command has been deprecated. Use 'npm start'\" && exit 1"
+  },
+  "devDependencies": {
+    "babel-cli": "6.14.0",
+    "babel-core": "6.14.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "6.14.0",
+    "babel-preset-react": "^6.22.0",
+    "babel-preset-react-hmre": "^1.1.1",
+    "babel-preset-stage-0": "6.5.0",
+    "concurrently": "^3.1.0",
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.8.0",
+    "http-server": "^0.9.0",
+    "redux-immutable-state-invariant": "^2.0.0",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.3.0",
+    "webpack-hot-middleware": "^2.18.2"
+  }
+}
