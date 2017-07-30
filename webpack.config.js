@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
   entry: [
-    'webpack-hot-middleware/client',
+    //'webpack-hot-middleware/client',
     path.join(process.cwd(), './src/app-client.js')
   ],
   output: {
@@ -24,27 +24,31 @@ module.exports = {
       },
     ],
   },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   plugins: [
     // new webpack.DefinePlugin({
     //   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     // }),
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development'),
         BABEL_ENV: JSON.stringify('dev'),
       },
     }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false },
-      mangle: false,
-      sourcemap: true,
-      beautify: false,
-      dead_code: false,
-    }),
+    new webpack.HotModuleReplacementPlugin(),
+
+    // new webpack.optimize.OccurrenceOrderPlugin(),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: { warnings: false },
+    //   mangle: false,
+    //   sourcemap: true,
+    //   beautify: false,
+    //   dead_code: false,
+    // }),
   ],
   devServer: {
-    contentBase: path.resolve(__dirname, './src/views'),  // New
+    contentBase: path.resolve(__dirname, './src/static'),  // New
   },
 };

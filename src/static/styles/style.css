@@ -2,22 +2,22 @@ body {
   font-family: 'PT Serif', serif;
 }
 
-.site-header {
+/*.site-header {
   font-family: Lato, sans-serif;
-}
+}*/
 
-.header-background-image {
+/*.header-background-image {
   background-image: url(http://dev-big-old-book.pantheonsite.io/wp-content/uploads/2016/09/cropped-View_looking_north_of_Mount_Jefferson-1.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom;
   opacity: 0.75;
-  filter: alpha(opacity=75); /* For IE8 and earlier */
+  filter: alpha(opacity=75);
   background-attachment: fixed;
   padding: 4rem 0;
-}
+}*/
 
-.title-box {
+/*.title-box {
   text-align: center;
   color: #fff;
   width: 750px;
@@ -25,9 +25,9 @@ body {
   padding: 1rem;
   margin: 0 auto;
   background-color: hsla(198, 95%, 38%, 0.75);
-}
+}*/
 
-.content-body {
+/*.content-body {
   font-size: 2rem;
   line-height: 1.6em;
 }
@@ -48,11 +48,16 @@ body {
 
 .county-modal-list {
   text-align: center;
+}*/
+
+.map {
+  height: 500px;
+  width: 800px;
 }
 
 /* Make google search box appear correct*/
-input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus, .gsc-search-button
+/*input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus, .gsc-search-button
 {
   box-sizing: content-box;
   line-height: normal;
-}
+}*/

@@ -2,35 +2,33 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Header from './Header.jsx';
-import Search from './Search.jsx';
-import Content from './Content.jsx';
-import Footer from './Footer.jsx';
+import MapContainer from './MapContainer';
+// import Header from './Header';
+// import Search from './Search';
+// import Content from './Content';
+// import Footer from './Footer';
 import * as contentActions from '../actions/contentActions';
 
 class App extends Component {
-  componentWillReceiveProps(nextProps) {
-    if (this.props.params !== nextProps.params) {
-      this.props.actions.loadContent(nextProps.params.jurisdiction, nextProps.params.topic);
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (this.props.params !== nextProps.params) {
+  //     this.props.actions.loadContent(nextProps.params.jurisdiction, nextProps.params.topic);
+  //   }
+  // }
 
   render() {
     return (
       <div>
-        <Header data={this.props.content} />
-        <Search />
-        <Content data={this.props.content} />
-        <Footer />
+        <MapContainer />
       </div>
     );
   }
 }
 
 App.propTypes = {
-  content: PropTypes.object.isRequired,
-  actions: PropTypes.object.isRequired,
-  params: PropTypes.object.isRequired,
+  // content: PropTypes.object.isRequired,
+  // actions: PropTypes.object.isRequired,
+  // params: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {

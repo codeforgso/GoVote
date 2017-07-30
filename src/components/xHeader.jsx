@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem, Col, Button, Glyphicon } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import CountyModal from './CountyModal.jsx';
+import CountyModal from './CountyModal';
 
 class Header extends Component {
   constructor() {

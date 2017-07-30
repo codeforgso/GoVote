@@ -4,8 +4,8 @@ import { Col, Row } from 'react-bootstrap';
 import renderHTML from 'react-render-html';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Header from './Header.jsx';
-import Footer from './Footer.jsx';
+import Header from './Header';
+import Footer from './Footer';
 import * as contentActions from '../actions/contentActions';
 
 class Main extends Component {

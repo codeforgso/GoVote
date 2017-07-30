@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Col, Row } from 'react-bootstrap';
-import Header from './Header.jsx';
-import Footer from './Footer.jsx';
+import Header from './Header';
+import Footer from './Footer';
 
 class Contact extends Component {
   render() {

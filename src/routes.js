@@ -1,22 +1,20 @@
-import Main from './components/Main.jsx';
-import App from './components/App.jsx';
-import Contact from './components/Contact.jsx';
+import App from './components/App';
 
 const routes = {
   path: '',
   childRoutes: [
     {
       path: '/',
-      component: Main,
+      component: App,
     },
     // {
     //   path: '/:jurisdiction/:topic',
     //   component: App,
     // },
-    {
-      path: '/contact',
-      component: Contact,
-    },
+    // {
+    //   path: '/contact',
+    //   component: Contact,
+    // },
   ],
 };
 
