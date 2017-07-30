@@ -3,13 +3,12 @@ const path = require('path');
 
 module.exports = {
   entry: [
-    //'webpack-hot-middleware/client',
     path.join(process.cwd(), './src/app-client.js')
   ],
   output: {
-    path: path.join(__dirname, 'src', 'static', 'scripts'),
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: './src/static'
+    publicPath: '/scripts/'
   },
   module: {
     loaders: [
@@ -22,33 +21,23 @@ module.exports = {
           presets: [ 'react-hmre' ]
         }
       },
+      {
+        test: /\.css$/, //Check for sass or scss file names
+        use: [
+          'style-loader',
+          'css-loader',
+        ]
+      },
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx', '.css']
   },
   plugins: [
-    // new webpack.DefinePlugin({
-    //   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    // }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('development'),
-        BABEL_ENV: JSON.stringify('dev'),
-      },
-    }),
     new webpack.HotModuleReplacementPlugin(),
-
-    // new webpack.optimize.OccurrenceOrderPlugin(),
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: { warnings: false },
-    //   mangle: false,
-    //   sourcemap: true,
-    //   beautify: false,
-    //   dead_code: false,
-    // }),
   ],
   devServer: {
-    contentBase: path.resolve(__dirname, './src/static'),  // New
-  },
+    open: true, // to open the local server in browser
+    contentBase: __dirname + '/src',
+  }
 };

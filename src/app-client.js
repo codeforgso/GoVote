@@ -1,5 +1,6 @@
+import css from './style';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import AppRoutes from './components/AppRoutes.jsx';
+import { render } from 'react-dom';
+import AppRoutes from './components/AppRoutes';
 
-ReactDOM.render(<AppRoutes />, document.getElementById('app'));
+render(<AppRoutes />, document.getElementById('app'));
