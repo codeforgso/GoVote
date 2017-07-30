@@ -25,11 +25,11 @@
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
-    "start": "npm run clientDev && concurrently \"npm run server\"",
+    "start": "npm run dev",
     "server": "NODE_ENV=production node_modules/.bin/babel-node src/server.js",
     "client": "NODE_ENV=production node_modules/.bin/webpack --config webpack.config.js",
-    "clientDev": "NODE_ENV=development webpack-dev-server --hot --inline",
-    "dev": "echo \"This command has been deprecated. Use 'npm start'\" && exit 1"
+    "dev": "webpack-dev-server",
+    "build": "echo \"Production Build Coming Soon\" && exit 1"
   },
   "devDependencies": {
     "babel-cli": "6.14.0",
@@ -51,6 +51,6 @@
     "redux-immutable-state-invariant": "^2.0.0",
     "style-loader": "^0.18.2",
     "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.3.0"
+    "webpack-dev-server": "2.4.5"
   }
 }
