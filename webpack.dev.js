@@ -9,7 +9,7 @@ module.exports = {
     path.join(process.cwd(), './src/app-client.js')
   ],
   output: {
-    path: path.join(__dirname, 'dist/scripts'),
+    path: path.join(__dirname, 'src'),
     filename: 'bundle.js',
     publicPath: '/scripts/'
   },
