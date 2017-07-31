@@ -1,12 +1,14 @@
 const webpack = require('webpack');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 
 module.exports = {
   entry: [
     path.join(process.cwd(), './src/app-client.js')
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'dist/scripts'),
     filename: 'bundle.js',
     publicPath: '/scripts/'
   },
@@ -22,7 +24,11 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/, //Check for sass or scss file names
+        test: /\.hbs$/,
+        loader: 'handlebars-loader'
+      },
+      {
+        test: /\.css$/, //Check for css file names
         use: [
           'style-loader',
           'css-loader',
@@ -35,6 +41,10 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      filename: '../index.html',
+      template: './src/views/main.hbs'
+    })
   ],
   devServer: {
     open: true, // to open the local server in browser
