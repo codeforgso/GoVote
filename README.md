@@ -1,4 +1,4 @@
-# goodtogogso
+# GoVote
 Local voter registration and election candidate application.
 
 *Detailed description of the project comming soon!*
@@ -11,7 +11,7 @@ We prefer to use the [yarn](https://yarnpkg.com/) npm client.
 
 ````
     cd path-to-my-dev-directory
-    git clone https://github.com/codeforgso/goodtogogso.git && cd goodtogogso && yarn
+    git clone https://github.com/codeforgso/govote.git && cd goodtogogso && yarn
     yarn start
 ````
 
@@ -19,7 +19,7 @@ If you prefer to use npm, the equivalent procedure is:
 
 ````
     cd path-to-my-dev-directory
-    git clone https://github.com/codeforgso/goodtogogso.git && cd goodtogogso && npm install
+    git clone https://github.com/codeforgso/govote.git && cd goodtogogso && npm install
     npm start
 ````
 
