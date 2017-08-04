@@ -1,5 +1,5 @@
 # GoVote
-Local voter registration and election candidate application.
+Local voter registration and election candidate web application.
 
 *Detailed description of the project comming soon!*
 
