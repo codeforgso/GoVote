@@ -1,8 +1,9 @@
 # GoVote
-Local voter registration and election candidate web application.
-Look up your voter status and get info on, voting, voting registration, and election candidates.
+This project's goal is to create a web application that the local public can use to easily view their voter registration and election candidate information based on their names and addresses.
 
-*Detailed description of the project comming soon!*
+Look up your voter status and get info on voting, voting registration, and election candidates.
+
+*Detailed description of the project coming soon!*
 
 ## Installation
 Make sure you have [Node](https://nodejs.org/en/) >= 4 installed (we strongly recommend using Node >= 6 and npm >= 3).
