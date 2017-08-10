@@ -1,5 +1,6 @@
 # GoVote
 Local voter registration and election candidate web application.
+Look up your voter status and get info on, voting, voting registration, and election candidates.
 
 *Detailed description of the project comming soon!*
 
