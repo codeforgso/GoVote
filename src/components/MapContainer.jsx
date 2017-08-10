@@ -7,8 +7,8 @@ const MapContainer = (props) => {
   return (
     <Map className="map" center={position} zoom={13}>
       <TileLayer
-        url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url='http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'
+        attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
       />
       <Marker position={position}>
         <Popup>

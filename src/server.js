@@ -1,33 +1,15 @@
 /* eslint no-console: 0 */
 import React from 'react';
-import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import express from 'express';
-import handlebars from 'express-handlebars';
 import path from 'path';
 import { compose, mainCompose } from './server/compose';
-import { routes } from './routes';
-import configureStore from './store/configureStore';
-
-import webpack from 'webpack'
-import webpackDevMiddleware from 'webpack-dev-middleware'
-import webpackHotMiddleware from 'webpack-hot-middleware'
-import webpackConfig from '../webpack.config'
 
 const app = express();
 require('node-jsx').install();
 
-app.engine('handlebars', handlebars());
-app.set('view engine', 'handlebars');
-app.set('views', path.join(__dirname, '/views'));
-
 app.set('port', (process.env.PORT || 3001));
-
-// Use this middleware to set up hot module reloading via webpack.
-const compiler = webpack(webpackConfig)
-app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath }))
-app.use(webpackHotMiddleware(compiler))
 
 // Express only serve static assets in production.
 if (true || process.env.NODE_ENV === 'production') { // eslint-disable-line no-constant-condition

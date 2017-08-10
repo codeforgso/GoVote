@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   devtool: 'eval',
   entry: [
-    path.join(process.cwd(), './src/app-client.js')
+    path.join(process.cwd(), './src/index.js')
   ],
   output: {
     path: path.join(__dirname, 'dist/scripts'),
@@ -24,9 +24,13 @@ module.exports = {
           presets: [ 'react-hmre' ]
         }
       },
+      // {
+      //   test: /\.hbs$/,
+      //   loader: 'handlebars-loader' // transpile from .hbs to .html
+      // },
       {
-        test: /\.hbs$/,
-        loader: 'handlebars-loader' // transpile from .hbs to .html
+        test: /\.html$/,
+        loader: 'html-loader'
       },
       {
         test: /\.css$/, // Check for css file names
@@ -44,11 +48,11 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       filename: '../index.html',
-      template: './src/views/main.hbs'
+      template: './src/index.html'
     })
   ],
   devServer: {
     open: true, // to open the local server in browser
-    contentBase: __dirname + '/src',
+    contentBase: path.join(__dirname, '/src')
   }
 };
