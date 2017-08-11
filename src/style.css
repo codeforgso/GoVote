@@ -2,7 +2,14 @@ body {
   font-family: 'PT Serif', serif;
 }
 
+html, body, #app {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
 .map {
-  height: 500px;
-  width: 800px;
+  height: 100%;
+  width: 100%;
 }
