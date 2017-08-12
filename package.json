@@ -7,10 +7,11 @@
     "coa-command-line-args": "^1.0.1",
     "es6-promise": "^4.0.5",
     "express": "4.13.3",
+    "express-promise-router": "^2.0.0",
     "fs": "0.0.2",
     "leaflet": "^1.1.0",
-    "node-jsx": "^0.13.3",
     "path": "^0.12.7",
+    "pg": "^7.1.0",
     "prop-types": "^15.5.10",
     "react": "^15.4.1",
     "react-bootstrap": "^0.30.7",
@@ -22,8 +23,9 @@
     "react-router-dom": "^4.1.2"
   },
   "scripts": {
-    "start": "npm run build:dev",
-    "build:dev": "webpack-dev-server --env=dev --progress --profile --colors",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "client": "webpack-dev-server --env=dev --progress --profile --colors",
+    "server": "babel-node server/index.js",
     "build:dist": "webpack -p --env=prod --progress --profile --colors"
   },
   "devDependencies": {
