@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "coa-command-line-args": "^1.0.1",
+    "dotenv": "^4.0.0",
     "es6-promise": "^4.0.5",
     "express": "4.13.3",
     "express-promise-router": "^2.0.0",
