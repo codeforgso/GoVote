@@ -13,7 +13,7 @@ We prefer to use the [yarn](https://yarnpkg.com/) npm client.
 
 ````
     cd path-to-my-dev-directory
-    git clone https://github.com/codeforgso/GoVote.git && cd goodtogogso && yarn
+    git clone https://github.com/codeforgso/GoVote.git && cd GoVote && yarn
     yarn start
 ````
 
@@ -21,7 +21,7 @@ If you prefer to use npm, the equivalent procedure is:
 
 ````
     cd path-to-my-dev-directory
-    git clone https://github.com/codeforgso/GoVote.git && cd goodtogogso && npm install
+    git clone https://github.com/codeforgso/GoVote.git && cd GoVote && npm install
     npm start
 ````
 
