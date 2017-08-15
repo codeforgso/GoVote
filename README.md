@@ -26,7 +26,8 @@ If you prefer to use npm, the equivalent procedure is:
 ````
 
 The client application is running at http://localhost:8080/. 
+The server is running at http://localhost:3001.
 
 ## Basic Architecture
 
-The server side is implemented via Express. The public site is a React/Redux App.
+The server side is implemented via Express. The public site is a React App.
