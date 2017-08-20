@@ -19,7 +19,8 @@ const client = new Client({
 
 client.connect();
 
-router.get('/:fn/:ln', async (req, res) => {
+router.get('/api/:fn/:ln', async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   const query = `SELECT * FROM ${process.env.DB_TABLE} WHERE first_name ilike $1::text and last_name ilike $2::text`;
   const { rows } = await client.query(query, [req.params.fn, req.params.ln]);
   res.send(rows);

@@ -52,7 +52,7 @@ module.exports = {
     })
   ],
   devServer: {
-    open: true, // to open the local server in browser
+    open: false, // to open the local server in browser
     contentBase: path.join(__dirname, '/src')
   }
 };

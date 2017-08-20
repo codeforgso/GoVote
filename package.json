@@ -2,6 +2,7 @@
   "name": "govote",
   "version": "0.0.1",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "axios": "^0.16.2",
     "coa-command-line-args": "^1.0.1",
