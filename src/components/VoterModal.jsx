@@ -12,7 +12,6 @@ const VoterModal = (props) => {
 
   return (
     <Modal {...props} bsSize="lg" aria-labelledby="contained-modal-title-lg">
-      {console.log(props)}
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-lg">
           GoVoteGSO
