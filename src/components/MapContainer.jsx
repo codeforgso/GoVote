@@ -8,10 +8,10 @@ class MapContainer extends React.Component {
   _onEachFeature = (feature, layer) => {
     if (feature.properties && feature.properties.Commission) {
       console.log(feature, layer);
-      layer.bindPopup(`<h5>GUILFORD COUNTY COMMISSIONER</h5><h5>DISTRICT: ${feature.properties.District}</br>COMMISSIONER: ${feature.properties.Commission}</h5>`);
+      layer.bindPopup(`<h5>GUILFORD COUNTY COMMISSIONER</h5><h5>DISTRICT: ${feature.properties.District}</br>COMMISSIONER: ${feature.properties.Commission.toUpperCase()}</h5>`);
     }
     if (feature.properties && feature.properties.MEMBER) {
-      layer.bindPopup(`<h5>GREENSBORO CITY COUNCIL</h5><h5>DISTRICT: ${feature.properties.DISTRICT}</br>MEMBER: ${feature.properties.MEMBER}</h5>`);
+      layer.bindPopup(`<h5>GREENSBORO CITY COUNCIL</h5><h5>DISTRICT: ${feature.properties.DISTRICT}</br>MEMBER: ${feature.properties.MEMBER.toUpperCase()}</h5>`);
     }
   }
 
