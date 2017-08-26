@@ -38,7 +38,7 @@ class MapContainer extends React.Component {
         />
         <Marker position={position}>
           <Popup>
-            <span><a href="http://codeforgreensboro.org" target="_blank"><img className="logo" src="../static/CfGLogo.png" alt="CfG"/></a><h3>Hello!</h3><h4>I am <a href='http://govotegso.org' target='_blank'>GoVoteGSO.<br/></a><br/>Help <a href='http://codeforgreensboro.org' target='_blank'>Code for Greensboro</a> make me awesome!</h4></span>
+            <span><a href="http://codeforgreensboro.org" target="_blank"><img className="logo" src="../static/CfGLogo.png" alt="CfG"/></a><h3>Hello, and welcome to the August 26th Hackday!</h3><h4>I am <a href='http://govotegso.org' target='_blank'>GoVoteGSO.<br/></a><br/>Help <a href='http://codeforgreensboro.org' target='_blank'>Code for Greensboro</a> make me awesome!</h4></span>
           </Popup>
         </Marker>
         <LayersControl position='topleft' collapsed={false}>
