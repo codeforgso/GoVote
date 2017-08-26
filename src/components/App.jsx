@@ -44,6 +44,7 @@ export default class App extends Component {
     axios.get(`/api/${this.state.firstName}/${this.state.lastName}`, { baseURL: 'http://localhost:3001/' })
     .then((response) => {
       this.setState({voterInfo: response});
+      console.log(response);
       alert(JSON.stringify(this.state.voterInfo.data, null, 2));
     })
     .catch(function (error) {
