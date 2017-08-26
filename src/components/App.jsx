@@ -13,14 +13,31 @@ export default class App extends Component {
       lastName: null,
       voterInfo: {},
       layers: {
-        councilDist: null
+        councilDist: null,
+        commissionerDist: null
       }
     };
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this._handleInputChange = this._handleInputChange.bind(this);
   }
 
   componentWillMount() {
-    this._getCouncilDistricts(this.props.match);
+    this._getGISData(this.props.match);
+  }
+
+  _getCouncilDistricts = () => {
+    return axios.get('http://data-greensboro.opendata.arcgis.com/datasets/829c58aaaf0c4bf0b59f93bfe3cb4c13_3.geojson');
+  }
+
+  _getCommissionerDistricts = () => {
+    return axios.get('http://data-greensboro.opendata.arcgis.com/datasets/1b60f15bb4dc4d8f96bd4831a8fbf063_5.geojson');
+  }
+
+  _getGISData = () => {
+    axios.all([this._getCouncilDistricts(), this._getCommissionerDistricts()])
+    .then(axios.spread((councilDist, commissionerDist) => {
+      console.log(councilDist.data, commissionerDist.data);
+      this.setState({ layers: { councilDist: councilDist.data, commissionerDist: commissionerDist.data } });
+    }));
   }
 
   _getVoterInfo = () => {
@@ -34,18 +51,7 @@ export default class App extends Component {
     });
   }
 
-  _getCouncilDistricts = () => {
-    axios.get('http://data-greensboro.opendata.arcgis.com/datasets/829c58aaaf0c4bf0b59f93bfe3cb4c13_3.geojson')
-   .then((response) => {
-      this.setState({ layers: { councilDist: response.data } });
-      //console.log(this.state.councilDist);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  }
-
-  handleInputChange = (event) => {
+  _handleInputChange = (event) => {
     const target = event.target;
     const value = target.value;
     const name = target.name;
@@ -58,10 +64,10 @@ export default class App extends Component {
   render() {
     const modalClose = () => this.setState({ modalShow: false });
     return (
-      this.state.layers.councilDist ?
+      this.state.layers.councilDist && this.state.layers.commissionerDist ?
         <div className="map">
           <MapContainer data={this.state.layers} />
-          <VoterModal show={this.state.modalShow} onHide={modalClose} onSubmit={this._getVoterInfo} onUpdate={this.handleInputChange}/>
+          <VoterModal show={this.state.modalShow} onHide={modalClose} onSubmit={this._getVoterInfo} onUpdate={this._handleInputChange}/>
         </div> : null
     );
   }
