@@ -44,6 +44,7 @@ export default class App extends Component {
     _getVoterInfo = () => {
         axios.get(`/api/${this.state.firstName}/${this.state.lastName}`, {baseURL: 'http://localhost:3001/'})
             .then((response) => {
+                console.log(response.data);
                 this.setState({voterInfo: response.data});
             })
             .catch(function (error) {
@@ -70,7 +71,8 @@ export default class App extends Component {
         const name = target.name;
 
         this.setState({
-            [name]: value
+            [name]: value,
+            showUserStatus: false
         });
     }
 

@@ -31,10 +31,11 @@ const VoterModal = (props) => {
     }
 
     const renderUserStatus = (status) => {
-        // Capitalizes the first letter of the string and converts the rest to lowercase
-        status = status[0] + status.substring(1).toLowerCase();
+        status = status.toUpperCase();
         return (
-            <div>{status}</div>
+            <div>
+              {status}
+            </div>
         );
     }
     return (
@@ -47,7 +48,7 @@ const VoterModal = (props) => {
             <Modal.Body>
                 <div className="county-modal-list">
                     <h4>Enter first and last name for your current voter registration status.</h4>
-                    <Form inline>
+                    <Form >
                         <FormGroup controlId="formFirstName" validationState={null}>
                             <ControlLabel>First Name</ControlLabel>
                             <FormControl type="text" name="firstName" onChange={onUpdate} placeholder="Jane"/>
@@ -71,7 +72,7 @@ const VoterModal = (props) => {
                         }
                         {
                             showUserStatus ?
-                                renderUserStatus(selectedRadio.voter_status_desc)
+                                renderUserStatus(`VOTER REGISTRATION STATUS: ${selectedRadio.voter_status_desc}`)
                                 : null
                         }
                     </FormGroup>
