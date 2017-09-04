@@ -96,7 +96,8 @@ export default class App extends Component {
         const name = target.name;
 
         this.setState({
-            [name]: value
+            [name]: value,
+            showUserStatus: false
         });
     }
 
