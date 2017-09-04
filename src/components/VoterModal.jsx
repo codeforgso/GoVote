@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-    Modal,
     Button,
+    ButtonGroup,
+    ControlLabel,
     Form,
     FormControl,
     FormGroup,
-    Radio,
-    ControlLabel
+    Modal
 } from 'react-bootstrap';
 
 const VoterModal = (props) => {
@@ -17,16 +17,18 @@ const VoterModal = (props) => {
         onSubmit,
         onUpdate,
         voterInfo,
-        _handleRadioClick,
-        _handleRadioSubmit,
-        selectedRadio,
+        _handleAddressClick,
+        _handleAddressSubmit,
+        selectedAddress,
         showUserStatus,
     } = props;
 
     const renderVoterInfo = (el) => {
         return (
-            <Radio name="voterRadioGroup" key={el.voter_reg_num}
-                   onClick={() => _handleRadioClick(el)}>{el.resident_address}</Radio>
+            // <Radio name="voterRadioGroup" key={el.voter_reg_num}
+            //        onClick={() => _handleRadioClick(el)}>{el.resident_address}</Radio>
+            <Button bsStyle="link" key={el.voter_reg_num}
+                   onClick={() => _handleAddressClick(el)}>{el.resident_address}</Button>
         );
     }
 
@@ -37,6 +39,12 @@ const VoterModal = (props) => {
               {status}
             </div>
         );
+    }
+
+    const handleKeyPress = (e) => {
+      if (e.key === 'Enter') {
+        onSubmit;
+      }
     }
     return (
         <Modal show={show} bsSize="lg" aria-labelledby="contained-modal-title-lg">
@@ -51,28 +59,24 @@ const VoterModal = (props) => {
                     <Form >
                         <FormGroup controlId="formFirstName" validationState={null}>
                             <ControlLabel>First Name</ControlLabel>
-                            <FormControl type="text" name="firstName" onChange={onUpdate} placeholder="Jane"/>
+                            <FormControl type="text" name="firstName" onChange={onUpdate} onKeyPress={handleKeyPress} placeholder="Jane"/>
                         </FormGroup>
                         <FormGroup controlId="formLastName" validationState={null}>
                             <ControlLabel>Last Name</ControlLabel>
-                            <FormControl type="text" name="lastName" onChange={onUpdate} placeholder="Doe"/>
+                            <FormControl type="text" name="lastName" onChange={onUpdate} onKeyPress={handleKeyPress} placeholder="Doe"/>
                         </FormGroup>
                         <Button type="button" onClick={onSubmit}>
                             Search
                         </Button>
                     </Form>
                     <FormGroup>
+                      <ButtonGroup vertical>
                         {voterInfo.map(renderVoterInfo)}
-                        {
-                            voterInfo.length ?
-                                <Button onClick={_handleRadioSubmit}>
-                                    This is my address
-                                </Button>
-                                : null
-                        }
+                        {voterInfo.length ? <Button bsStyle="link" onClick={_handleAddressSubmit}>I DON'T SEE MY ADDRESS</Button> : null}
+                      </ButtonGroup>
                         {
                             showUserStatus ?
-                                renderUserStatus(`VOTER REGISTRATION STATUS: ${selectedRadio.voter_status_desc}`)
+                                renderUserStatus(`VOTER REGISTRATION STATUS: ${selectedAddress.voter_status_desc}`)
                                 : null
                         }
                     </FormGroup>

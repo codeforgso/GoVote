@@ -15,7 +15,7 @@ export default class App extends Component {
                 councilDist: null,
                 commissionerDist: null
             },
-            selectedRadio: {},
+            selectedAddress: {},
             showUserStatus: false,
         };
         this._handleInputChange = this._handleInputChange.bind(this);
@@ -52,16 +52,17 @@ export default class App extends Component {
             });
     }
 
-    _handleRadioClick = (el) => {
+    _handleAddressClick = (el) => {
         this.setState({
-            selectedRadio: el,
-            showUserStatus: false,
-        });
+            selectedAddress: el
+        }, () => {
+          this._handleAddressSubmit();
+        })
     }
 
-    _handleRadioSubmit = () => {
+    _handleAddressSubmit = () => {
         this.setState({
-            showUserStatus: true,
+            showUserStatus: true
         });
     }
 
@@ -72,6 +73,8 @@ export default class App extends Component {
 
         this.setState({
             [name]: value,
+            voterInfo: [],
+            selectedAddress: {},
             showUserStatus: false
         });
     }
@@ -84,8 +87,8 @@ export default class App extends Component {
                     <MapContainer data={this.state.layers}/>
                     <VoterModal show={this.state.modalShow} onHide={modalClose} onSubmit={this._getVoterInfo}
                                 onUpdate={this._handleInputChange} voterInfo={this.state.voterInfo}
-                                _handleRadioSubmit={this._handleRadioSubmit}
-                                _handleRadioClick={this._handleRadioClick} selectedRadio={this.state.selectedRadio}
+                                _handleAddressSubmit={this._handleAddressSubmit}
+                                _handleAddressClick={this._handleAddressClick} selectedAddress={this.state.selectedAddress}
                                 showUserStatus={this.state.showUserStatus}/>
                 </div> : null
         );
