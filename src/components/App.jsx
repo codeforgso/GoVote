@@ -8,8 +8,8 @@ export default class App extends Component {
         super();
         this.state = {
             modalShow: true,
-            firstName: null,
-            lastName: null,
+            firstName: '',
+            lastName: '',
             voterInfo: [],
             layers: {
                 councilDist: null,
@@ -17,6 +17,9 @@ export default class App extends Component {
             },
             selectedAddress: {},
             showUserStatus: false,
+            firstNameValidationState: null,
+            lastNameValidationState: null,
+            formErrors: [],
         };
         this._handleInputChange = this._handleInputChange.bind(this);
     }
@@ -42,14 +45,36 @@ export default class App extends Component {
     }
 
     _getVoterInfo = () => {
-        axios.get(`/api/${this.state.firstName}/${this.state.lastName}`, {baseURL: 'http://localhost:3001/'})
-            .then((response) => {
-                console.log(response.data);
-                this.setState({voterInfo: response.data});
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        if (this._validateVoterInput()) {
+            this.setState({firstNameValidationState: null});
+            this.setState({lastNameValidationState: null});
+            axios.get(`/api/${this.state.firstName}/${this.state.lastName}`, {baseURL: 'http://localhost:3001/'})
+                .then((response) => {
+                    this.setState({voterInfo: response.data});
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        } else {
+            this.setState({voterInfo: []})
+        }
+    }
+
+    _validateVoterInput = () => {
+        let result = true;
+        let errors = [];
+        if (this.state.firstName === '') {
+            this.setState({firstNameValidationState: 'error'});
+            errors.push('first name');
+            result = false;
+        }
+        if (this.state.lastName === '') {
+            this.setState({lastNameValidationState: 'error'});
+            errors.push('last name');
+            result = false;
+        }
+        this.setState({formErrors: errors});
+        return result;
     }
 
     _handleAddressClick = (el) => {
@@ -89,7 +114,10 @@ export default class App extends Component {
                                 onUpdate={this._handleInputChange} voterInfo={this.state.voterInfo}
                                 _handleAddressSubmit={this._handleAddressSubmit}
                                 _handleAddressClick={this._handleAddressClick} selectedAddress={this.state.selectedAddress}
-                                showUserStatus={this.state.showUserStatus}/>
+                                showUserStatus={this.state.showUserStatus}
+                                firstNameValidationState={this.state.firstNameValidationState}
+                                lastNameValidationState={this.state.lastNameValidationState}
+                                formErrors={this.state.formErrors}/>
                 </div> : null
         );
     }

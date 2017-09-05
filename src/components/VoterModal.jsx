@@ -1,14 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-    Button,
-    ButtonGroup,
-    ControlLabel,
-    Form,
-    FormControl,
-    FormGroup,
-    Modal
-} from 'react-bootstrap';
+import {Modal, Button, ButtonGroup, ControlLabel, Form, FormControl, FormGroup} from 'react-bootstrap';
 
 const VoterModal = (props) => {
     const {
@@ -21,14 +13,15 @@ const VoterModal = (props) => {
         _handleAddressSubmit,
         selectedAddress,
         showUserStatus,
+        firstNameValidationState,
+        lastNameValidationState,
+        formErrors,
     } = props;
 
     const renderVoterInfo = (el) => {
         return (
-            // <Radio name="voterRadioGroup" key={el.voter_reg_num}
-            //        onClick={() => _handleRadioClick(el)}>{el.resident_address}</Radio>
-            <Button bsStyle="link" key={el.voter_reg_num}
-                   onClick={() => _handleAddressClick(el)}>{el.resident_address}</Button>
+          <Button bsStyle="link" name="voterAddressGroup" key={el.voter_reg_num}
+                 onClick={() => _handleAddressClick(el)}>{el.resident_address}</Button>
         );
     }
 
@@ -41,11 +34,12 @@ const VoterModal = (props) => {
         );
     }
 
-    const handleKeyPress = (e) => {
-      if (e.key === 'Enter') {
-        onSubmit;
-      }
+    const renderErrors = (el, index) => {
+        return (
+            <li key={index} className="text-danger">Please enter a value for {el}.</li>
+        )
     }
+
     return (
         <Modal show={show} bsSize="lg" aria-labelledby="contained-modal-title-lg">
             <Modal.Header closeButton>
@@ -56,14 +50,15 @@ const VoterModal = (props) => {
             <Modal.Body>
                 <div className="county-modal-list">
                     <h4>Enter first and last name for your current voter registration status.</h4>
-                    <Form >
-                        <FormGroup controlId="formFirstName" validationState={null}>
+                    <Form inline>
+                        <FormGroup controlId="formFirstName" validationState={firstNameValidationState}>
+
                             <ControlLabel>First Name</ControlLabel>
-                            <FormControl type="text" name="firstName" onChange={onUpdate} onKeyPress={handleKeyPress} placeholder="Jane"/>
+                            <FormControl type="text" name="firstName" onChange={onUpdate} placeholder="Jane"/>
                         </FormGroup>
-                        <FormGroup controlId="formLastName" validationState={null}>
+                        <FormGroup controlId="formLastName" validationState={lastNameValidationState}>
                             <ControlLabel>Last Name</ControlLabel>
-                            <FormControl type="text" name="lastName" onChange={onUpdate} onKeyPress={handleKeyPress} placeholder="Doe"/>
+                            <FormControl type="text" name="lastName" onChange={onUpdate} placeholder="Doe"/>
                         </FormGroup>
                         <Button type="button" onClick={onSubmit}>
                             Search
@@ -72,11 +67,17 @@ const VoterModal = (props) => {
                     <FormGroup>
                       <ButtonGroup vertical>
                         {voterInfo.map(renderVoterInfo)}
-                        {voterInfo.length ? <Button bsStyle="link" onClick={_handleAddressSubmit}>I DON'T SEE MY ADDRESS</Button> : null}
                       </ButtonGroup>
                         {
                             showUserStatus ?
                                 renderUserStatus(`VOTER REGISTRATION STATUS: ${selectedAddress.voter_status_desc}`)
+                                : null
+                        }
+                        {
+                            formErrors.length ?
+                                <ul>
+                                    {formErrors.map(renderErrors)}
+                                </ul>
                                 : null
                         }
                     </FormGroup>
