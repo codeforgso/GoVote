@@ -19,7 +19,7 @@ const VoterInfoForm = (props) => {
     return (
         <div>
             <Form inline>
-                <h4>Enter first and last name for your current voter registration status.</h4>
+                <h4>Enter your name for your current voter registration status.</h4>
                 <FormGroup controlId="formFirstName" validationState={firstNameValidationState}>
                     <ControlLabel>First Name</ControlLabel>
                     <FormControl type="text" name="firstName" onChange={onUpdate} placeholder="Jane"/>
@@ -32,15 +32,7 @@ const VoterInfoForm = (props) => {
                     Search
                 </Button>
             </Form>
-            <FormGroup>
-                {
-                    formErrors.length ?
-                        <ul>
-                            {formErrors.map(renderErrors)}
-                        </ul>
-                        : null
-                }
-            </FormGroup>
+            
         </div>
     )
 

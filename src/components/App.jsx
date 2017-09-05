@@ -85,6 +85,8 @@ export default class App extends Component {
 
         this.setState({
             [name]: value,
+            voterInfo: [],
+            selectedAddress: {},
             showUserStatus: false
         });
     }
@@ -104,6 +106,7 @@ export default class App extends Component {
                             formErrors={this.state.formErrors} />
                         <VerifyVoterInfo voterInfo={this.state.voterInfo} />
                     </VoterModal>
+
                 </div> : null
         );
     }

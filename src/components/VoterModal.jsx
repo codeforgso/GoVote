@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Modal, Button, } from 'react-bootstrap';
 
+
 const VoterModal = (props) => {
     const {
         onHide,
