@@ -1,23 +1,23 @@
 import React, {Component} from 'react';
 import {
     Button,
-    FormGroup,
-    Radio,
+    ButtonGroup,
+    FormGroup
 } from 'react-bootstrap';
 
 class VerifyVoterInfo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedRadio: {},
+            selectedAddress: {},
             showUserStatus: false,
         }
     }
 
     renderVoterInfo = (el) => {
         return (
-            <Radio name="voterRadioGroup" key={el.voter_reg_num}
-                   onClick={() => this.handleRadioClick(el)}>{el.resident_address}</Radio>
+            <Button bsStyle="link" name="voterAddressGroup" key={el.voter_reg_num}
+                    onClick={() => this._handleAddressClick(el)}>{el.resident_address}</Button>
         );
     }
 
@@ -30,16 +30,10 @@ class VerifyVoterInfo extends Component {
         );
     }
 
-    handleRadioSubmit = () => {
+    _handleAddressClick = (el) => {
         this.setState({
+            selectedAddress: el,
             showUserStatus: true,
-        });
-    }
-
-    handleRadioClick = (el) => {
-        this.setState({
-            selectedRadio: el,
-            showUserStatus: false,
         });
     }
 
@@ -52,19 +46,12 @@ class VerifyVoterInfo extends Component {
     render() {
         return (
             <FormGroup>
-                {this.props.voterInfo.map(this.renderVoterInfo)}
+                <ButtonGroup vertical>
+                    {this.props.voterInfo.map(this.renderVoterInfo)}
+                </ButtonGroup>
                 {
-                    this.props.voterInfo.length ?
-                        <div>
-                            <Button onClick={this.handleRadioSubmit}>
-                                This is my address
-                            </Button>
-                        </div>
-                        : null
-                }
-                {
-                    this.state.showUserStatus && this.props.voterInfo.length ?
-                        this.renderUserStatus(`VOTER REGISTRATION STATUS: ${this.state.selectedRadio.voter_status_desc}`)
+                    this.state.showUserStatus ?
+                        this.renderUserStatus(`VOTER REGISTRATION STATUS: ${this.state.selectedAddress.voter_status_desc}`)
                         : null
                 }
             </FormGroup>

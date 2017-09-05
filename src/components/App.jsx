@@ -18,8 +18,6 @@ export default class App extends Component {
                 councilDist: null,
                 commissionerDist: null
             },
-            selectedRadio: {},
-            showUserStatus: false,
             firstNameValidationState: null,
             lastNameValidationState: null,
             formErrors: [],
