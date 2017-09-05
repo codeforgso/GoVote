@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import MapContainer from './MapContainer';
 import VoterModal from './VoterModal.jsx';
-import axios from 'axios';
+import VoterInfoForm from './VoterInfoForm';
+import VerifyVoterInfo from './VerifyVoterInfo';
+
 export default class App extends Component {
     constructor() {
         super();
@@ -15,8 +18,6 @@ export default class App extends Component {
                 councilDist: null,
                 commissionerDist: null
             },
-            selectedAddress: {},
-            showUserStatus: false,
             firstNameValidationState: null,
             lastNameValidationState: null,
             formErrors: [],
@@ -77,20 +78,6 @@ export default class App extends Component {
         return result;
     }
 
-    _handleAddressClick = (el) => {
-        this.setState({
-            selectedAddress: el
-        }, () => {
-          this._handleAddressSubmit();
-        })
-    }
-
-    _handleAddressSubmit = () => {
-        this.setState({
-            showUserStatus: true
-        });
-    }
-
     _handleInputChange = (event) => {
         const target = event.target;
         const value = target.value;
@@ -110,14 +97,16 @@ export default class App extends Component {
             this.state.layers.councilDist && this.state.layers.commissionerDist ?
                 <div className="map">
                     <MapContainer data={this.state.layers}/>
-                    <VoterModal show={this.state.modalShow} onHide={modalClose} onSubmit={this._getVoterInfo}
-                                onUpdate={this._handleInputChange} voterInfo={this.state.voterInfo}
-                                _handleAddressSubmit={this._handleAddressSubmit}
-                                _handleAddressClick={this._handleAddressClick} selectedAddress={this.state.selectedAddress}
-                                showUserStatus={this.state.showUserStatus}
-                                firstNameValidationState={this.state.firstNameValidationState}
-                                lastNameValidationState={this.state.lastNameValidationState}
-                                formErrors={this.state.formErrors}/>
+                    <VoterModal show={this.state.modalShow} onHide={modalClose}>
+                        <VoterInfoForm
+                            onSubmit={this._getVoterInfo}
+                            onUpdate={this._handleInputChange}
+                            firstNameValidationState={this.state.firstNameValidationState}
+                            lastNameValidationState={this.state.lastNameValidationState}
+                            formErrors={this.state.formErrors} />
+                        <VerifyVoterInfo voterInfo={this.state.voterInfo} />
+                    </VoterModal>
+
                 </div> : null
         );
     }

@@ -16,8 +16,8 @@ class VerifyVoterInfo extends Component {
 
     renderVoterInfo = (el) => {
         return (
-          <Button bsStyle="link" name="voterAddressGroup" key={el.voter_reg_num}
-                 onClick={() => _handleAddressClick(el)}>{el.resident_address}</Button>
+            <Button bsStyle="link" name="voterAddressGroup" key={el.voter_reg_num}
+                    onClick={() => this._handleAddressClick(el)}>{el.resident_address}</Button>
         );
     }
 
@@ -30,16 +30,10 @@ class VerifyVoterInfo extends Component {
         );
     }
 
-    _handleAddressSubmit = () => {
-        this.setState({
-            showUserStatus: true,
-        });
-    }
-
     _handleAddressClick = (el) => {
         this.setState({
             selectedAddress: el,
-            showUserStatus: false,
+            showUserStatus: true,
         });
     }
 
@@ -51,23 +45,16 @@ class VerifyVoterInfo extends Component {
 
     render() {
         return (
-          <FormGroup>
-            <ButtonGroup vertical>
-              {voterInfo.map(renderVoterInfo)}
-            </ButtonGroup>
-              {
-                  showUserStatus ?
-                      renderUserStatus(`VOTER REGISTRATION STATUS: ${selectedAddress.voter_status_desc}`)
-                      : null
-              }
-              {
-                  formErrors.length ?
-                      <ul>
-                          {formErrors.map(renderErrors)}
-                      </ul>
-                      : null
-              }
-          </FormGroup>
+            <FormGroup>
+                <ButtonGroup vertical>
+                    {this.props.voterInfo.map(this.renderVoterInfo)}
+                </ButtonGroup>
+                {
+                    this.state.showUserStatus ?
+                        this.renderUserStatus(`VOTER REGISTRATION STATUS: ${this.state.selectedAddress.voter_status_desc}`)
+                        : null
+                }
+            </FormGroup>
         )
     }
 }
