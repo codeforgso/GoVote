@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Modal, Button } from 'react-bootstrap';
 
 
-const VoterModal = (props) => {
+const RegistrationInfoModal = (props) => {
     const {
         onHide,
         show,
@@ -13,12 +13,13 @@ const VoterModal = (props) => {
         <Modal {...props} show={show} bsSize="lg" aria-labelledby="contained-modal-title-lg">
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-lg">
-                    GoVoteGSO
+                    NC Voter Registration Info
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <div className="county-modal-list">
-                    {props.children}
+                <div className="registration-modal-info">
+                    <h1>I will tell you what you need to know to GoVote!</h1>
+                    <h3>In the meantime, start with the NC Board of Elections Voter Registration site <a href="https://www.ncsbe.gov/Voters/Registering-to-Vote" target="_blank">here</a>.</h3>
                 </div>
             </Modal.Body>
             <Modal.Footer>
@@ -30,9 +31,9 @@ const VoterModal = (props) => {
     );
 };
 
-VoterModal.propTypes = {
+RegistrationInfoModal.propTypes = {
     onHide: PropTypes.func.isRequired,
     show: PropTypes.bool.isRequired
 };
 
-module.exports = VoterModal;
+module.exports = RegistrationInfoModal;

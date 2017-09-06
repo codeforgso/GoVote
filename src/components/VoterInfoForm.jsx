@@ -22,17 +22,30 @@ const VoterInfoForm = (props) => {
                 <h4>Enter your name for your current voter registration status.</h4>
                 <FormGroup controlId="formFirstName" validationState={firstNameValidationState}>
                     <ControlLabel>First Name</ControlLabel>
+                    {' '}
                     <FormControl type="text" name="firstName" onChange={onUpdate} placeholder="Jane"/>
                 </FormGroup>
+                {' '}
                 <FormGroup controlId="formLastName" validationState={lastNameValidationState}>
                     <ControlLabel>Last Name</ControlLabel>
+                    {' '}
                     <FormControl type="text" name="lastName" onChange={onUpdate} placeholder="Doe"/>
                 </FormGroup>
+                {' '}
                 <Button type="button" onClick={onSubmit}>
                     Search
                 </Button>
             </Form>
-            
+            <FormGroup>
+                {
+                    formErrors.length ?
+                        <ul>
+                            {formErrors.map(renderErrors)}
+                        </ul>
+                        : null
+                }
+            </FormGroup>
+
         </div>
     )
 
