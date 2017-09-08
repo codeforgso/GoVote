@@ -16,7 +16,7 @@ class VerifyVoterInfo extends Component {
 
     renderVoterInfo = (el) => {
         return (
-            <Button bsStyle="link" name="voterAddressGroup" key={el.voter_reg_num}
+            <Button name="voterAddressGroup" key={el.voter_reg_num}
                     onClick={() => this._handleAddressClick(el)}>{el.resident_address}</Button>
         );
     }
@@ -49,14 +49,14 @@ class VerifyVoterInfo extends Component {
             <FormGroup>
               {
               this.props.voterInfo.length ?
-                <h4>Verify Your Address</h4>
+                <h4>Verify Your Address:</h4>
                 : null
               }
               <ButtonGroup vertical>
                   {this.props.voterInfo.map(this.renderVoterInfo)}
                   {
                   this.props.voterInfo.length ?
-                    <Button bsStyle="link" name="notMyAddress"
+                    <Button name="notMyAddress"
                           onClick={this.props.showRegInfoModal}>I DON'T SEE MY ADDRESS</Button>
                           : null
                   }

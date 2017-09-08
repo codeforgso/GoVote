@@ -18,7 +18,7 @@ const VoterInfoForm = (props) => {
 
     return (
         <div>
-            <Form inline>
+            <Form>
                 <h4>Enter your name for your current voter registration status.</h4>
                 <FormGroup controlId="formFirstName" validationState={firstNameValidationState}>
                     <ControlLabel>First Name</ControlLabel>

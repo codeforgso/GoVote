@@ -10,7 +10,7 @@ const VoterModal = (props) => {
     } = props;
 
     return (
-        <Modal {...props} show={show} bsSize="lg" aria-labelledby="contained-modal-title-lg">
+        <Modal {...props} show={show} bsSize="sm" aria-labelledby="contained-modal-title-lg">
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-lg">
                     GoVoteGSO
