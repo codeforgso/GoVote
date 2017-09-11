@@ -11,9 +11,11 @@ We prefer to use the [yarn](https://yarnpkg.com/) npm client.
 
 ### To install:
 
+- Fork the project 
+
 ````
     cd path-to-my-dev-directory
-    git clone https://github.com/codeforgso/GoVote.git && cd GoVote && yarn
+    git clone https://github.com/<YOUR_GITHUB_USERNAME>/GoVote.git && cd GoVote && yarn
     yarn start
 ````
 
@@ -21,11 +23,11 @@ If you prefer to use npm, the equivalent procedure is:
 
 ````
     cd path-to-my-dev-directory
-    git clone https://github.com/codeforgso/GoVote.git && cd GoVote && npm install
+    git clone https://github.com/<YOUR_GITHUB_USERNAME>/GoVote.git && cd GoVote && npm install
     npm start
 ````
 
-The client application is running at http://localhost:8080/. 
+The client application is running at http://localhost:8080/.
 The server is running at http://localhost:3001.
 
 ## Basic Architecture
