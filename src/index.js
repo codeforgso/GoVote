@@ -3,11 +3,10 @@ import { render } from 'react-dom';
 import {
   BrowserRouter as Router,
   Route,
-  Switch
+  Switch,
 } from 'react-router-dom';
 
 import App from './components/App.jsx';
-import Contact from './components/MapContainer.jsx';
 
 import './style.css';
 
@@ -24,6 +23,6 @@ class AppRoutes extends Component {
   }
 }
 
-//if(process.env.NODE_ENV !== 'production') {
-  render(<AppRoutes />, document.getElementById('app'));
-//}
+// if(process.env.NODE_ENV !== 'production') {
+render(<AppRoutes />, document.getElementById('app'));
+// }
