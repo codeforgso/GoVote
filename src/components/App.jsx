@@ -6,6 +6,7 @@ import VoterModal from './VoterModal.jsx';
 import VoterInfoForm from './VoterInfoForm';
 import VerifyVoterInfo from './VerifyVoterInfo';
 import RegistrationInfoModal from './RegistrationInfoModal';
+import Header from './Header';
 
 export default class App extends Component {
   constructor() {
@@ -105,6 +106,7 @@ export default class App extends Component {
     return (
       this.state.layers.councilDist && this.state.layers.commissionerDist ?
         <div className="map">
+          <Header />
           <MapContainer data={this.state.layers} />
           <VoterModal show={this.state.voterModalShow} onHide={voterModalShow}>
             <VoterInfoForm onSubmit={this._getVoterInfo} onUpdate={this._handleInputChange} firstNameValidationState={this.state.firstNameValidationState} lastNameValidationState={this.state.lastNameValidationState} formErrors={this.state.formErrors} />
