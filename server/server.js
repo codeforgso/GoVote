@@ -1,18 +1,18 @@
 /* eslint no-console: 0 */
-import dotenv from 'dotenv/config';
 import express from 'express';
 import pg, { Client } from 'pg';
 import Router from 'express-promise-router';
 import 'babel-polyfill';
 
+if (process.env.NODE_ENV !== 'production') {
+  let dotenv = require('dotenv');
+  dotenv.config();
+}
+
 const app = express();
 const router = new Router();
 
 app.set('port', (process.env.PORT || 3001));
-
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(__dirname + '/../'));
-}
 
 const client = new Client({
   user: process.env.DB_USER,
