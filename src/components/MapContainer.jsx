@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Map, Marker, Popup, TileLayer, GeoJSON, LayersControl } from 'react-leaflet';
+// import Geocoder from './Geocoder.js';
+import Geocoder from './EsriGeocoder.js';
+
 import cfgLogo from '../static/CfGLogo.png';
 
 class MapContainer extends React.Component {
@@ -47,6 +50,7 @@ class MapContainer extends React.Component {
             <GeoJSON data={data.commissionerDist} onEachFeature={this._onEachFeature} style={commissionerStyle} />
           </LayersControl.Overlay>
         </LayersControl>
+        <Geocoder />
       </Map>
     );
   }
