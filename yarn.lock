@@ -3817,13 +3817,9 @@ leaflet-virtual-grid@^1.0.3:
   dependencies:
     leaflet "^1.0.0-rc.1"
 
-leaflet@^1.0.0, leaflet@^1.0.0-rc.1:
+leaflet@^1.0.0, leaflet@^1.0.0-rc.1, leaflet@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.2.0.tgz#fd5d93d9cb00091f5f8a69206d0d6744c1c82697"
-
-leaflet@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.1.0.tgz#63246715cfc783dca6798b843a250e8e6fd84918"
 
 levn@^0.3.0, levn@~0.3.0:
   version "0.3.0"

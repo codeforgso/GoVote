@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Map, Marker, Popup, TileLayer, GeoJSON, LayersControl } from 'react-leaflet';
-// import Geocoder from './Geocoder.js';
 import Geocoder from './EsriGeocoder.js';
 
-import cfgLogo from '../static/CfGLogo.png';
+// import cfgLogo from '../static/CfGLogo.png';
 
-class MapContainer extends React.Component {
+class MapContainer extends Component {
+  constructor() {
+    super();
+    this.state = {
+      geocodeAddressResult: {},
+    };
+  }
 
   _onEachFeature = (feature, layer) => {
     if (feature.properties && feature.properties.Commission) {
@@ -17,9 +22,17 @@ class MapContainer extends React.Component {
     }
   }
 
+  _getGeocodeResult = (result) => {
+    this.setState({
+      geocodeAddressResult: result
+    });
+    console.log('this.state.geocodeAddressResult');
+    console.log(this.state.geocodeAddressResult);
+  }
+
   render() {
     const { data } = this.props;
-    const position = [36.0726, -79.7920];
+    const center = [36.0726, -79.7920];
     const councilStyle = {
       color: '#006400',
       weight: 2,
@@ -32,16 +45,20 @@ class MapContainer extends React.Component {
     };
 
     return (
-      <Map className="map" center={position} zoom={11}>
+      <Map className="map" center={center} zoom={11}>
         <TileLayer
-          url="http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png"
+          url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://data.greensboro-nc.gov/" target="_blank">Open Gate City</a> &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
         />
-        <Marker position={position}>
-          <Popup>
-            <span><a href="http://codeforgreensboro.org" target="_blank"><img className="logo" src={cfgLogo} alt="CfG" /></a><h3>Hello, and welcome to the National Day of Civic Hacking!</h3><h4>I am <a href="https://github.com/codeforgso/GoVote" target="_blank">GoVoteGSO.<br /></a><br />Help <a href="http://codeforgreensboro.org" target="_blank">Code for Greensboro</a> make me awesome!</h4></span>
-          </Popup>
-        </Marker>
+        {
+        this.state.geocodeAddressResult.latlng ?
+          <Marker position={this.state.geocodeAddressResult.latlng}>
+            <Popup>
+              <span><p>{this.state.geocodeAddressResult.text}</p></span>
+            </Popup>
+          </Marker>
+          : null
+        }
         <LayersControl position="topleft" collapsed={false}>
           <LayersControl.Overlay name="City Council Districts" checked>
             <GeoJSON data={data.councilDist} onEachFeature={this._onEachFeature} style={councilStyle} />
@@ -50,7 +67,7 @@ class MapContainer extends React.Component {
             <GeoJSON data={data.commissionerDist} onEachFeature={this._onEachFeature} style={commissionerStyle} />
           </LayersControl.Overlay>
         </LayersControl>
-        <Geocoder />
+        <Geocoder results={this._getGeocodeResult} />
       </Map>
     );
   }
