@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Map, Marker, Popup, TileLayer, GeoJSON, LayersControl } from 'react-leaflet';
-import cfgLogo from '../static/CfGLogo.png';
+import cfgLogo from '../static/CfGLogoWhite.png';
 
 class MapContainer extends React.Component {
 

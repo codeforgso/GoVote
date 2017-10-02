@@ -105,14 +105,16 @@ export default class App extends Component {
     const regInfoModalShow = () => this.setState({ regInfoModalShow: false });
     return (
       this.state.layers.councilDist && this.state.layers.commissionerDist ?
-        <div className="map">
+        <div>
           <Header />
-          <MapContainer data={this.state.layers} />
-          <VoterModal show={this.state.voterModalShow} onHide={voterModalShow}>
-            <VoterInfoForm onSubmit={this._getVoterInfo} onUpdate={this._handleInputChange} firstNameValidationState={this.state.firstNameValidationState} lastNameValidationState={this.state.lastNameValidationState} formErrors={this.state.formErrors} />
-            <VerifyVoterInfo voterInfo={this.state.voterInfo} showRegInfoModal={this._showRegInfoModal} />
-          </VoterModal>
-          <RegistrationInfoModal show={this.state.regInfoModalShow} onHide={regInfoModalShow} />
+          <div className="map">
+            <MapContainer data={this.state.layers} />
+            <VoterModal show={this.state.voterModalShow} onHide={voterModalShow}>
+              <VoterInfoForm onSubmit={this._getVoterInfo} onUpdate={this._handleInputChange} firstNameValidationState={this.state.firstNameValidationState} lastNameValidationState={this.state.lastNameValidationState} formErrors={this.state.formErrors} />
+              <VerifyVoterInfo voterInfo={this.state.voterInfo} showRegInfoModal={this._showRegInfoModal} />
+            </VoterModal>
+            <RegistrationInfoModal show={this.state.regInfoModalShow} onHide={regInfoModalShow} />
+          </div>
         </div> : null
     );
   }

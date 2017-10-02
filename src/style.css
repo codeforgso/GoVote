@@ -7,6 +7,14 @@ html, body, #app {
   padding: 0;
   height: 100%;
   width: 100%;
+  background-color: #283944;
+}
+
+.header {
+  /* height: 50px; */
+  width: 100%;
+  background-color: #283944;
+  color: #fff;
 }
 
 .map {
@@ -19,7 +27,8 @@ html, body, #app {
 }
 
 .container-override {
-  padding: 0px;
+  padding: 5vh;
+  height: 10vh;
 }
 
 .container-heading {
