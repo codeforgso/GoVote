@@ -8,7 +8,7 @@ import VerifyVoterInfo from './VerifyVoterInfo';
 import RegistrationInfoModal from './RegistrationInfoModal';
 import Header from './Header';
 
-export default class App extends Component {
+class App extends Component {
   constructor() {
     super();
     this.state = {
@@ -123,3 +123,5 @@ export default class App extends Component {
 App.propTypes = {
   match: PropTypes.object.isRequired,
 };
+
+export default App;

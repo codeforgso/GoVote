@@ -24,7 +24,7 @@ class VerifyVoterInfo extends Component {
     });
   }
 
-  renderUserStatus = (status) => {
+  _renderUserStatus = (status) => {
     const upperStatus = status.toUpperCase();
     return (
       <div>
@@ -57,7 +57,7 @@ class VerifyVoterInfo extends Component {
         </ButtonGroup>
         {
           this.state.showUserStatus ?
-            this.renderUserStatus(`VOTER REGISTRATION STATUS: ${this.state.selectedAddress.voter_status_desc}`)
+            this._renderUserStatus(`VOTER REGISTRATION STATUS: ${this.state.selectedAddress.voter_status_desc}`)
             : null
         }
       </FormGroup>
