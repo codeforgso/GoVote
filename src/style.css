@@ -7,17 +7,125 @@ html, body, #app {
   padding: 0;
   height: 100%;
   width: 100%;
+  background-color: #283944;
 }
 
-.map {
-  height: 100%;
+.header {
+  height: 55px;
   width: 100%;
+  color: #fff;
+}
+
+.container-heading {
+  height: 55px;
+  padding-right: 0px;
+}
+
+.main-header {
+  font-size: 20px;
+}
+
+.container-logo {
+  height: 55px;
 }
 
 .logo {
-  width: 200px;
+  display: none;
+  width: 100px;
+}
+
+.map {
+  height: 86vh;
+  width: 100%;
 }
 
 .leaflet-control.geocoder-control {
   clear: none;
+}
+
+/* Horizontal Media Queries */
+@media (min-width: 300px) {
+  .container-heading {
+    padding-right: 15px;
+  }
+  .main-header {
+    margin: 17px 0px;
+  }
+  .logo {
+    display: block;
+    width: 120px;
+    margin: 17px 0px;
+  }
+}
+
+@media (min-width: 400px) {
+  .container-override {
+    padding: 0px 15px;
+  }
+  .main-header {
+    font-size: 26px;
+    margin: 14px 0px;
+  }
+  .logo {
+    width: 145px;
+    margin: 14px 0px;
+  }
+}
+
+@media (min-width: 475px) {
+  .container-override {
+    padding: 0px 15px 0px;
+  }
+  .main-header {
+    font-size: 30px;
+    margin: 11px 0px;
+  }
+  .logo {
+    width: 200px;
+    margin: 9px 0px;
+  }
+}
+
+
+/* Vertical Media Queries */
+@media (min-height: 440px) {
+  .map {
+    height: 88vh;
+  }
+}
+
+@media (min-height: 540px) {
+  .map {
+    height: 90vh;
+  }
+}
+
+@media (min-height: 640px) {
+  .map {
+    height: 91vh;
+  }
+}
+
+@media (min-height: 740px) {
+  .map {
+    height: 92vh;
+  }
+}
+
+@media (min-height: 840px) {
+  .map {
+    height: 93vh;
+  }
+}
+
+@media (min-height: 940px) {
+  .map {
+    height: 94vh;
+  }
+}
+
+@media (min-height: 1040px) {
+  .map {
+    height: 95vh;
+  }
 }

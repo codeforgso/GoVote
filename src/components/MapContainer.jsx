@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { Map, Marker, Popup, TileLayer, GeoJSON, LayersControl } from 'react-leaflet';
 import Geocoder from './EsriGeocoder.js';
 
-// import cfgLogo from '../static/CfGLogo.png';
-
 class MapContainer extends Component {
   constructor() {
     super();
