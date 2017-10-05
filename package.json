@@ -17,10 +17,12 @@
     "file-loader": "^0.11.2",
     "fs": "0.0.2",
     "fs-extra": "^4.0.2",
+    "jest": "^21.1.0",
     "leaflet": "^1.1.0",
     "leaflet-geosearch": "^2.6.0",
     "path": "^0.12.7",
     "pg": "^7.1.0",
+    "pg-copy-streams": "^1.2.0",
     "pg-native": "^2.2.0",
     "postcss-flexbugs-fixes": "^3.2.0",
     "postcss-loader": "^2.0.6",
@@ -36,14 +38,16 @@
     "react-router-dom": "^4.1.2",
     "sw-precache-webpack-plugin": "^0.11.4",
     "url-loader": "^0.5.9",
-    "webpack-manifest-plugin": "^1.3.1"
+    "webpack-manifest-plugin": "^1.3.1",
+    "unzip": "^0.1.11"
   },
   "scripts": {
     "start": "concurrently \"node scripts/start.js\" \"babel-node server/server.js\"",
     "build": "yarn run build:client && yarn run build:server",
     "build:client": "node scripts/build.js",
     "build:server": "NODE_ENV=production webpack --config config/webpackProdServer.config.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "etl": "node bin/etl.js"
   },
   "devDependencies": {
     "babel-cli": "6.14.0",
