@@ -1,8 +1,4 @@
-// import L from 'leaflet';
 import { MapControl, PropTypes as LeafletPropTypes } from 'react-leaflet';
-// import esri from 'esri-leaflet';
-// import { Geocoding } from 'esri-leaflet-geocoder';
-// import * as Geocoding from 'esri-leaflet-geocoder';
 import { geosearch, geocodeServiceProvider } from 'esri-leaflet-geocoder';
 
 export default class Geocoder extends MapControl {

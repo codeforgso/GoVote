@@ -17,3 +17,7 @@ html, body, #app {
 .logo {
   width: 200px;
 }
+
+.leaflet-control.geocoder-control {
+  clear: none;
+}

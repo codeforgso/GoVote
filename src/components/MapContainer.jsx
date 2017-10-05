@@ -59,15 +59,17 @@ class MapContainer extends Component {
           </Marker>
           : null
         }
-        <LayersControl position="topleft" collapsed={false}>
+        <Geocoder results={this._getGeocodeResult} />
+        <LayersControl position="topleft">
           <LayersControl.Overlay name="City Council Districts" checked>
             <GeoJSON data={data.councilDist} onEachFeature={this._onEachFeature} style={councilStyle} />
           </LayersControl.Overlay>
           <LayersControl.Overlay name="County Commissioner Districts">
             <GeoJSON data={data.commissionerDist} onEachFeature={this._onEachFeature} style={commissionerStyle} />
           </LayersControl.Overlay>
+
         </LayersControl>
-        <Geocoder results={this._getGeocodeResult} />
+
       </Map>
     );
   }
