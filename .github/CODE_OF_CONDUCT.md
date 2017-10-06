@@ -1,5 +1,3 @@
-# FOR REVIEW AND UPDATING PRIOR TO ADOPTION
-
 # Contributor Covenant Code of Conduct
 
 ## Our Pledge
