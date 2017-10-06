@@ -1,4 +1,4 @@
-# How to contribute to the NC Reentry Resources Hub
+# How to contribute to the GoVote
 
 We are glad you are here. We need volunteer developers to help this project come to fruition.
 
