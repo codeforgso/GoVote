@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Col,
-  Image,
+  Thumbnail,
 } from 'react-bootstrap';
 import cfgLogo from '../static/CfGLogoWhite.png';
 
@@ -15,7 +15,7 @@ class Header extends React.Component {
           </Col>
           <Col className="" xs={6} md={4}>
             <div className="container-logo pull-right">
-              <Image src={cfgLogo} className="logo" />
+              <Thumbnail href="http://codeforgreensboro.org" target="_blank" src={cfgLogo} className="logo" />
             </div>
           </Col>
         </div>
