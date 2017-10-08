@@ -1,132 +1,446 @@
-cityCouncil = [
-  "mayor" [
-    {"Name":"Nancy Barakat Vaughan", "District":"All", "Website":"http://www.greensboro-nc.gov/index.aspx?page=106", "Facebook":"https://www.facebook.com/nancy.vaughan",
-       "Twitter":"@VaughanNancy", "LinkedIn":"https://www.linkedin.com/in/nancy-vaughan-8a788911", "EMail":"Nancy.Vaughan@greensboro-nc.gov",
-       "Phone":"(336) 373-2396", "Status":"Incumbent "  },
-    {"Name":"John T Brown", "District":"All", "Website":"http://www.johnbrownformayor.com", "Facebook":"https://www.facebook.com/VOTEJohnBrown2017/",
-      "Twitter":"@Newgsomayor", "LinkedIn":"https://www.linkedin.com/in/john-brown-574bb843/", "EMail":"jbrown4mayor@gmail.com",
-      "Phone":"(336) 288-5356", "Status":"Candidate"  },
-    {"Name":"Diane Moffett", "District":"All", "Website":"http://moffettformayor.com", "Facebook":"https://www.facebook.com/DianeMoffettforMayor/",
-       "Twitter":"@moffettformayor", "LinkedIn":"https://www.linkedin.com/in/diane-moffett-2a60314b/", "EMail":"MoffettforMayor@gmail.com",
-        "Phone":"(336) 339-3607", "Status":"Candidate"  }
-  ],
-  "atLarge" [
-    {"Name":"Marikay Abuzuaiter", "District":"All", "Website":"votemarikay.com/", "Facebook":"https://www.facebook.com/marikay.abuzuaiter",
-       "Twitter":"@abuzuaiter", "LinkedIn":"https://www.linkedin.com/in/marikay-abuzuaiter-4625191a", "EMail":"abuzuaiter@aol.com",
-        "Phone":"336-314-9620", "Status":"Incumbent"  },
-    {"Name":"Irving Allen", "District":"All", "Website":"https://www.irvingdallen.com/", "Facebook":"https://www.facebook.com/irving.allen.52",
-       "Twitter":"@FTP_Rush", "LinkedIn":"N/A", "EMail":"irvingdallen@gmail.com",
-        "Phone":"336-457-7979", "Status":"Candidate"  },
-    {"Name":"MA Bakie", "District":"All", "Website":"N/A", "Facebook":"N/A",
-       "Twitter":"N/A", "LinkedIn":"N/A", "EMail":"BakieCommitee@gmail.com",
-        "Phone":"336-303-9588", "Status":"Candidate"  },
-    {"Name":"Mike Barber", "District":"All", "Website":"http://www.greensboro-nc.gov/index.aspx?page=110", "Facebook":"https://www.facebook.com/mikebarberlaw",
-       "Twitter":"N/A", "LinkedIn":"https://www.linkedin.com/in/mike-barber-7b0a449/", "EMail":"Mike.Barber@greensboro-nc.gov",
-        "Phone":"336-580-4241", "Status":"Incumbent"  },
-    {"Name":"T. Dianne Bellamy-Small", "District":"All", "Website":"http://www.votebellamysmall.com ", "Facebook":"https://www.facebook.com/DianneBellamySmall/",
-      "Twitter":"@tdbellamysmall", "LinkedIn":"https://www.linkedin.com/in/t-dianne-bellamy-small-47a49245", "EMail":"votebellamysmall@gmail.com ",
-      "Phone":"336-854-4172", "Status":"Candidate"  },
-    {"Name":"Jodi Bennett-Bradshaw", "District":"All", "Website":"http://vote4jodi.com/", "Facebook":"https://www.facebook.com/jodeye11",
-      "Twitter":"@jbbgreensboro", "LinkedIn":"https://www.linkedin.com/in/jodi-bennett-bradshaw-mph-8a48b736", "EMail":"jodi@vote4jodi.com",
-      "Phone":"336-370-8155", "Status":"Candidate"  },
-    {"Name":"Tijuana Hayes", "District":"All", "Website":"www.hayest4city.com/", "Facebook":"https://www.facebook.com/public/Tijuana-Hayes",
-      "Twitter":"N/A", "LinkedIn":"https://www.linkedin.com/in/tijuana-hayes-77541586", "EMail":"hayest4city@gmail.com ",
-      "Phone":"336-379-7685", "Status":"Candidate"  },
-    {"Name":"Sylvine Hill", "District":"All", "Website":"www.SylvineHill.com", "Facebook":"https://www.facebook.com/SylvineHillForCityCouncilAtLarge/",
-      "Twitter":"@sylvinehill", "LinkedIn":"https://www.linkedin.com/in/tijuana-hayes-77541586", "EMail":"sylvine.hill@gmail.com",
-      "Phone":"336-709-6702", "Status":"Candidate"  },
-    {"Name":"James Ingram", "District":"All", "Website":"www.james4gso.com/", "Facebook":"https://www.facebook.com/James4GSO/",
-      "Twitter":"@James4GSO", "LinkedIn":"N/A", "EMail":"james@james4gso.com",
-      "Phone":"336-482-8385", "Status":"Candidate"  },
-    {"Name":"Dan Jackson", "District":"All", "Website":"http://www.electdanjackson.com/", "Facebook":"https://www.facebook.com/electdanjackson/",
-      "Twitter":"N/A", "LinkedIn":"https://www.linkedin.com/in/dan-jackson-3aa61632", "EMail":"dan@electdanjackson.com",
-      "Phone":"336-908-5208", "Status":"Candidate"  },
-    {"Name":"Yvonne Johnson", "District":"All", "Website":"N/A", "Facebook":"https://www.facebook.com/Yvonne-Johnson-City-Council-at-Large-225545687495447/",
-      "Twitter":"N/A", "LinkedIn":"N/A", "EMail":"yvonne4citycouncil@gmail.com",
-      "Phone":"336-275-5285", "Status":"Incumbent"  },
-    {"Name":"Michelle Kennedy", "District":"All", "Website":"www.kennedyforgso.com/", "Facebook":"https://www.facebook.com/michelle.kennedy.984",
-      "Twitter":"@kennedyforgso", "LinkedIn":"https://www.linkedin.com/in/michelle-kennedy-2054ba44", "EMail":"N/A",
-      "Phone":"336-202-8421", "Status":"Candidate"  },
-    {"Name":"Andy Nelson", "District":"All", "Website":"N/A", "Facebook":"N/A",
-      "Twitter":"N/A", "LinkedIn":"N/A", "EMail":"N/A",
-      "Phone":"336-549-5713", "Status":"Candidate"  },
-    {"Name":"Lindy Perry-Garnette", "District":"All", "Website":"https://www.electperry-garnette.com/", "Facebook":"N/A",
-       "Twitter":"N/A", "LinkedIn":"https://www.linkedin.com/in/lindy-garnette-5b62a613", "EMail":"N/A",
-       "Phone":"336-509-5339", "Status":"Candidate"  },
-    {"Name":"Dave Wils", "District":"All", "Website":"https://www.davewils.com/", "Facebook":"https://www.facebook.com/davewilsGSO/",
-       "Twitter":"@DaveWilsNC", "LinkedIn":"https://www.linkedin.com/in/dwils82", "EMail":"info@davewils.com",
-       "Phone":"336-837-9476", "Status":"Candidate"  }
-  ],
-  "councilDistricts"  [
-    "districtOne"  [
-      {"Name":"Sharon Hightower", "District":"One", "Website":"http://votehightower.com", "Facebook":"https://www.facebook.com/votehightower/",
-        "Twitter":"@Sharonhightowe8", "LinkedIn":"https://www.linkedin.com/in/sharon-hightower-3aa22411/", "EMail":"sharon.hightower@greensboro-nc.gov",
-        "Phone":"336-333-2802", "Status":"Incumbent"  },
-      {"Name":"Devin King", "District":"One", "Website":"N/A", "Facebook":"https://www.facebook.com/devin.king.98478",
-        "Twitter":"@DevinKing474", "LinkedIn":"N/A", "EMail":"Winwinwin474@gmail.com",
-        "Phone":"336-457-1927", "Status":"Candidate"  },
-      {"Name":"Paula Ritter-Lipscomb", "District":"One", "Website":"www.ritterlipscomb4district1.com", "Facebook":"https://www.facebook.com/paula.ritterlipscomb",
-        "Twitter":"N/A", "LinkedIn":"https://www.linkedin.com/in/paula-ritter-lipscomb-280649121/", "EMail":"Ritterlipscomb.district1@gmail.com",
-        "Phone":"336-987-4182", "Status":"Candidate"  }
-      {"Name":"Charles Patton JR", "District":"One", "Website":"", "Facebook":"",
-        "Twitter":"", "LinkedIn":"", "EMail":"",
-        "Phone":"", "Status":"Withdrawn"  }
-    ],
-    "districtTwo" [
-      {"Name":"CJ Brinson", "District":"Two", "Website":"http://www.cjbrinson.org", "Facebook":"https://www.facebook.com/people/CJ-Brinson/11213592",
-        "Twitter":"N/A", "LinkedIn":"N/A", "EMail":"CJBrinson4ThePeople@gmail.com",
-        "Phone":"336-740-6167", "Status":"Candidate"  },
-      {"Name":"Jim Kee", "District":"Two", "Website":"https://www.votejimkee.com/", "Facebook":"https://www.facebook.com/VoteJimKee/",
-        "Twitter":"N/A", "LinkedIn":"https://www.linkedin.com/in/jim-kee-b177a227", "EMail":"jimkee2013@gmail.com",
-        "Phone":"336-285-8378", "Status":"Candidate"  },
-      {"Name":"Goldie Wells", "District":"Two", "Website":"N/A", "Facebook":"N/A",
-        "Twitter":"N/A", "LinkedIn":"https://www.linkedin.com/in/goldie-wells-b7708224", "EMail":"N/A",
-        "Phone":"336-375-4123", "Status":"Incumbent"  }
-      {"Name":"Tim Vincent", "District":"Two", "Website":"", "Facebook":"",
-        "Twitter":"", "LinkedIn":"", "EMail":"",
-        "Phone":"", "Status":"Withdrawn"  }
-      {"Name":"Felcia Anges", "District":"Two", "Website":"", "Facebook":"",
-        "Twitter":"", "LinkedIn":"", "EMail":"",
-        "Phone":"", "Status":"Withdrawn"  }
-    ],
-    "disctrictThree"  [
-      {"Name":"Justin Outling", "District":"Three", "Website":"N/A", "Facebook":"https://www.facebook.com/VoteOutling/",
-        "Twitter":"@JustinOutling", "LinkedIn":"https://www.linkedin.com/in/justin-outling-35b47758", "EMail":"justin.outling@greensboro-nc.gov",
-        "Phone":"336-430-8336", "Status":"Incumbent"  },
-      {"Name":"Antuan Marsh", "District":"Three", "Website":"https://www.facebook.com/Antuan-Marsh-for-Greensboro-City-Council-District-3-331215543986782/?pnref=story", "Facebook":"https://www.facebook.com/antuan.marsh.1",
-        "Twitter":"N/A", "LinkedIn":"N/A", "EMail":"N/A",
-        "Phone":"336-857-2757", "Status":"Candidate"  },
-      {"Name":"Craig Martin", "District":"Three", "Website":"N/A", "Facebook":"https://www.facebook.com/ConsiderCraig/",
-        "Twitter":"N/A", "LinkedIn":"https://www.linkedin.com/in/craig-martin-57a1222b", "EMail":"craigfordistrict3@gmail.com",
-        "Phone":"336-432-5970", "Status":"Candidate"  }
-      {"Name":"Payton McGarry", "District":"Three", "Website":"", "Facebook":"",
-        "Twitter":"", "LinkedIn":"", "EMail":"",
-        "Phone":"", "Status":"Withdrawn"  }
-    ],
-    "disctrictFour" [
-      {"Name":"Nancy Hoffmann", "District":"Four", "Website":"https://votehoffmann.com/", "Facebook":"https://www.facebook.com/nancyjhoffmann",
-        "Twitter":"@NancyHoffmannD4", "LinkedIn":"N/A", "EMail":"Nancy.Hoffmann@greensboro-nc.gov",
-        "Phone":"336-856-8128", "Status":"Incumbent"  },
-      {"Name":"Gary Kenton ", "District":"Four", "Website":"https://kentonforcouncil.wordpress.com/", "Facebook":"https://www.facebook.com/GaryKentonforCouncil/?fref=nf",
-        "Twitter":"N/A", "LinkedIn":"N/A", "EMail":"garyskenton@gmail.com",
-        "Phone":"336-856-8128", "Status":"Candidate"  }
-      {"Name":"Andrew Belford", "District":"Four", "Website":"", "Facebook":"",
-        "Twitter":"", "LinkedIn":"", "EMail":"",
-        "Phone":"", "Status":"Withdrawn"  }
-    ],
-    "districtFive" [
-      {"Name":"Salvatore Leone", "District":"Five", "Website":"http://votesalleone.com/", "Facebook":"N/A",
-        "Twitter":"@blueboy210", "LinkedIn":"http://www.peekyou.com/sal_leone/404397843", "EMail":"votesalleone@gmail.com",
-        "Phone":"336-840-4239", "Status":"Candidate"  },
-      {"Name":"Tanner Lucas", "District":"Five", "Website":"N/A", "Facebook":"https://www.facebook.com/tanner.lucas.319",
-        "Twitter":"N/A", "LinkedIn":"N/A", "EMail":"N/A",
-        "Phone":"336-255-7075", "Status":"Candidate"  },
-      {"Name":"Tammi Thurm", "District":"Five", "Website":"https://votethurm.com/", "Facebook":"https://www.facebook.com/tammi.thurm",
-        "Twitter":"N/A", "LinkedIn":"https://www.linkedin.com/in/tammi-thurm-a8b5614", "EMail":"N/A",
-        "Phone":"336-362-0983", "Status":"Candidate"  },
-      {"Name":"Tony Wilkins", "District":"Five", "Website":"http://tonywilkins.com/", "Facebook":"https://www.facebook.com/tony.wilkins.94",
-        "Twitter":"N/A", "LinkedIn":"N/A", "EMail":"N/A",
-        "Phone":"336-339-0296", "Status":"Incumbent"  }
-    ],
-  ],
-]
+{
+  "cityCouncil": [
+    {
+      "mayor": [
+        {
+          "Name": "Nancy Barakat Vaughan",
+          "District": "All",
+          "Website": "http://www.greensboro-nc.gov/index.aspx?page=106",
+          "Facebook": "https://www.facebook.com/nancy.vaughan",
+          "Twitter": "@VaughanNancy",
+          "LinkedIn": "https://www.linkedin.com/in/nancy-vaughan-8a788911",
+          "EMail": "Nancy.Vaughan@greensboro-nc.gov",
+          "Phone": "(336) 373-2396",
+          "Status": "Incumbent"
+        },
+        {
+          "Name": "John T Brown",
+          "District": "All",
+          "Website": "http://www.johnbrownformayor.com",
+          "Facebook": "https://www.facebook.com/VOTEJohnBrown2017/",
+          "Twitter": "@Newgsomayor",
+          "LinkedIn": "https://www.linkedin.com/in/john-brown-574bb843/",
+          "EMail": "jbrown4mayor@gmail.com",
+          "Phone": "(336) 288-5356",
+          "Status": "Candidate"
+        },
+        {
+          "Name": "Diane Moffett",
+          "District": "All",
+          "Website": "http://moffettformayor.com",
+          "Facebook": "https://www.facebook.com/DianeMoffettforMayor/",
+          "Twitter": "@moffettformayor",
+          "LinkedIn": "https://www.linkedin.com/in/diane-moffett-2a60314b/",
+          "EMail": "MoffettforMayor@gmail.com",
+          "Phone": "(336) 339-3607",
+          "Status": "Candidate"
+        }
+      ]
+    },
+    {
+      "atLarge": [
+        {
+          "Name": "Marikay Abuzuaiter",
+          "District": "All",
+          "Website": "votemarikay.com/",
+          "Facebook": "https://www.facebook.com/marikay.abuzuaiter",
+          "Twitter": "@abuzuaiter",
+          "LinkedIn": "https://www.linkedin.com/in/marikay-abuzuaiter-4625191a",
+          "EMail": "abuzuaiter@aol.com",
+          "Phone": "336-314-9620",
+          "Status": "Incumbent"
+        },
+        {
+          "Name": "Irving Allen",
+          "District": "All",
+          "Website": "https://www.irvingdallen.com/",
+          "Facebook": "https://www.facebook.com/irving.allen.52",
+          "Twitter": "@FTP_Rush",
+          "LinkedIn": "N/A",
+          "EMail": "irvingdallen@gmail.com",
+          "Phone": "336-457-7979",
+          "Status": "Candidate"
+        },
+        {
+          "Name": "MA Bakie",
+          "District": "All",
+          "Website": "N/A",
+          "Facebook": "N/A",
+          "Twitter": "N/A",
+          "LinkedIn": "N/A",
+          "EMail": "BakieCommitee@gmail.com",
+          "Phone": "336-303-9588",
+          "Status": "Candidate"
+        },
+        {
+          "Name": "Mike Barber",
+          "District": "All",
+          "Website": "http://www.greensboro-nc.gov/index.aspx?page=110",
+          "Facebook": "https://www.facebook.com/mikebarberlaw",
+          "Twitter": "N/A",
+          "LinkedIn": "https://www.linkedin.com/in/mike-barber-7b0a449/",
+          "EMail": "Mike.Barber@greensboro-nc.gov",
+          "Phone": "336-580-4241",
+          "Status": "Incumbent"
+        },
+        {
+          "Name": "T. Dianne Bellamy-Small",
+          "District": "All",
+          "Website": "http://www.votebellamysmall.com ",
+          "Facebook": "https://www.facebook.com/DianneBellamySmall/",
+          "Twitter": "@tdbellamysmall",
+          "LinkedIn": "https://www.linkedin.com/in/t-dianne-bellamy-small-47a49245",
+          "EMail": "votebellamysmall@gmail.com",
+          "Phone": "336-854-4172",
+          "Status": "Candidate"
+        },
+        {
+          "Name": "Jodi Bennett-Bradshaw",
+          "District": "All",
+          "Website": "http://vote4jodi.com/",
+          "Facebook": "https://www.facebook.com/jodeye11",
+          "Twitter": "@jbbgreensboro",
+          "LinkedIn": "https://www.linkedin.com/in/jodi-bennett-bradshaw-mph-8a48b736",
+          "EMail": "jodi@vote4jodi.com",
+          "Phone": "336-370-8155",
+          "Status": "Candidate"
+        },
+        {
+          "Name": "Tijuana Hayes",
+          "District": "All",
+          "Website": "www.hayest4city.com/",
+          "Facebook": "https://www.facebook.com/public/Tijuana-Hayes",
+          "Twitter": "N/A",
+          "LinkedIn": "https://www.linkedin.com/in/tijuana-hayes-77541586",
+          "EMail": "hayest4city@gmail.com ",
+          "Phone": "336-379-7685",
+          "Status": "Candidate"
+        },
+        {
+          "Name": "Sylvine Hill",
+          "District": "All",
+          "Website": "www.SylvineHill.com",
+          "Facebook": "https://www.facebook.com/SylvineHillForCityCouncilAtLarge/",
+          "Twitter": "@sylvinehill",
+          "LinkedIn": "https://www.linkedin.com/in/tijuana-hayes-77541586",
+          "EMail": "sylvine.hill@gmail.com",
+          "Phone": "336-709-6702",
+          "Status": "Candidate"
+        },
+        {
+          "Name": "James Ingram",
+          "District": "All",
+          "Website": "www.james4gso.com/",
+          "Facebook": "https://www.facebook.com/James4GSO/",
+          "Twitter": "@James4GSO",
+          "LinkedIn": "N/A",
+          "EMail": "james@james4gso.com",
+          "Phone": "336-482-8385",
+          "Status": "Candidate"
+        },
+        {
+          "Name": "Dan Jackson",
+          "District": "All",
+          "Website": "http://www.electdanjackson.com/",
+          "Facebook": "https://www.facebook.com/electdanjackson/",
+          "Twitter": "N/A",
+          "LinkedIn": "https://www.linkedin.com/in/dan-jackson-3aa61632",
+          "EMail": "dan@electdanjackson.com",
+          "Phone": "336-908-5208",
+          "Status": "Candidate"
+        },
+        {
+          "Name": "Yvonne Johnson",
+          "District": "All",
+          "Website": "N/A",
+          "Facebook": "https://www.facebook.com/Yvonne-Johnson-City-Council-at-Large-225545687495447/",
+          "Twitter": "N/A",
+          "LinkedIn": "N/A",
+          "EMail": "yvonne4citycouncil@gmail.com",
+          "Phone": "336-275-5285",
+          "Status": "Incumbent"
+        },
+        {
+          "Name": "Michelle Kennedy",
+          "District": "All",
+          "Website": "www.kennedyforgso.com/",
+          "Facebook": "https://www.facebook.com/michelle.kennedy.984",
+          "Twitter": "@kennedyforgso",
+          "LinkedIn": "https://www.linkedin.com/in/michelle-kennedy-2054ba44",
+          "EMail": "N/A",
+          "Phone": "336-202-8421",
+          "Status": "Candidate"
+        },
+        {
+          "Name": "Andy Nelson",
+          "District": "All",
+          "Website": "N/A",
+          "Facebook": "N/A",
+          "Twitter": "N/A",
+          "LinkedIn": "N/A",
+          "EMail": "N/A",
+          "Phone": "336-549-5713",
+          "Status": "Candidate"
+        },
+        {
+          "Name": "Lindy Perry-Garnette",
+          "District": "All",
+          "Website": "https://www.electperry-garnette.com/",
+          "Facebook": "N/A",
+          "Twitter": "N/A",
+          "LinkedIn": "https://www.linkedin.com/in/lindy-garnette-5b62a613",
+          "EMail": "N/A",
+          "Phone": "336-509-5339",
+          "Status": "Candidate"
+        },
+        {
+          "Name": "Dave Wils",
+          "District": "All",
+          "Website": "https://www.davewils.com/",
+          "Facebook": "https://www.facebook.com/davewilsGSO/",
+          "Twitter": "@DaveWilsNC",
+          "LinkedIn": "https://www.linkedin.com/in/dwils82",
+          "EMail": "info@davewils.com",
+          "Phone": "336-837-9476",
+          "Status": "Candidate"
+        }
+      ]
+    },
+    {
+      "councilDistricts": [
+        {
+          "districtOne": [
+            {
+              "Name": "Sharon Hightower",
+              "District": "One",
+              "Website": "http://votehightower.com",
+              "Facebook": "https://www.facebook.com/votehightower/",
+              "Twitter": "@Sharonhightowe8",
+              "LinkedIn": "https://www.linkedin.com/in/sharon-hightower-3aa22411/",
+              "EMail": "sharon.hightower@greensboro-nc.gov",
+              "Phone": "336-333-2802",
+              "Status": "Incumbent"
+            },
+            {
+              "Name": "Devin King",
+              "District": "One",
+              "Website": "N/A",
+              "Facebook": "https://www.facebook.com/devin.king.98478",
+              "Twitter": "@DevinKing474",
+              "LinkedIn": "N/A",
+              "EMail": "Winwinwin474@gmail.com",
+              "Phone": "336-457-1927",
+              "Status": "Candidate"
+            },
+            {
+              "Name": "Paula Ritter-Lipscomb",
+              "District": "One",
+              "Website": "www.ritterlipscomb4district1.com",
+              "Facebook": "https://www.facebook.com/paula.ritterlipscomb",
+              "Twitter": "N/A",
+              "LinkedIn": "https://www.linkedin.com/in/paula-ritter-lipscomb-280649121/",
+              "EMail": "Ritterlipscomb.district1@gmail.com",
+              "Phone": "336-987-4182",
+              "Status": "Candidate"
+            },
+            {
+              "Name": "Charles Patton JR",
+              "District": "One",
+              "Website": "",
+              "Facebook": "",
+              "Twitter": "",
+              "LinkedIn": "",
+              "EMail": "",
+              "Phone": "",
+              "Status": "Withdrawn"
+            }
+          ],
+          "districtTwo": [
+            {
+              "Name": "CJ Brinson",
+              "District": "Two",
+              "Website": "http://www.cjbrinson.org",
+              "Facebook": "https://www.facebook.com/people/CJ-Brinson/11213592",
+              "Twitter": "N/A",
+              "LinkedIn": "N/A",
+              "EMail": "CJBrinson4ThePeople@gmail.com",
+              "Phone": "336-740-6167",
+              "Status": "Candidate"
+            },
+            {
+              "Name": "Jim Kee",
+              "District": "Two",
+              "Website": "https://www.votejimkee.com/",
+              "Facebook": "https://www.facebook.com/VoteJimKee/",
+              "Twitter": "N/A",
+              "LinkedIn": "https://www.linkedin.com/in/jim-kee-b177a227",
+              "EMail": "jimkee2013@gmail.com",
+              "Phone": "336-285-8378",
+              "Status": "Candidate"
+            },
+            {
+              "Name": "Goldie Wells",
+              "District": "Two",
+              "Website": "N/A",
+              "Facebook": "N/A",
+              "Twitter": "N/A",
+              "LinkedIn": "https://www.linkedin.com/in/goldie-wells-b7708224",
+              "EMail": "N/A",
+              "Phone": "336-375-4123",
+              "Status": "Incumbent"
+            },
+            {
+              "Name": "Tim Vincent",
+              "District": "Two",
+              "Website": "",
+              "Facebook": "",
+              "Twitter": "",
+              "LinkedIn": "",
+              "EMail": "",
+              "Phone": "",
+              "Status": "Withdrawn"
+            },
+            {
+              "Name": "Felcia Anges",
+              "District": "Two",
+              "Website": "",
+              "Facebook": "",
+              "Twitter": "",
+              "LinkedIn": "",
+              "EMail": "",
+              "Phone": "",
+              "Status": "Withdrawn"
+            }
+          ],
+          "disctrictThree": [
+            {
+              "Name": "Justin Outling",
+              "District": "Three",
+              "Website": "N/A",
+              "Facebook": "https://www.facebook.com/VoteOutling/",
+              "Twitter": "@JustinOutling",
+              "LinkedIn": "https://www.linkedin.com/in/justin-outling-35b47758",
+              "EMail": "justin.outling@greensboro-nc.gov",
+              "Phone": "336-430-8336",
+              "Status": "Incumbent"
+            },
+            {
+              "Name": "Antuan Marsh",
+              "District": "Three",
+              "Website": "https://www.facebook.com/Antuan-Marsh-for-Greensboro-City-Council-District-3-331215543986782/?pnref=story",
+              "Facebook": "https://www.facebook.com/antuan.marsh.1",
+              "Twitter": "N/A",
+              "LinkedIn": "N/A",
+              "EMail": "N/A",
+              "Phone": "336-857-2757",
+              "Status": "Candidate"
+            },
+            {
+              "Name": "Craig Martin",
+              "District": "Three",
+              "Website": "N/A",
+              "Facebook": "https://www.facebook.com/ConsiderCraig/",
+              "Twitter": "N/A",
+              "LinkedIn": "https://www.linkedin.com/in/craig-martin-57a1222b",
+              "EMail": "craigfordistrict3@gmail.com",
+              "Phone": "336-432-5970",
+              "Status": "Candidate"
+            },
+            {
+              "Name": "Payton McGarry",
+              "District": "Three",
+              "Website": "",
+              "Facebook": "",
+              "Twitter": "",
+              "LinkedIn": "",
+              "EMail": "",
+              "Phone": "",
+              "Status": "Withdrawn"
+            }
+          ],
+          "disctrictFour": [
+            {
+              "Name": "Nancy Hoffmann",
+              "District": "Four",
+              "Website": "https://votehoffmann.com/",
+              "Facebook": "https://www.facebook.com/nancyjhoffmann",
+              "Twitter": "@NancyHoffmannD4",
+              "LinkedIn": "N/A",
+              "EMail": "Nancy.Hoffmann@greensboro-nc.gov",
+              "Phone": "336-856-8128",
+              "Status": "Incumbent"
+            },
+            {
+              "Name": "Gary Kenton ",
+              "District": "Four",
+              "Website": "https://kentonforcouncil.wordpress.com/",
+              "Facebook": "https://www.facebook.com/GaryKentonforCouncil/?fref=nf",
+              "Twitter": "N/A",
+              "LinkedIn": "N/A",
+              "EMail": "garyskenton@gmail.com",
+              "Phone": "336-856-8128",
+              "Status": "Candidate"
+            },
+            {
+              "Name": "Andrew Belford",
+              "District": "Four",
+              "Website": "",
+              "Facebook": "",
+              "Twitter": "",
+              "LinkedIn": "",
+              "EMail": "",
+              "Phone": "",
+              "Status": "Withdrawn"
+            }
+          ],
+          "districtFive": [
+            {
+              "Name": "Salvatore Leone",
+              "District": "Five",
+              "Website": "http://votesalleone.com/",
+              "Facebook": "N/A",
+              "Twitter": "@blueboy210",
+              "LinkedIn": "http://www.peekyou.com/sal_leone/404397843",
+              "EMail": "votesalleone@gmail.com",
+              "Phone": "336-840-4239",
+              "Status": "Candidate"
+            },
+            {
+              "Name": "Tanner Lucas",
+              "District": "Five",
+              "Website": "N/A",
+              "Facebook": "https://www.facebook.com/tanner.lucas.319",
+              "Twitter": "N/A",
+              "LinkedIn": "N/A",
+              "EMail": "N/A",
+              "Phone": "336-255-7075",
+              "Status": "Candidate"
+            },
+            {
+              "Name": "Tammi Thurm",
+              "District": "Five",
+              "Website": "https://votethurm.com/",
+              "Facebook": "https://www.facebook.com/tammi.thurm",
+              "Twitter": "N/A",
+              "LinkedIn": "https://www.linkedin.com/in/tammi-thurm-a8b5614",
+              "EMail": "N/A",
+              "Phone": "336-362-0983",
+              "Status": "Candidate"
+            },
+            {
+              "Name": "Tony Wilkins",
+              "District": "Five",
+              "Website": "http://tonywilkins.com/",
+              "Facebook": "https://www.facebook.com/tony.wilkins.94",
+              "Twitter": "N/A",
+              "LinkedIn": "N/A",
+              "EMail": "N/A",
+              "Phone": "336-339-0296",
+              "Status": "Incumbent"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
