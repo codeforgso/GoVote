@@ -18,6 +18,7 @@ class VerifyVoterInfo extends Component {
   }
 
   _handleAddressClick = (el) => {
+    console.log(el);
     this.setState({
       selectedAddress: el,
       showUserStatus: true,
