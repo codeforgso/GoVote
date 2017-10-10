@@ -9,6 +9,8 @@ Look up your voter status and get info on voting, voting registration, and elect
 Make sure you have [Node](https://nodejs.org/en/) >= 4 installed (we strongly recommend using Node >= 6 and npm >= 3).
 We prefer to use the [yarn](https://yarnpkg.com/) npm client.
 
+You also must have [PostgreSQL](https://www.postgresql.org/download/) installed prior to compiling.
+
 ### To install:
 
 - Fork the project 
