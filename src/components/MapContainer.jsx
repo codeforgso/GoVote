@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Map, Marker, Popup, TileLayer, GeoJSON, LayersControl } from 'react-leaflet';
-import Geocoder from './EsriGeocoder.js';
+import SearchControl from './EsriSearchControl.js';
 
 class MapContainer extends Component {
   constructor() {
@@ -57,7 +57,7 @@ class MapContainer extends Component {
           </Marker>
           : null
         }
-        <Geocoder results={this._getGeocodeResult} />
+        <SearchControl results={this._getGeocodeResult} />
         <LayersControl position="topleft">
           <LayersControl.Overlay name="City Council Districts" checked>
             <GeoJSON data={data.councilDist} onEachFeature={this._onEachFeature} style={councilStyle} />
