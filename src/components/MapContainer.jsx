@@ -65,9 +65,7 @@ class MapContainer extends Component {
           <LayersControl.Overlay name="County Commissioner Districts">
             <GeoJSON data={data.commissionerDist} onEachFeature={this._onEachFeature} style={commissionerStyle} />
           </LayersControl.Overlay>
-
         </LayersControl>
-
       </Map>
     );
   }
