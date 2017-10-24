@@ -11,7 +11,7 @@ class Header extends React.Component {
       <div className="header">
         <div className="container-override">
           <Col className="container-heading" xs={6} md={8}>
-            <h2 className="main-header">GoVoteGSO</h2>
+            <h2 className="main-header">GoVoteGSO Beta</h2>
           </Col>
           <Col className="" xs={6} md={4}>
             <div className="container-logo pull-right">

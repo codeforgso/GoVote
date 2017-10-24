@@ -30,7 +30,7 @@ class VerifyVoterInfo extends Component {
     const upperStatus = status.toUpperCase();
     return (
       <div>
-        {upperStatus}
+        <b>{upperStatus}</b>
       </div>
     );
   }
@@ -60,6 +60,16 @@ class VerifyVoterInfo extends Component {
         {
           this.state.showUserStatus ?
             this._renderUserStatus(`VOTER REGISTRATION STATUS: ${this.state.selectedAddress.voter_status_desc}`)
+            : null
+        }
+        {
+          this.state.showUserStatus && this.state.selectedAddress.ward_abbrv ?
+            this._renderUserStatus(`GREENSBORO CITY COUNCIL DISTRICT: ${this.state.selectedAddress.ward_abbrv.substring(2, 3)}`)
+            : null
+        }
+        {
+          this.state.showUserStatus && !this.state.selectedAddress.ward_abbrv ?
+            this._renderUserStatus('NOT WITHIN GREENSBORO CITY LIMIT')
             : null
         }
       </FormGroup>
