@@ -5,6 +5,9 @@ import Router from 'express-promise-router';
 import 'babel-polyfill';
 import path from 'path';
 
+const app = express();
+const router = new Router();
+
 if (process.env.NODE_ENV !== 'production') {
   let dotenv = require('dotenv');
   dotenv.config();
@@ -16,9 +19,6 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(__dirname, './index.html'));
   });
 }
-
-const app = express();
-const router = new Router();
 
 app.set('port', (process.env.PORT || 3001));
 
