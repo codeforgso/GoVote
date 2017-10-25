@@ -3,10 +3,18 @@ import express from 'express';
 import pg, { Client } from 'pg';
 import Router from 'express-promise-router';
 import 'babel-polyfill';
+import path from 'path';
 
 if (process.env.NODE_ENV !== 'production') {
   let dotenv = require('dotenv');
   dotenv.config();
+}
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, './')));
+  app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, './index.html'));
+  });
 }
 
 const app = express();
