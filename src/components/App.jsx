@@ -113,7 +113,7 @@ class App extends Component {
   }
 
   render() {
-    const voterModalShow = () => this.setState({ voterModalShow: false });
+    const voterModalShow = () => this.setState({ voterModalShow: false, voterInfo: [] });
     const regInfoModalShow = () => this.setState({ regInfoModalShow: false });
     return (
       this.state.layers.councilDist && this.state.layers.commissionerDist ?
