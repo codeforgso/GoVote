@@ -96,6 +96,7 @@ class App extends Component {
     this.setState({
       regInfoModalShow: true,
       voterModalShow: false,
+      voterInfo: [],
     });
   }
 
