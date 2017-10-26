@@ -47,7 +47,7 @@
     "build:client": "node scripts/build.js",
     "build:server": "NODE_ENV=production webpack --config config/webpackProdServer.config.js",
     "test": "node scripts/test.js --env=jsdom",
-    "etl": "node bin/etl.js"
+    "etl": "NODE_ENV=development node bin/etl.js"
   },
   "devDependencies": {
     "babel-cli": "6.14.0",

@@ -85,10 +85,10 @@ function init() {
       if (fs.existsSync(extracted_filename_utf8)) fs.unlinkSync(extracted_filename_utf8);
       iconv_file(function() {
         const client = new Client({
-          user: process.env.DB_USER,
+          user: process.env.DB_USER_RWE,
           host: process.env.DB_HOST,
           database: process.env.DB_NAME,
-          password: process.env.DB_PASS,
+          password: process.env.DB_PASS_RWE,
           port: process.env.DB_PORT
         });
 
@@ -112,7 +112,7 @@ function init() {
               sql = `UPDATE ${process.env.DB_TABLE} SET resident_address = regexp_replace(res_street_address, '\\s+', ' ', 'g');`;
               console.log(sql);
               client.query(sql, [], (err, res) => {
-                console.log('diconnecting...');
+                console.log('disconnecting...');
                 client.end();
                 if (fs.existsSync(extracted_filename_utf8)) fs.unlinkSync(extracted_filename_utf8);
                 if (fs.existsSync(extracted_filename)) fs.unlinkSync(extracted_filename);
