@@ -85,6 +85,13 @@ class App extends Component {
     this.setState({ voterAddress: address }, () => console.log(this.state.voterAddress));
   }
 
+  _showVoterInfoModal = () => {
+    this.setState({
+      regInfoModalShow: false,
+      voterModalShow: true,
+    });
+  }
+
   _showRegInfoModal = () => {
     this.setState({
       regInfoModalShow: true,
@@ -111,7 +118,7 @@ class App extends Component {
     return (
       this.state.layers.councilDist && this.state.layers.commissionerDist ?
         <div>
-          <Header />
+          <Header showVoterInfoModal={this._showVoterInfoModal} />
           <div className="map">
             <MapContainer data={this.state.layers} voterAddress={this.state.voterAddress} />
             <VoterModal show={this.state.voterModalShow} onHide={voterModalShow}>

@@ -25,6 +25,31 @@ html, body, #app {
   font-size: 20px;
 }
 
+.btn-showVoterModal {
+  /*float: left;*/
+  font-size: 20px;
+  color: #fff;
+  background: none;
+  border: none;
+  padding-top: 15px;
+}
+
+.btn-link:focus {
+  color: #fff;
+  outline: none;
+  background: none;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.btn-link:hover {
+  color: #1396FB;
+  outline: none;
+  background: none;
+  text-decoration: none;
+  background-color: transparent;
+}
+
 .container-logo {
   height: 55px;
 }
