@@ -16,10 +16,10 @@ class Header extends React.Component {
             <h2 className="main-header">GoVoteGSO Beta</h2>
           </Col>
           <Col className="" xs={6} md={4}>
-            <Button className="btn-showVoterModal" bsStyle="link" onClick={this.props.showVoterInfoModal}>{'Voter Lookup'}</Button>
             <div className="container-logo pull-right">
               <Thumbnail href="http://codeforgreensboro.org" target="_blank" src={cfgLogo} className="logo" />
             </div>
+            <Button className="btn-showVoterModal" bsStyle="link" onClick={this.props.showVoterInfoModal}>{'Voter Lookup'}</Button>
           </Col>
         </div>
       </div>
