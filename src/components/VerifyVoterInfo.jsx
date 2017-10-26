@@ -72,17 +72,17 @@ class VerifyVoterInfo extends Component {
         </ButtonGroup>
         {
           this.state.showUserStatus ?
-            this._renderUserStatus(`VOTER REGISTRATION STATUS: ${this.state.selectedAddress.voter_status_desc}`)
-            : null
-        }
-        {
-          this.state.showUserStatus && this.state.selectedAddress.ward_abbrv ?
-            this._renderUserStatus(`GREENSBORO CITY COUNCIL DISTRICT: ${this.state.selectedAddress.ward_abbrv.substring(2, 3)}`)
+            <div>
+              <br />
+              {this._renderUserStatus(`VOTER REGISTRATION STATUS: ${this.state.selectedAddress.voter_status_desc}`)}
+            </div>
             : null
         }
         {
           this.state.showUserStatus && this.state.selectedAddress.ward_abbrv ?
             <div>
+              <br />
+              {this._renderUserStatus(`GREENSBORO CITY COUNCIL DISTRICT: ${this.state.selectedAddress.ward_abbrv.substring(2, 3)}`)}
               <br />
               <b>YOUR GREENSBORO CITY COUNCIL CANDIDATES:</b>
               <br />
@@ -115,7 +115,10 @@ class VerifyVoterInfo extends Component {
         }
         {
           this.state.showUserStatus && !this.state.selectedAddress.ward_abbrv ?
-            this._renderUserStatus('NOT WITHIN GREENSBORO CITY LIMIT')
+            <div>
+              <br />
+              {this._renderUserStatus('NOT WITHIN GREENSBORO CITY LIMIT')}
+            </div>
             : null
         }
       </FormGroup>
