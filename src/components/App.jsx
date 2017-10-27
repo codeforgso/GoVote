@@ -17,6 +17,7 @@ class App extends Component {
       firstName: '',
       lastName: '',
       voterInfo: [],
+      voterAddress: '',
       layers: {
         councilDist: null,
         commissionerDist: null,
@@ -80,6 +81,10 @@ class App extends Component {
     return result;
   }
 
+  _getVoterAddress = (address) => {
+    this.setState({ voterAddress: address }, () => console.log(this.state.voterAddress));
+  }
+
   _showRegInfoModal = () => {
     this.setState({
       regInfoModalShow: true,
@@ -108,10 +113,10 @@ class App extends Component {
         <div>
           <Header />
           <div className="map">
-            <MapContainer data={this.state.layers} />
+            <MapContainer data={this.state.layers} voterAddress={this.state.voterAddress} />
             <VoterModal show={this.state.voterModalShow} onHide={voterModalShow}>
               <VoterInfoForm onSubmit={this._getVoterInfo} onUpdate={this._handleInputChange} firstNameValidationState={this.state.firstNameValidationState} lastNameValidationState={this.state.lastNameValidationState} formErrors={this.state.formErrors} />
-              <VerifyVoterInfo voterInfo={this.state.voterInfo} showRegInfoModal={this._showRegInfoModal} />
+              <VerifyVoterInfo voterInfo={this.state.voterInfo} showRegInfoModal={this._showRegInfoModal} voterAddress={this._getVoterAddress} />
             </VoterModal>
             <RegistrationInfoModal show={this.state.regInfoModalShow} onHide={regInfoModalShow} />
           </div>

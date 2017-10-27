@@ -18,6 +18,8 @@ class VerifyVoterInfo extends Component {
   }
 
   _handleAddressClick = (el) => {
+    console.log(el);
+    this.props.voterAddress(el.resident_address);
     this.setState({
       selectedAddress: el,
       showUserStatus: true,
@@ -28,12 +30,12 @@ class VerifyVoterInfo extends Component {
     const upperStatus = status.toUpperCase();
     return (
       <div>
-        {upperStatus}
+        <b>{upperStatus}</b>
       </div>
     );
   }
 
-  renderVoterInfo = (el) => {
+  _renderVoterInfo = (el) => {
     return (
       <Button name="voterAddressGroup" key={el.voter_reg_num} onClick={() => this._handleAddressClick(el)}>{el.resident_address}</Button>
     );
@@ -48,7 +50,7 @@ class VerifyVoterInfo extends Component {
           : null
         }
         <ButtonGroup vertical>
-          {this.props.voterInfo.map(this.renderVoterInfo)}
+          {this.props.voterInfo.map(this._renderVoterInfo)}
           {
           this.props.voterInfo.length ?
             <Button name="notMyAddress" onClick={this.props.showRegInfoModal}>{'I DON\'T SEE MY ADDRESS'}</Button>
@@ -60,6 +62,16 @@ class VerifyVoterInfo extends Component {
             this._renderUserStatus(`VOTER REGISTRATION STATUS: ${this.state.selectedAddress.voter_status_desc}`)
             : null
         }
+        {
+          this.state.showUserStatus && this.state.selectedAddress.ward_abbrv ?
+            this._renderUserStatus(`GREENSBORO CITY COUNCIL DISTRICT: ${this.state.selectedAddress.ward_abbrv.substring(2, 3)}`)
+            : null
+        }
+        {
+          this.state.showUserStatus && !this.state.selectedAddress.ward_abbrv ?
+            this._renderUserStatus('NOT WITHIN GREENSBORO CITY LIMIT')
+            : null
+        }
       </FormGroup>
     );
   }
@@ -68,6 +80,7 @@ class VerifyVoterInfo extends Component {
 VerifyVoterInfo.propTypes = {
   voterInfo: PropTypes.array.isRequired,
   showRegInfoModal: PropTypes.func,
+  voterAddress: PropTypes.func,
 };
 
 export default VerifyVoterInfo;

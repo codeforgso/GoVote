@@ -1,7 +1,7 @@
 import { MapControl, PropTypes as LeafletPropTypes } from 'react-leaflet';
 import { geosearch, geocodeServiceProvider } from 'esri-leaflet-geocoder';
 
-export default class Geocoder extends MapControl {
+export default class SearchControl extends MapControl {
   static propTypes = {
     position: LeafletPropTypes.controlPosition,
   }

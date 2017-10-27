@@ -46,7 +46,6 @@ const VoterInfoForm = (props) => {
           : null
         }
       </FormGroup>
-
     </div>
   );
 };

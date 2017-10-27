@@ -32,6 +32,8 @@ html, body, #app {
 .logo {
   display: none;
   width: 100px;
+  background: none;
+  border: none;
 }
 
 .map {

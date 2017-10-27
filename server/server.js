@@ -3,14 +3,22 @@ import express from 'express';
 import pg, { Client } from 'pg';
 import Router from 'express-promise-router';
 import 'babel-polyfill';
+import path from 'path';
+
+const app = express();
+const router = new Router();
 
 if (process.env.NODE_ENV !== 'production') {
   let dotenv = require('dotenv');
   dotenv.config();
 }
 
-const app = express();
-const router = new Router();
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('./'));
+  app.get('/', function(req, res) {
+    res.sendFile('./index.html');
+  });
+}
 
 app.set('port', (process.env.PORT || 3001));
 
