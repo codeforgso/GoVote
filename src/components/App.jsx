@@ -135,15 +135,15 @@ class App extends Component {
     return (
       this.state.layers.councilDist && this.state.layers.commissionerDist ?
         <div>
-          <Header showVoterInfoModal={this._showVoterInfoModal} />
+          <Header showVoterInfoModal={this._showVoterInfoModal} showAboutModal={this._handleShowAboutModal} />
           <AboutModal show={this.state.aboutModalShow} hide={this._handleHideAboutModal} onClick={this._handleShowAboutModal} />
           <div className="map">
             <MapContainer data={this.state.layers} voterAddress={this.state.voterAddress} />
-            <VoterModal show={this.state.voterModalShow} onHide={voterModalShow}>
+            <VoterModal show={this.state.voterModalShow} hide={voterModalShow}>
               <VoterInfoForm onSubmit={this._getVoterInfo} onUpdate={this._handleInputChange} firstNameValidationState={this.state.firstNameValidationState} lastNameValidationState={this.state.lastNameValidationState} formErrors={this.state.formErrors} />
               <VerifyVoterInfo voterInfo={this.state.voterInfo} showRegInfoModal={this._showRegInfoModal} voterAddress={this._getVoterAddress} />
             </VoterModal>
-            <RegistrationInfoModal show={this.state.regInfoModalShow} onHide={regInfoModalShow} />
+            <RegistrationInfoModal show={this.state.regInfoModalShow} hide={regInfoModalShow} />
           </div>
         </div> : null
     );
@@ -151,7 +151,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  match: PropTypes.object.isRequired,
+  match: PropTypes.object,
 };
 
 export default App;

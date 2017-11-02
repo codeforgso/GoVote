@@ -4,15 +4,12 @@ import { Modal, Button } from 'react-bootstrap';
 
 const AboutModal = (props) => {
   const {
-    onClick,
     show,
     hide,
   } = props;
 
   return (
     <div>
-      <Button onClick={onClick} bsStyle="default">About Us</Button>
-
       <Modal show={show} onHide={hide}>
         <Modal.Header closeButton>
           <Modal.Title>About Code for Greensboro</Modal.Title>
@@ -33,7 +30,6 @@ const AboutModal = (props) => {
 };
 
 AboutModal.propTypes = {
-  onClick: PropTypes.func.isRequired,
   hide: PropTypes.func.isRequired,
   show: PropTypes.bool.isRequired,
 };

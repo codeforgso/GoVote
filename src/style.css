@@ -26,13 +26,13 @@ html, body, #app {
   font-size: 20px;
 }
 
-.btn-showVoterModal {
+.btn-showModal {
   float: right;
   font-size: 20px;
   color: #ddd;
   background: none;
   border: none;
-  padding-top: 15px;
+  padding: 15px 15px 0px 0px;
 }
 
 .btn-link:focus {
