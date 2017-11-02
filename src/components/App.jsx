@@ -7,6 +7,7 @@ import VoterInfoForm from './VoterInfoForm';
 import VerifyVoterInfo from './VerifyVoterInfo';
 import RegistrationInfoModal from './RegistrationInfoModal';
 import Header from './Header';
+import AboutModal from './AboutModal';
 
 class App extends Component {
   constructor() {
@@ -14,6 +15,7 @@ class App extends Component {
     this.state = {
       voterModalShow: true,
       regInfoModalShow: false,
+      aboutModalShow: false,
       firstName: '',
       lastName: '',
       voterInfo: [],
@@ -113,6 +115,20 @@ class App extends Component {
     });
   }
 
+  _handleShowAboutModal = () => {
+    this.setState({
+      aboutModalShow: true,
+    });
+    console.log('clicked');
+  }
+
+  _handleHideAboutModal = () => {
+    this.setState({
+      aboutModalShow: false,
+    });
+    console.log('closed');
+  }
+
   render() {
     const voterModalShow = () => this.setState({ voterModalShow: false, voterInfo: [] });
     const regInfoModalShow = () => this.setState({ regInfoModalShow: false });
@@ -120,6 +136,7 @@ class App extends Component {
       this.state.layers.councilDist && this.state.layers.commissionerDist ?
         <div>
           <Header showVoterInfoModal={this._showVoterInfoModal} />
+          <AboutModal show={this.state.aboutModalShow} hide={this._handleHideAboutModal} onClick={this._handleShowAboutModal} />
           <div className="map">
             <MapContainer data={this.state.layers} voterAddress={this.state.voterAddress} />
             <VoterModal show={this.state.voterModalShow} onHide={voterModalShow}>
