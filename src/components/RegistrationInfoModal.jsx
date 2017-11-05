@@ -5,12 +5,12 @@ import { Modal, Button } from 'react-bootstrap';
 
 const RegistrationInfoModal = (props) => {
   const {
-      onHide,
+      hide,
       show,
   } = props;
 
   return (
-    <Modal {...props} show={show} bsSize="lg" aria-labelledby="contained-modal-title-lg">
+    <Modal show={show} onHide={hide} bsSize="lg" aria-labelledby="contained-modal-title-lg">
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-lg">
           NC Voter Registration Info
@@ -38,7 +38,7 @@ const RegistrationInfoModal = (props) => {
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={onHide}>
+        <Button onClick={hide}>
           Close
         </Button>
       </Modal.Footer>
@@ -47,7 +47,7 @@ const RegistrationInfoModal = (props) => {
 };
 
 RegistrationInfoModal.propTypes = {
-  onHide: PropTypes.func.isRequired,
+  hide: PropTypes.func.isRequired,
   show: PropTypes.bool.isRequired,
 };
 

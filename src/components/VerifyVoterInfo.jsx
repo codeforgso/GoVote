@@ -8,6 +8,13 @@ class VerifyVoterInfo extends Component {
     this.state = {
       selectedAddress: {},
       showUserStatus: false,
+      mayoralCandidates: ['Nancy Vaughan (i)', 'Diane Moffett'],
+      atLargeCandidates: ['Marikay Abuzuaiter (i)', 'Mike Barber (i)', 'Yvonne Johnson (i)', 'T. Dianne Bellamy-Small', 'Michelle Kennedy', 'Dave Wils'],
+      districtOne: ['Sharon Hightower (i)', 'Paula Ritter-Lipscomb'],
+      districtTwo: ['Goldie Wells (i)', 'Jim Kee'],
+      districtThree: ['Justin Outling (i)', 'Craig Martin'],
+      districtFour: ['Nancy Hoffmann (i)', 'Gary Kenton'],
+      districtFive: ['Tony Wilkins (i)', 'Tammi Thurm'],
     };
   }
 
@@ -41,6 +48,12 @@ class VerifyVoterInfo extends Component {
     );
   }
 
+  _renderCandidates = (candidate) => {
+    return (
+      <p>{candidate}</p>
+    );
+  }
+
   render() {
     return (
       <FormGroup>
@@ -59,17 +72,53 @@ class VerifyVoterInfo extends Component {
         </ButtonGroup>
         {
           this.state.showUserStatus ?
-            this._renderUserStatus(`VOTER REGISTRATION STATUS: ${this.state.selectedAddress.voter_status_desc}`)
+            <div>
+              <br />
+              {this._renderUserStatus(`VOTER REGISTRATION STATUS: ${this.state.selectedAddress.voter_status_desc}`)}
+            </div>
             : null
         }
         {
           this.state.showUserStatus && this.state.selectedAddress.ward_abbrv ?
-            this._renderUserStatus(`GREENSBORO CITY COUNCIL DISTRICT: ${this.state.selectedAddress.ward_abbrv.substring(2, 3)}`)
+            <div>
+              <br />
+              {this._renderUserStatus(`GREENSBORO CITY COUNCIL DISTRICT: ${this.state.selectedAddress.ward_abbrv.substring(2, 3)}`)}
+              <br />
+              <b>YOUR GREENSBORO CITY COUNCIL CANDIDATES:</b>
+              <br />
+              <br />
+              <b>Mayoral:</b>
+              {this.state.mayoralCandidates.map(this._renderCandidates)}
+              <br />
+              <b>At Large (Vote for three):</b>
+              {this.state.atLargeCandidates.map(this._renderCandidates)}
+              <br />
+              <b>District {this.state.selectedAddress.ward_abbrv.substring(2, 3)}:</b>
+              {(() => {
+                switch (this.state.selectedAddress.ward_abbrv.substring(2, 3)) {
+                  case '1':
+                    return this.state.districtOne.map(this._renderCandidates);
+                  case '2':
+                    return this.state.districtTwo.map(this._renderCandidates);
+                  case '3':
+                    return this.state.districtThree.map(this._renderCandidates);
+                  case '4':
+                    return this.state.districtFour.map(this._renderCandidates);
+                  case '5':
+                    return this.state.districtFive.map(this._renderCandidates);
+                  default:
+                    return null;
+                }
+              })()}
+            </div>
             : null
         }
         {
           this.state.showUserStatus && !this.state.selectedAddress.ward_abbrv ?
-            this._renderUserStatus('NOT WITHIN GREENSBORO CITY LIMIT')
+            <div>
+              <br />
+              {this._renderUserStatus('NOT WITHIN GREENSBORO CITY LIMIT')}
+            </div>
             : null
         }
       </FormGroup>

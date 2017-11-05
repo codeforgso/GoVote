@@ -13,7 +13,7 @@ html, body, #app {
 .header {
   height: 55px;
   width: 100%;
-  color: #fff;
+  color: #e6e4d5;
 }
 
 .container-heading {
@@ -22,7 +22,33 @@ html, body, #app {
 }
 
 .main-header {
+  float: left;
   font-size: 20px;
+}
+
+.btn-showModal {
+  float: right;
+  font-size: 20px;
+  color: #ddd;
+  background: none;
+  border: none;
+  padding: 15px 15px 0px 0px;
+}
+
+.btn-link:focus {
+  color: #fff;
+  outline: none;
+  background: none;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.btn-link:hover {
+  color: #168a89;
+  outline: none;
+  background: none;
+  text-decoration: none;
+  background-color: transparent;
 }
 
 .container-logo {
@@ -30,6 +56,7 @@ html, body, #app {
 }
 
 .logo {
+  float: right;
   display: none;
   width: 100px;
   background: none;

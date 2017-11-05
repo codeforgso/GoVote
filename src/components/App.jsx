@@ -7,6 +7,7 @@ import VoterInfoForm from './VoterInfoForm';
 import VerifyVoterInfo from './VerifyVoterInfo';
 import RegistrationInfoModal from './RegistrationInfoModal';
 import Header from './Header';
+import AboutModal from './AboutModal';
 
 class App extends Component {
   constructor() {
@@ -14,6 +15,7 @@ class App extends Component {
     this.state = {
       voterModalShow: true,
       regInfoModalShow: false,
+      aboutModalShow: false,
       firstName: '',
       lastName: '',
       voterInfo: [],
@@ -85,10 +87,18 @@ class App extends Component {
     this.setState({ voterAddress: address }, () => console.log(this.state.voterAddress));
   }
 
+  _showVoterInfoModal = () => {
+    this.setState({
+      regInfoModalShow: false,
+      voterModalShow: true,
+    });
+  }
+
   _showRegInfoModal = () => {
     this.setState({
       regInfoModalShow: true,
       voterModalShow: false,
+      voterInfo: [],
     });
   }
 
@@ -105,20 +115,35 @@ class App extends Component {
     });
   }
 
+  _handleShowAboutModal = () => {
+    this.setState({
+      aboutModalShow: true,
+    });
+    console.log('clicked');
+  }
+
+  _handleHideAboutModal = () => {
+    this.setState({
+      aboutModalShow: false,
+    });
+    console.log('closed');
+  }
+
   render() {
-    const voterModalShow = () => this.setState({ voterModalShow: false });
+    const voterModalShow = () => this.setState({ voterModalShow: false, voterInfo: [] });
     const regInfoModalShow = () => this.setState({ regInfoModalShow: false });
     return (
       this.state.layers.councilDist && this.state.layers.commissionerDist ?
         <div>
-          <Header />
+          <Header showVoterInfoModal={this._showVoterInfoModal} showAboutModal={this._handleShowAboutModal} />
+          <AboutModal show={this.state.aboutModalShow} hide={this._handleHideAboutModal} onClick={this._handleShowAboutModal} />
           <div className="map">
             <MapContainer data={this.state.layers} voterAddress={this.state.voterAddress} />
-            <VoterModal show={this.state.voterModalShow} onHide={voterModalShow}>
+            <VoterModal show={this.state.voterModalShow} hide={voterModalShow}>
               <VoterInfoForm onSubmit={this._getVoterInfo} onUpdate={this._handleInputChange} firstNameValidationState={this.state.firstNameValidationState} lastNameValidationState={this.state.lastNameValidationState} formErrors={this.state.formErrors} />
               <VerifyVoterInfo voterInfo={this.state.voterInfo} showRegInfoModal={this._showRegInfoModal} voterAddress={this._getVoterAddress} />
             </VoterModal>
-            <RegistrationInfoModal show={this.state.regInfoModalShow} onHide={regInfoModalShow} />
+            <RegistrationInfoModal show={this.state.regInfoModalShow} hide={regInfoModalShow} />
           </div>
         </div> : null
     );
@@ -126,7 +151,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  match: PropTypes.object.isRequired,
+  match: PropTypes.object,
 };
 
 export default App;
