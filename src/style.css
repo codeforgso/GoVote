@@ -63,6 +63,15 @@ html, body, #app {
   border: none;
 }
 
+.about-footer-logo{
+  background: #283944;
+  float: left;
+}
+
+.about-footer-btn{
+  margin-top: 15px;
+}
+
 .map {
   height: 86vh;
   width: 100%;
