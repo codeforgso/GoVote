@@ -48,11 +48,11 @@ class VerifyVoterInfo extends Component {
     );
   }
 
-  _renderCandidates = (candidate) => ({
+  _renderCandidates = (candidate) => {
     return (
       <p>{candidate}</p>
     );
-  })
+  }
 
   render() {
     return (
