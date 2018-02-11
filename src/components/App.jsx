@@ -50,6 +50,7 @@ class App extends Component {
       }));
   }
 
+  // eslint-disable-line-next-line no-console
   _getVoterInfo = () => {
     if (this._validateVoterInput()) {
       this.setState({ firstNameValidationState: null });
@@ -59,7 +60,6 @@ class App extends Component {
           this.setState({ voterInfo: response.data });
         })
         .catch((error) => {
-          // eslint-disable-line-next-line no-console
           console.log(error);
         });
     } else {
@@ -84,8 +84,8 @@ class App extends Component {
     return result;
   }
 
+  // eslint-disable-line-next-line no-console
   _getVoterAddress = (address) => {
-    // eslint-disable-line-next-line no-console
     this.setState({ voterAddress: address }, () => console.log(this.state.voterAddress));
   }
 
@@ -117,19 +117,19 @@ class App extends Component {
     });
   }
 
+  // eslint-disable-line-next-line no-console
   _handleShowAboutModal = () => {
     this.setState({
       aboutModalShow: true,
     });
-    // eslint-disable-line-next-line no-console
     console.log('clicked');
   }
 
+  // eslint-disable-line-next-line no-console
   _handleHideAboutModal = () => {
     this.setState({
       aboutModalShow: false,
     });
-    // eslint-disable-line-next-line no-console
     console.log('closed');
   }
 
