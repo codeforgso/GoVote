@@ -50,7 +50,6 @@ class App extends Component {
       }));
   }
 
-  // eslint-disable-line-next-line no-console
   _getVoterInfo = () => {
     if (this._validateVoterInput()) {
       this.setState({ firstNameValidationState: null });
@@ -60,7 +59,7 @@ class App extends Component {
           this.setState({ voterInfo: response.data });
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error);// eslint-disable-line no-console
         });
     } else {
       this.setState({ voterInfo: [] });
@@ -84,9 +83,8 @@ class App extends Component {
     return result;
   }
 
-  // eslint-disable-line-next-line no-console
   _getVoterAddress = (address) => {
-    this.setState({ voterAddress: address }, () => console.log(this.state.voterAddress));
+    this.setState({ voterAddress: address }, () => console.log(this.state.voterAddress));// eslint-disable-line no-console
   }
 
   _showVoterInfoModal = () => {
@@ -117,20 +115,18 @@ class App extends Component {
     });
   }
 
-  // eslint-disable-line-next-line no-console
   _handleShowAboutModal = () => {
     this.setState({
       aboutModalShow: true,
     });
-    console.log('clicked');
+    console.log('clicked');// eslint-disable-line no-console
   }
 
-  // eslint-disable-line-next-line no-console
   _handleHideAboutModal = () => {
     this.setState({
       aboutModalShow: false,
     });
-    console.log('closed');
+    console.log('closed');// eslint-disable-line no-console
   }
 
   render() {
