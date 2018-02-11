@@ -25,7 +25,7 @@ class VerifyVoterInfo extends Component {
   }
 
   _handleAddressClick = (el) => {
-    console.log(el);
+    console.log(el);// eslint-disable-line no-console
     this.props.voterAddress(el.resident_address);
     this.setState({
       selectedAddress: el,
