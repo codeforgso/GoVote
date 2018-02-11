@@ -91,7 +91,7 @@ function checkValidServiceWorker(swUrl) {
         registerValidSW(swUrl);
       }
     })
-    .catch(() => {// eslint-disable-next-line no-console
+    .catch(() => { // eslint-disable-next-line no-console
       console.log(
         'No internet connection found. App is running in offline mode.'
       );
