@@ -11,11 +11,11 @@ const VoterInfoForm = (props) => {
     formErrors,
   } = props;
 
-  const renderErrors = (el, index) => {
+  const renderErrors = (el, index) => ({
     return (
       <li key={index} className="text-danger">Please enter your {el}</li>
     );
-  };
+  });
 
   return (
     <div>
