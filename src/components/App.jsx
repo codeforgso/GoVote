@@ -35,7 +35,6 @@ class App extends Component {
     this._getGISData(this.props.match);
   }
 
-  /*eslint arrow-body-style: ["error", "always"]*/
   _getCouncilDistricts = () => {
     return axios.get('http://data-greensboro.opendata.arcgis.com/datasets/829c58aaaf0c4bf0b59f93bfe3cb4c13_3.geojson');
   }
