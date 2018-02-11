@@ -59,6 +59,7 @@ class App extends Component {
           this.setState({ voterInfo: response.data });
         })
         .catch((error) => {
+          // eslint-disable-line no-console
           console.log(error);
         });
     } else {
@@ -84,6 +85,7 @@ class App extends Component {
   }
 
   _getVoterAddress = (address) => {
+    // eslint-disable-line no-console
     this.setState({ voterAddress: address }, () => console.log(this.state.voterAddress));
   }
 
@@ -119,6 +121,7 @@ class App extends Component {
     this.setState({
       aboutModalShow: true,
     });
+    // eslint-disable-line no-console
     console.log('clicked');
   }
 
@@ -126,6 +129,7 @@ class App extends Component {
     this.setState({
       aboutModalShow: false,
     });
+    // eslint-disable-line no-console
     console.log('closed');
   }
 
