@@ -9,7 +9,7 @@ export default class SearchControl extends MapControl {
   createLeafletElement(): Object {
     const cogAllPointsGeocodeService = geocodeServiceProvider({
       url: 'https://gis.greensboro-nc.gov/arcgis/rest/services/Geocoding/AllPoints_GCS/GeocodeServer',
-      label: 'All Points'
+      label: 'All Points',
     });
 
     // create the geocoding control and add it to the map

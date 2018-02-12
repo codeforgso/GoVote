@@ -22,10 +22,10 @@ class MapContainer extends Component {
 
   _getGeocodeResult = (result) => {
     this.setState({
-      geocodeAddressResult: result
+      geocodeAddressResult: result,
     });
-    console.log('this.state.geocodeAddressResult');
-    console.log(this.state.geocodeAddressResult);
+    console.log('this.state.geocodeAddressResult');// eslint-disable-line no-console
+    console.log(this.state.geocodeAddressResult);// eslint-disable-line no-console
   }
 
   render() {

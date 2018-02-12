@@ -35,13 +35,9 @@ class App extends Component {
     this._getGISData(this.props.match);
   }
 
-  _getCouncilDistricts = () => {
-    return axios.get('http://data-greensboro.opendata.arcgis.com/datasets/829c58aaaf0c4bf0b59f93bfe3cb4c13_3.geojson');
-  }
+  _getCouncilDistricts = () => { axios.get('http://data-greensboro.opendata.arcgis.com/datasets/829c58aaaf0c4bf0b59f93bfe3cb4c13_3.geojson'); }
 
-  _getCommissionerDistricts = () => {
-    return axios.get('http://data-greensboro.opendata.arcgis.com/datasets/1b60f15bb4dc4d8f96bd4831a8fbf063_5.geojson');
-  }
+  _getCommissionerDistricts = () => { axios.get('http://data-greensboro.opendata.arcgis.com/datasets/1b60f15bb4dc4d8f96bd4831a8fbf063_5.geojson'); }
 
   _getGISData = () => {
     axios.all([this._getCouncilDistricts(), this._getCommissionerDistricts()])
@@ -59,7 +55,7 @@ class App extends Component {
           this.setState({ voterInfo: response.data });
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error);// eslint-disable-line no-console
         });
     } else {
       this.setState({ voterInfo: [] });
@@ -84,7 +80,7 @@ class App extends Component {
   }
 
   _getVoterAddress = (address) => {
-    this.setState({ voterAddress: address }, () => console.log(this.state.voterAddress));
+    this.setState({ voterAddress: address }, () => console.log(this.state.voterAddress));// eslint-disable-line no-console
   }
 
   _showVoterInfoModal = () => {
@@ -119,14 +115,14 @@ class App extends Component {
     this.setState({
       aboutModalShow: true,
     });
-    console.log('clicked');
+    console.log('clicked');// eslint-disable-line no-console
   }
 
   _handleHideAboutModal = () => {
     this.setState({
       aboutModalShow: false,
     });
-    console.log('closed');
+    console.log('closed');// eslint-disable-line no-console
   }
 
   render() {

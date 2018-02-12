@@ -25,7 +25,7 @@ class VerifyVoterInfo extends Component {
   }
 
   _handleAddressClick = (el) => {
-    console.log(el);
+    console.log(el);// eslint-disable-line no-console
     this.props.voterAddress(el.resident_address);
     this.setState({
       selectedAddress: el,
@@ -42,17 +42,11 @@ class VerifyVoterInfo extends Component {
     );
   }
 
-  _renderVoterInfo = (el) => {
-    return (
-      <Button name="voterAddressGroup" key={el.voter_reg_num} onClick={() => this._handleAddressClick(el)}>{el.resident_address}</Button>
-    );
-  }
+  // eslint-disable-next-line
+  _renderVoterInfo = (el) => { return (<Button name="voterAddressGroup" key={el.voter_reg_num} onClick={() => this._handleAddressClick(el)}>{el.resident_address}</Button>); }
 
-  _renderCandidates = (candidate) => {
-    return (
-      <p>{candidate}</p>
-    );
-  }
+  // eslint-disable-next-line
+  _renderCandidates = (candidate) => { return ( <p>{candidate}</p> ); }
 
   render() {
     return (
