@@ -42,11 +42,7 @@ class VerifyVoterInfo extends Component {
     );
   }
 
-  _renderVoterInfo = (el) => {
-    return (
-      <Button name="voterAddressGroup" key={el.voter_reg_num} onClick={() => this._handleAddressClick(el)}>{el.resident_address}</Button>
-    );
-  }
+  _renderVoterInfo = (el) => { return (<Button name="voterAddressGroup" key={el.voter_reg_num} onClick={() => this._handleAddressClick(el)}>{el.resident_address}</Button>); }
 
   _renderCandidates = (candidate) => {
     return (
