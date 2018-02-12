@@ -11,6 +11,7 @@ const VoterInfoForm = (props) => {
     formErrors,
   } = props;
 
+  // eslint-disable-next-line
   const renderErrors = (el, index) => { return (<li key={index} className="text-danger">Please enter your {el}</li>); };
 
   return (
