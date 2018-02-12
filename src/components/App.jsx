@@ -35,11 +35,11 @@ class App extends Component {
     this._getGISData(this.props.match);
   }
 
-  _getCouncilDistricts = () => {
+  let _getCouncilDistricts = () => {
     return axios.get('http://data-greensboro.opendata.arcgis.com/datasets/829c58aaaf0c4bf0b59f93bfe3cb4c13_3.geojson');
   }
 
-  _getCommissionerDistricts = () => {
+  let _getCommissionerDistricts = () => {
     return axios.get('http://data-greensboro.opendata.arcgis.com/datasets/1b60f15bb4dc4d8f96bd4831a8fbf063_5.geojson');
   }
 
