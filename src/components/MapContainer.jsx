@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Control from 'react-leaflet-control';
+import { Alert } from 'react-bootstrap';
 import { Map, Marker, Popup, TileLayer, GeoJSON, LayersControl } from 'react-leaflet';
-import SearchControl from './EsriSearchControl.js';
+import SearchControl from './SearchControl.js';
+import './MapContainer.css';
 
 class MapContainer extends Component {
   constructor() {
     super();
     this.state = {
       geocodeAddressResult: {},
+      searchControlErrMsg: null,
     };
   }
 
@@ -22,10 +26,9 @@ class MapContainer extends Component {
 
   _getGeocodeResult = (result) => {
     this.setState({
-      geocodeAddressResult: result
+      geocodeAddressResult: result !== undefined ? result : {},
+      searchControlErrMsg: result === undefined ? 'No Address Found' : null,
     });
-    console.log('this.state.geocodeAddressResult');
-    console.log(this.state.geocodeAddressResult);
   }
 
   render() {
@@ -57,7 +60,14 @@ class MapContainer extends Component {
           </Marker>
           : null
         }
-        <SearchControl results={this._getGeocodeResult} />
+        <SearchControl setGeocodeResult={this._getGeocodeResult} />
+        <Control position="topleft" className="geocoder-control search-control-error">
+          {
+            this.state.searchControlErrMsg ?
+              <Alert bsStyle="warning">{this.state.searchControlErrMsg}</Alert>
+            : <div />
+          }
+        </Control>
         <LayersControl position="topleft">
           <LayersControl.Overlay name="City Council Districts" checked>
             <GeoJSON data={data.councilDist} onEachFeature={this._onEachFeature} style={councilStyle} />
