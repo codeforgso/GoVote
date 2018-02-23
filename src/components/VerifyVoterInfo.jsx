@@ -42,11 +42,9 @@ class VerifyVoterInfo extends Component {
     );
   }
 
-  // eslint-disable-next-line
-  _renderVoterInfo = (el) => { return (<Button name="voterAddressGroup" key={el.voter_reg_num} onClick={() => this._handleAddressClick(el)}>{el.resident_address}</Button>); }
+  _renderVoterInfo = (el) => (<Button name="voterAddressGroup" key={el.voter_reg_num} onClick={() => this._handleAddressClick(el)}>{el.resident_address}</Button>);
 
-  // eslint-disable-next-line
-  _renderCandidates = (candidate) => { return ( <p>{candidate}</p> ); }
+  _renderCandidates = (candidate) => ( <p>{candidate}</p> );
 
   render() {
     return (
