@@ -23,7 +23,6 @@
     "path": "^0.12.7",
     "pg": "^7.1.0",
     "pg-copy-streams": "^1.2.0",
-    "pg-native": "^2.2.0",
     "postcss-flexbugs-fixes": "^3.2.0",
     "postcss-loader": "^2.0.6",
     "prop-types": "^15.5.10",
