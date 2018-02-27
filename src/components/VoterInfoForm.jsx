@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, FormGroup, ControlLabel, Button, FormControl } from 'react-bootstrap';
+import { Form, FormGroup, ControlLabel, Button, FormControl, Alert } from 'react-bootstrap';
 
 const VoterInfoForm = (props) => {
   const {
@@ -9,6 +9,7 @@ const VoterInfoForm = (props) => {
     firstNameValidationState,
     lastNameValidationState,
     formErrors,
+    voterInfoFound,
   } = props;
 
   const renderErrors = (el, index) => {
@@ -45,6 +46,12 @@ const VoterInfoForm = (props) => {
             </ul>
           : null
         }
+        <br />
+        {
+          !voterInfoFound && formErrors.length === 0 ?
+            <Alert bsStyle="warning">No Voter Registration Info Found</Alert>
+          : null
+        }
       </FormGroup>
     </div>
   );
@@ -56,6 +63,7 @@ VoterInfoForm.propTypes = {
   firstNameValidationState: PropTypes.string,
   lastNameValidationState: PropTypes.string,
   formErrors: PropTypes.array,
+  voterInfoFound: PropTypes.bool,
 };
 
 export default VoterInfoForm;
