@@ -27,6 +27,7 @@ class App extends Component {
       firstNameValidationState: null,
       lastNameValidationState: null,
       formErrors: [],
+      voterInfoFound: true,
     };
     this._handleInputChange = this._handleInputChange.bind(this);
   }
@@ -56,7 +57,10 @@ class App extends Component {
       this.setState({ lastNameValidationState: null });
       axios.get(`/api/${this.state.firstName}/${this.state.lastName}`)
         .then((response) => {
-          this.setState({ voterInfo: response.data });
+          this.setState({
+            voterInfo: response.data,
+            voterInfoFound: response.data.length > 0,
+          });
         })
         .catch((error) => {
           console.log(error);
@@ -140,7 +144,7 @@ class App extends Component {
           <div className="map">
             <MapContainer data={this.state.layers} voterAddress={this.state.voterAddress} />
             <VoterModal show={this.state.voterModalShow} hide={voterModalShow}>
-              <VoterInfoForm onSubmit={this._getVoterInfo} onUpdate={this._handleInputChange} firstNameValidationState={this.state.firstNameValidationState} lastNameValidationState={this.state.lastNameValidationState} formErrors={this.state.formErrors} />
+              <VoterInfoForm onSubmit={this._getVoterInfo} onUpdate={this._handleInputChange} voterInfoFound={this.state.voterInfoFound} firstNameValidationState={this.state.firstNameValidationState} lastNameValidationState={this.state.lastNameValidationState} formErrors={this.state.formErrors} />
               <VerifyVoterInfo voterInfo={this.state.voterInfo} showRegInfoModal={this._showRegInfoModal} voterAddress={this._getVoterAddress} />
             </VoterModal>
             <RegistrationInfoModal show={this.state.regInfoModalShow} hide={regInfoModalShow} />
