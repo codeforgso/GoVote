@@ -6,6 +6,8 @@ Look up your voter status and get info on voting, voting registration, and elect
 For more informatation on the project, visit our [Wiki](https://github.com/codeforgso/GoVote/wiki).
 
 ## Installation
+[![Build Status](https://travis-ci.org/codeforgso/GoVote.svg?branch=dev)](https://travis-ci.org/codeforgso/GoVote)
+
 Make sure you have [Node](https://nodejs.org/en/) >= 8 installed.
 
 ### To install:
