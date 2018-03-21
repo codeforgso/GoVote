@@ -1,36 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Col,
-  Thumbnail,
-  Button,
-} from 'react-bootstrap';
+
 import cfgLogo from '../static/CfGLogoWhite.png';
 
-class Header extends React.Component {
-  render() {
-    return (
-      <div className="header">
-        <div className="container-override">
-          <Col className="container-heading" xs={6} md={8}>
-            <h2 className="main-header">GoVoteGSO Beta</h2>
-          </Col>
-          <Col className="" xs={6} md={4}>
-            <div className="container-logo pull-right">
-              <Thumbnail href="http://codeforgreensboro.org" target="_blank" src={cfgLogo} className="logo" />
-            </div>
-            <Button className="btn-showModal" bsStyle="link" onClick={this.props.showAboutModal} >About Us</Button>
-            <Button className="btn-showModal" bsStyle="link" onClick={this.props.showVoterInfoModal}>{'Voter Lookup'}</Button>
-          </Col>
-        </div>
+const Header = ({ showAboutModal, showVoterInfoModal }) => (
+  <div className="header">
+    <div className="header__title">
+      GoVoteGSO
+    </div>
+    <div className="header__details">
+      <div className="header__details-item">
+        <button onClick={showAboutModal} className="btn btn-link header__details-action">
+          About Us
+        </button>
+        <button onClick={showVoterInfoModal} className="btn btn-link header__details-action">
+          Voter Lookup
+        </button>
       </div>
-    );
-  }
-}
+      <div className="header__details-item">
+        <img alt="" target="_blank" src={cfgLogo} className="header__details-logo" />
+      </div>
+    </div>
+  </div>
+);
 
 Header.propTypes = {
-  showVoterInfoModal: PropTypes.func,
-  showAboutModal: PropTypes.func,
+  showVoterInfoModal: PropTypes.func.isRequired,
+  showAboutModal: PropTypes.func.isRequired,
 };
 
-module.exports = Header;
+export default Header;
