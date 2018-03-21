@@ -43,7 +43,7 @@
   },
   "scripts": {
     "start": "concurrently \"node scripts/start.js\" \"babel-node server/server.js\"",
-    "build": "yarn run build:client && yarn run build:server",
+    "build": "npm run build:client && npm run build:server",
     "build:client": "node scripts/build.js",
     "build:server": "NODE_ENV=production webpack --config config/webpackProdServer.config.js",
     "test": "node scripts/test.js --env=jsdom",
