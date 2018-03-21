@@ -8,6 +8,7 @@ yarn-error.log*
 bin/tmp/*
 
 # Runtime data
+postgres-data/*
 pids
 *.pid
 *.seed
