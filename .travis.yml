@@ -15,4 +15,6 @@ deploy:
   env: "Govotegso-dev-1"
   bucket_name: ${BUCKET_NAME}
   zip_file: "build.zip"
+  on:
+    branch: dev
   skip_cleanup: true
