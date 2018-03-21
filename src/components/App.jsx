@@ -133,20 +133,20 @@ class App extends Component {
   render() {
     const voterModalShow = () => this.setState({ voterModalShow: false, voterInfo: [] });
     const regInfoModalShow = () => this.setState({ regInfoModalShow: false });
+
     return (
-      this.state.layers.councilDist && this.state.layers.commissionerDist ?
-        <div>
+      this.state.layers.councilDist && this.state.layers.commissionerDist &&
+        <div className="app__wrapper">
           <Header showVoterInfoModal={this._showVoterInfoModal} showAboutModal={this._handleShowAboutModal} />
+          <MapContainer data={this.state.layers} voterAddress={this.state.voterAddress} />
+
           <AboutModal show={this.state.aboutModalShow} hide={this._handleHideAboutModal} onClick={this._handleShowAboutModal} />
-          <div className="map">
-            <MapContainer data={this.state.layers} voterAddress={this.state.voterAddress} />
-            <VoterModal show={this.state.voterModalShow} hide={voterModalShow}>
-              <VoterInfoForm onSubmit={this._getVoterInfo} onUpdate={this._handleInputChange} voterInfoFound={this.state.voterInfoFound} firstNameValidationState={this.state.firstNameValidationState} lastNameValidationState={this.state.lastNameValidationState} formErrors={this.state.formErrors} />
-              <VerifyVoterInfo voterInfo={this.state.voterInfo} showRegInfoModal={this._showRegInfoModal} voterAddress={this._getVoterAddress} />
-            </VoterModal>
-            <RegistrationInfoModal show={this.state.regInfoModalShow} hide={regInfoModalShow} />
-          </div>
-        </div> : null
+          <RegistrationInfoModal show={this.state.regInfoModalShow} hide={regInfoModalShow} />
+          <VoterModal show={this.state.voterModalShow} hide={voterModalShow}>
+            <VoterInfoForm onSubmit={this._getVoterInfo} onUpdate={this._handleInputChange} voterInfoFound={this.state.voterInfoFound} firstNameValidationState={this.state.firstNameValidationState} lastNameValidationState={this.state.lastNameValidationState} formErrors={this.state.formErrors} />
+            <VerifyVoterInfo voterInfo={this.state.voterInfo} showRegInfoModal={this._showRegInfoModal} voterAddress={this._getVoterAddress} />
+          </VoterModal>
+        </div>
     );
   }
 }
