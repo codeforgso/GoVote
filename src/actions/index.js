@@ -15,10 +15,18 @@ export function getGISData() {
     .then(axios.spread(({ data: councilDist }, { data: commissionerDist }) => ({
       councilDist,
       commissionerDist,
-    })));
+    })))
+    .catch(handleError);
 }
 
 export function getVoterInfo(firstName, lastName) {
   return axios.get(`/api/${firstName}/${lastName}`)
-    .then(({ data }) => data);
+    .then(({ data }) => data)
+    .catch(handleError);
+}
+
+
+function handleError(err) {
+  // eslint-disable-next-line no-console
+  console.error(err);
 }

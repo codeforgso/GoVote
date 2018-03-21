@@ -20,12 +20,12 @@ const VoterModal = ({ hide, show, children }) => (
       </Button>
     </Modal.Footer>
   </Modal>
-  );
+);
 
 VoterModal.propTypes = {
+  children: PropTypes.array.isRequired,
   hide: PropTypes.func.isRequired,
   show: PropTypes.bool.isRequired,
-  children: PropTypes.array.isRequired,
 };
 
 export default VoterModal;
