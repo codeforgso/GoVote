@@ -7,12 +7,9 @@ import SearchControl from './SearchControl.js';
 import './MapContainer.css';
 
 class MapContainer extends Component {
-  constructor() {
-    super();
-    this.state = {
-      geocodeAddressResult: {},
-      searchControlErrMsg: null,
-    };
+  state = {
+    geocodeAddressResult: {},
+    searchControlErrMsg: null,
   }
 
   _onEachFeature = (feature, layer) => {
