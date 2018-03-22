@@ -13,7 +13,7 @@ Having done that, you can now clone the git repository from your profile:
 $ git clone https://github.com/<YOUR_GITHUB_USERNAME>/GoVote.git
 ```
 
-This will create a new directory on your machine called "GoVote", that should then `cd` into.
+This will create a new directory on your machine called "GoVote", that you should then `cd` into.
 ```
 $ cd GoVote
 ```
@@ -24,7 +24,7 @@ $ npm install
 $ npm run start
 ```
 
-The `npm run start` command should prompt your browser, and beginning running a process on `localhost:3000`; however, the application will not function without appropriate database credentials. Contact @blake or at @schaestewart on [Slack](http://slack.codeforgreensboro.org/) for a set of environmental variables to get you connected to our Postgres DB.
+The `npm run start` command should prompt your browser, and begin running a process on `localhost:3000`; however, the application will not function without appropriate database credentials. Contact @blake or at @schaestewart on [Slack](http://slack.codeforgreensboro.org/) for a set of environmental variables to get you connected to our Postgres DB.
 
 ### Project Details
 The project uses [ReactJS](https://reactjs.org/) as a UI library, and the server runs on NodeJS utilizing the [Express](https://expressjs.com/) framework. Our code linting is done with ESLint](https://eslint.org/), and if you have followed the Getting Started steps, any linting errors should be present in your console. Please confirm that all linter errors are resolved before [Creating a Pull Request](https://help.github.com/articles/creating-a-pull-request/).
