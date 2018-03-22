@@ -27,7 +27,7 @@ $ npm run start
 The `npm run start` command should prompt your browser, and begin running a process on `localhost:3000`; however, the application will not function without appropriate database credentials. Contact @blake or at @schaestewart on [Slack](http://slack.codeforgreensboro.org/) for a set of environmental variables to get you connected to our Postgres DB.
 
 ### Project Details
-The project uses [ReactJS](https://reactjs.org/) as a UI library, and the server runs on NodeJS utilizing the [Express](https://expressjs.com/) framework. Our code linting is done with ESLint](https://eslint.org/), and if you have followed the Getting Started steps, any linting errors should be present in your console. Please confirm that all linter errors are resolved before [Creating a Pull Request](https://help.github.com/articles/creating-a-pull-request/).
+The project uses [ReactJS](https://reactjs.org/) as a UI library, and the server runs on NodeJS utilizing the [Express](https://expressjs.com/) framework. Our code linting is done with [ESLint](https://eslint.org/), and if you have followed the Getting Started steps, any linting errors should be present in your console. Please confirm that all linter errors are resolved before [Creating a Pull Request](https://help.github.com/articles/creating-a-pull-request/).
 
 All of the client-side React code lives in the `/src` directory of the project, while the server code is located in `/server`.
 
