@@ -20,7 +20,7 @@ This will create a new directory on your machine called "GoVote", that you shoul
 $ cd GoVote
 ```
 
-The project has been properly cloned at this point, and it is time to get it up and running. Run the following commands to install the project's dependencies, and start the projects development server:
+The project has been properly cloned at this point, and it is time to get it up and running. Run the following commands to install the project's dependencies, and start the project's development server:
 ```
 $ npm install
 $ npm run start
