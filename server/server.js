@@ -1,21 +1,20 @@
 /* eslint no-console: 0 */
 import express from 'express';
-import pg, { Client } from 'pg';
+import { Client } from 'pg';
 import Router from 'express-promise-router';
 import 'babel-polyfill';
-import path from 'path';
+import dotenv from 'dotenv';
 
 const app = express();
 const router = new Router();
 
 if (process.env.NODE_ENV !== 'production') {
-  let dotenv = require('dotenv');
   dotenv.config();
 }
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('./'));
-  app.get('/', function(req, res) {
+  app.get('/', (req, res) => {
     res.sendFile('./index.html');
   });
 }
@@ -27,7 +26,7 @@ const client = new Client({
   host: process.env.DB_HOST,
   database: process.env.DB_NAME,
   password: process.env.DB_PASS,
-  port: process.env.DB_PORT
+  port: process.env.DB_PORT,
 });
 
 client.connect();

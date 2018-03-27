@@ -1,18 +1,45 @@
+[![Build Status](https://travis-ci.org/codeforgso/GoVote.svg?branch=dev)](https://travis-ci.org/codeforgso/GoVote)
+
 # How to contribute to the GoVote project
 
-We are glad you are here. We need volunteer developers to help this project come to fruition. All contributions are subject to our [Code of Conduct](./CODE_OF_CONDUCT.md).
+We are glad you are here. We need volunteer developers to help this project come to fruition. Contributors of all skill levels are encouraged to get involved! All contributions are subject to our [Code of Conduct](./CODE_OF_CONDUCT.md).
 
-Here are some important resources:
-*
-*
-*
-*
+## Development
+The GoVote project requires [NodeJS](https://nodejs.org) >= 8 installed. The installation of NodeJS will come with a package management tool called [npm](https://www.npmjs.com/) we use for handling our project's dependencies.
+
+### Getting Started
+In order to get the project running on your local machine, you must first [fork](https://help.github.com/articles/fork-a-repo/) the project to your GitHub account.
+
+Having done that, you can now clone the git repository from your profile:
+```
+$ git clone https://github.com/<YOUR_GITHUB_USERNAME>/GoVote.git
+```
+
+This will create a new directory on your machine called "GoVote", that you should then `cd` into.
+```
+$ cd GoVote
+```
+
+The project has been properly cloned at this point, and it is time to get it up and running. Run the following commands to install the project's dependencies, and start the project's development server:
+```
+$ npm install
+$ npm run start
+```
+
+The `npm run start` command should prompt your browser, and begin running a process on `localhost:3000`; however, the application will not function without appropriate database credentials. Contact @blake or at @schaestewart on [Slack](http://slack.codeforgreensboro.org/) for a set of environmental variables to get you connected to our Postgres DB.
+
+### Project Details
+The project uses [ReactJS](https://reactjs.org/) as a UI library, and the server runs on NodeJS utilizing the [Express](https://expressjs.com/) framework. Our code linting is done with [ESLint](https://eslint.org/), and if you have followed the Getting Started steps, any linting errors should be present in your console. Please confirm that all linter errors are resolved before [Creating a Pull Request](https://help.github.com/articles/creating-a-pull-request/).
+
+All of the client-side React code lives in the `/src` directory of the project, while the server code is located in `/server`.
+
+### Bug Fixes
 
 #### **Did you find a bug?**
 
 * **Ensure the bug was not already reported** by searching on GitHub under [Issues](https://github.com/codeforgso/GoVote/issues/new).
 
-* If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/codeforgso/GoVote/issues/new).  
+* If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/codeforgso/GoVote/issues/new).
 Follow the [Issue template](./ISSUE_TEMPLATE.md) and be sure to include as much information as possible in the bug section of the issue template. Required information for reported bugs include: **Expected Behavior**, **Current Behavior**, **Possible Solution**, and **Steps to Reproduce**.
 
 #### **Did you write a patch that fixes a bug?**
@@ -30,10 +57,6 @@ Follow the [Issue template](./ISSUE_TEMPLATE.md) and be sure to include as much 
 #### **Do you have questions about the source code?**
 
 * Ask any question about the project or contributing by [opening a new issue](https://github.com/codeforgso/GoVote/issues/new) and labeling it as a question.
-
-#### Coding conventions
-
-This project uses [ESLint](https://eslint.org/), please ensure that any commited code is free of ESLint errors or warnings.
 
 ## Thank You!
 The GoVote project is a volunteer effort. We encourage you to pitch in!

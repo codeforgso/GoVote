@@ -4,19 +4,17 @@ import { Form, FormGroup, ControlLabel, Button, FormControl, Alert } from 'react
 
 const VoterInfoForm = (props) => {
   const {
+    firstNameValidationState,
+    formErrors,
+    lastNameValidationState,
     onSubmit,
     onUpdate,
-    firstNameValidationState,
-    lastNameValidationState,
-    formErrors,
     voterInfoFound,
   } = props;
 
-  const renderErrors = (el, index) => {
-    return (
-      <li key={index} className="text-danger">Please enter your {el}</li>
-    );
-  };
+  const renderErrors = (el, index) => (
+    <li key={index} className="text-danger">Please enter your {el}</li>
+  );
 
   return (
     <div>
@@ -24,16 +22,12 @@ const VoterInfoForm = (props) => {
         <h4>Enter your name for your current voter registration status.</h4>
         <FormGroup controlId="formFirstName" validationState={firstNameValidationState}>
           <ControlLabel>First Name</ControlLabel>
-          {' '}
           <FormControl type="text" name="firstName" onChange={onUpdate} placeholder="Jane" />
         </FormGroup>
-        {' '}
         <FormGroup controlId="formLastName" validationState={lastNameValidationState}>
           <ControlLabel>Last Name</ControlLabel>
-          {' '}
           <FormControl type="text" name="lastName" onChange={onUpdate} placeholder="Doe" />
         </FormGroup>
-        {' '}
         <Button type="button" onClick={onSubmit}>
           Search
         </Button>
@@ -58,11 +52,11 @@ const VoterInfoForm = (props) => {
 };
 
 VoterInfoForm.propTypes = {
+  firstNameValidationState: PropTypes.string,
+  formErrors: PropTypes.array,
+  lastNameValidationState: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired,
-  firstNameValidationState: PropTypes.string,
-  lastNameValidationState: PropTypes.string,
-  formErrors: PropTypes.array,
   voterInfoFound: PropTypes.bool,
 };
 

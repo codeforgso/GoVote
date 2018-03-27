@@ -2,5 +2,19 @@ language: node_js
 node_js:
   - '8'
 
-scripts:
-  - yarn test
+script:
+  - npm run build
+  - cd build; zip -r ../build.zip ./; cd -
+
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: ${ACCESS_KEY_ID}
+  secret_access_key: ${SECURE_ACCESS_KEY}
+  region: "us-east-1"
+  app: "govotegso"
+  env: "Govotegso-dev-1"
+  bucket_name: ${BUCKET_NAME}
+  zip_file: "build.zip"
+  on:
+    branch: dev
+  skip_cleanup: true
