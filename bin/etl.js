@@ -36,14 +36,14 @@ const unzipFile = (pathToZip, pathToExtract) =>
       });
  });
 
-const truncateTable = async () => {
+const truncateTable = () => {
   console.log('Truncating table');
-  return await client.query(`TRUNCATE TABLE ${process.env.DB_TABLE};`);
+  return client.query(`TRUNCATE TABLE ${process.env.DB_TABLE};`);
 };
 
-const deleteResidentAddressField = async () => {
+const deleteResidentAddressField = () => {
   console.log('Removing resident_address column');
-  return await client.query(`ALTER TABLE ${process.env.DB_TABLE} DROP COLUMN IF EXISTS resident_address`);
+  return client.query(`ALTER TABLE ${process.env.DB_TABLE} DROP COLUMN IF EXISTS resident_address`);
 };
 
 const convertToUtf8 = (fileName, utf8FileName) =>
@@ -82,8 +82,8 @@ const pgCopyFromCsv = fileName => (new Promise((resolve, reject) => {
     });
 }));
 
-const addResidentAddressField = async () => {
-  return await client.query(`ALTER TABLE ${process.env.DB_TABLE} ADD COLUMN resident_address text;
+const addResidentAddressField = () => {
+  return client.query(`ALTER TABLE ${process.env.DB_TABLE} ADD COLUMN resident_address text;
   UPDATE ${process.env.DB_TABLE} SET resident_address = regexp_replace(res_street_address, '\\s+', ' ', 'g');`);
 };
 
