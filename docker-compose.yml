@@ -10,17 +10,19 @@ services:
     volumes:
       - ./postgres-data/postgres:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - 9001:5432
   govote:
     restart: always
     build: .
     ports: 
       - 3000:3000
     volumes:
-      - .:/app
+      - .:/usr/src/app
     environment:
       - DB_HOST=db
       - DB_NAME=GoVoteGSO
       - DB_USER=govoteuser
       - DB_PASS=password
       - DB_PORT=5432
+      - DB_TABLE=guilfordvoters
+      - NODE_ENV=development
