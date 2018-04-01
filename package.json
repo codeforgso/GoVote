@@ -50,7 +50,12 @@
     "build:server": "NODE_ENV=production webpack --config config/webpackProdServer.config.js",
     "test": "node scripts/test.js --env=jsdom",
     "lint": "eslint src/**/*.jsx",
-    "etl": "NODE_ENV=development node bin/etl.js"
+    "etl": "NODE_ENV=development node bin/etl.js",
+    "docker:build": "docker-compose build",
+    "docker:createTables": "docker-compose exec govote node ./bin/create-tables.js",
+    "docker:seed": "docker-compose exec govote node ./bin/etl.js",
+    "docker:dev": "docker-compose up -d",
+    "docker:down": "docker-compose down"
   },
   "devDependencies": {
     "babel-cli": "6.14.0",
