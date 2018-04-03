@@ -23,6 +23,7 @@
     "path": "^0.12.7",
     "pg": "^7.1.0",
     "pg-copy-streams": "^1.2.0",
+    "pg-query-stream": "^1.1.1",
     "postcss-flexbugs-fixes": "^3.2.0",
     "postcss-loader": "^2.0.6",
     "prop-types": "^15.5.10",
@@ -36,6 +37,7 @@
     "react-router": "^3.0.2",
     "react-router-bootstrap": "^0.23.1",
     "react-router-dom": "^4.1.2",
+    "request": "^2.85.0",
     "sw-precache-webpack-plugin": "^0.11.4",
     "unzip": "^0.1.11",
     "url-loader": "^0.5.9",
@@ -43,11 +45,17 @@
   },
   "scripts": {
     "start": "concurrently \"node scripts/start.js\" \"babel-node server/server.js\"",
-    "build": "yarn run build:client && yarn run build:server",
+    "build": "npm run build:client && npm run build:server",
     "build:client": "node scripts/build.js",
     "build:server": "NODE_ENV=production webpack --config config/webpackProdServer.config.js",
     "test": "node scripts/test.js --env=jsdom",
-    "etl": "NODE_ENV=development node bin/etl.js"
+    "lint": "eslint src/**/*.jsx",
+    "etl": "NODE_ENV=development node bin/etl.js",
+    "docker:build": "docker-compose build",
+    "docker:createTables": "docker-compose exec govote node ./bin/create-tables.js",
+    "docker:seed": "docker-compose exec govote node ./bin/etl.js",
+    "docker:dev": "docker-compose up -d",
+    "docker:stop": "docker-compose stop"
   },
   "devDependencies": {
     "babel-cli": "6.14.0",
@@ -68,7 +76,6 @@
     "eslint-plugin-react": "^6.8.0",
     "html-loader": "^0.5.1",
     "html-webpack-plugin": "^2.30.1",
-    "http-server": "^0.9.0",
     "redux-immutable-state-invariant": "^2.0.0",
     "style-loader": "^0.18.2",
     "webpack": "^2.2.1",

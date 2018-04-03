@@ -1,69 +1,52 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
-import MapContainer from './MapContainer';
-import VoterModal from './VoterModal.jsx';
-import VoterInfoForm from './VoterInfoForm';
-import VerifyVoterInfo from './VerifyVoterInfo';
-import RegistrationInfoModal from './RegistrationInfoModal';
-import Header from './Header';
+
+import { getGISData, getVoterInfo } from '../actions';
 import AboutModal from './AboutModal';
+import Header from './Header';
+import MapContainer from './MapContainer';
+import RegistrationInfoModal from './RegistrationInfoModal';
+import VerifyVoterInfo from './VerifyVoterInfo';
+import VoterInfoForm from './VoterInfoForm';
+import VoterModal from './VoterModal';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      voterModalShow: true,
-      regInfoModalShow: false,
-      aboutModalShow: false,
-      firstName: '',
-      lastName: '',
-      voterInfo: [],
-      voterAddress: '',
-      layers: {
-        councilDist: null,
-        commissionerDist: null,
-      },
-      firstNameValidationState: null,
-      lastNameValidationState: null,
-      formErrors: [],
-      voterInfoFound: true,
-    };
-    this._handleInputChange = this._handleInputChange.bind(this);
-  }
+  state = {
+    voterModalShow: true,
+    regInfoModalShow: false,
+    aboutModalShow: false,
+    firstName: '',
+    lastName: '',
+    voterInfo: [],
+    voterAddress: '',
+    layers: {
+      councilDist: null,
+      commissionerDist: null,
+    },
+    firstNameValidationState: null,
+    lastNameValidationState: null,
+    formErrors: [],
+    voterInfoFound: true,
+  };
 
-  componentWillMount() {
-    this._getGISData(this.props.match);
-  }
-
-  _getCouncilDistricts = () => {
-    return axios.get('http://data-greensboro.opendata.arcgis.com/datasets/829c58aaaf0c4bf0b59f93bfe3cb4c13_3.geojson');
-  }
-
-  _getCommissionerDistricts = () => {
-    return axios.get('http://data-greensboro.opendata.arcgis.com/datasets/1b60f15bb4dc4d8f96bd4831a8fbf063_5.geojson');
-  }
-
-  _getGISData = () => {
-    axios.all([this._getCouncilDistricts(), this._getCommissionerDistricts()])
-      .then(axios.spread((councilDist, commissionerDist) => {
-        this.setState({ layers: { councilDist: councilDist.data, commissionerDist: commissionerDist.data } });
-      }));
+  componentDidMount() {
+    getGISData()
+      .then(layers => this.setState({ layers }));
   }
 
   _getVoterInfo = () => {
     if (this._validateVoterInput()) {
-      this.setState({ firstNameValidationState: null });
-      this.setState({ lastNameValidationState: null });
-      axios.get(`/api/${this.state.firstName}/${this.state.lastName}`)
-        .then((response) => {
+      this.setState({
+        firstNameValidationState: null,
+        lastNameValidationState: null,
+      });
+
+      getVoterInfo(this.state.firstName, this.state.lastName)
+        .then((voterInfo) => {
           this.setState({
-            voterInfo: response.data,
-            voterInfoFound: response.data.length > 0,
+            voterInfo,
+            voterInfoFound: voterInfo.length > 0,
           });
-        })
-        .catch((error) => {
-          console.log(error);
         });
     } else {
       this.setState({ voterInfo: [] });
@@ -88,7 +71,7 @@ class App extends Component {
   }
 
   _getVoterAddress = (address) => {
-    this.setState({ voterAddress: address }, () => console.log(this.state.voterAddress));
+    this.setState({ voterAddress: address });
   }
 
   _showVoterInfoModal = () => {
@@ -107,9 +90,7 @@ class App extends Component {
   }
 
   _handleInputChange = (event) => {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
+    const { name, value } = event.target;
 
     this.setState({
       [name]: value,
@@ -120,36 +101,30 @@ class App extends Component {
   }
 
   _handleShowAboutModal = () => {
-    this.setState({
-      aboutModalShow: true,
-    });
-    console.log('clicked');
+    this.setState({ aboutModalShow: true });
   }
 
   _handleHideAboutModal = () => {
-    this.setState({
-      aboutModalShow: false,
-    });
-    console.log('closed');
+    this.setState({ aboutModalShow: false });
   }
 
   render() {
     const voterModalShow = () => this.setState({ voterModalShow: false, voterInfo: [] });
     const regInfoModalShow = () => this.setState({ regInfoModalShow: false });
+
     return (
-      this.state.layers.councilDist && this.state.layers.commissionerDist ?
-        <div>
+      this.state.layers.councilDist && this.state.layers.commissionerDist &&
+        <div className="app__wrapper">
           <Header showVoterInfoModal={this._showVoterInfoModal} showAboutModal={this._handleShowAboutModal} />
+          <MapContainer data={this.state.layers} voterAddress={this.state.voterAddress} />
+
           <AboutModal show={this.state.aboutModalShow} hide={this._handleHideAboutModal} onClick={this._handleShowAboutModal} />
-          <div className="map">
-            <MapContainer data={this.state.layers} voterAddress={this.state.voterAddress} />
-            <VoterModal show={this.state.voterModalShow} hide={voterModalShow}>
-              <VoterInfoForm onSubmit={this._getVoterInfo} onUpdate={this._handleInputChange} voterInfoFound={this.state.voterInfoFound} firstNameValidationState={this.state.firstNameValidationState} lastNameValidationState={this.state.lastNameValidationState} formErrors={this.state.formErrors} />
-              <VerifyVoterInfo voterInfo={this.state.voterInfo} showRegInfoModal={this._showRegInfoModal} voterAddress={this._getVoterAddress} />
-            </VoterModal>
-            <RegistrationInfoModal show={this.state.regInfoModalShow} hide={regInfoModalShow} />
-          </div>
-        </div> : null
+          <RegistrationInfoModal show={this.state.regInfoModalShow} hide={regInfoModalShow} />
+          <VoterModal show={this.state.voterModalShow} hide={voterModalShow}>
+            <VoterInfoForm onSubmit={this._getVoterInfo} onUpdate={this._handleInputChange} voterInfoFound={this.state.voterInfoFound} firstNameValidationState={this.state.firstNameValidationState} lastNameValidationState={this.state.lastNameValidationState} formErrors={this.state.formErrors} />
+            <VerifyVoterInfo voterInfo={this.state.voterInfo} showRegInfoModal={this._showRegInfoModal} voterAddress={this._getVoterAddress} />
+          </VoterModal>
+        </div>
     );
   }
 }
