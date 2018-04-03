@@ -23,11 +23,11 @@ $ cd GoVote
 The project has been properly cloned at this point, and it is time to get it up and running. Run the following commands to build the govote image, create and seed the database, and start the containers.
 ``` bash
 $ npm run docker:build # Builds the govote image.
+$ npm run docker:dev # Starts the services. You can now access the project at http://localhost:3000
 $ npm run docker:createTables # Creates tables
 $ npm run docker:seed # Pulls data from the NC Board of Elections site into the db.
-$ npm run docker:dev # Starts the services. You can now access the project at http://localhost:3000
 ```
-To stop the project run `npm run docker:down`
+To stop the project run `npm run docker:stop`
 
 ### Project Details
 The project uses [ReactJS](https://reactjs.org/) as a UI library, and the server runs on NodeJS utilizing the [Express](https://expressjs.com/) framework. Our code linting is done with [ESLint](https://eslint.org/), and if you have followed the Getting Started steps, any linting errors should be present in your console. Please confirm that all linter errors are resolved before [Creating a Pull Request](https://help.github.com/articles/creating-a-pull-request/).
