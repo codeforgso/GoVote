@@ -4,6 +4,7 @@ node_js:
 
 script:
   - npm run build
+  - [ -d ".ebextensions-$TRAVIS_BRANCH" ] && cp -r .ebextensions-$TRAVIS_BRANCH build/.ebextensions
   - cd build; zip -r ../build.zip ./; cd -
 
 deploy:
