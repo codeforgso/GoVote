@@ -5,7 +5,7 @@
 We are glad you are here. We need volunteer developers to help this project come to fruition. Contributors of all skill levels are encouraged to get involved! All contributions are subject to our [Code of Conduct](./CODE_OF_CONDUCT.md).
 
 ## Development
-The GoVote project requires [NodeJS](https://nodejs.org) >= 8 installed. The installation of NodeJS will come with a package management tool called [npm](https://www.npmjs.com/) we use for handling our project's dependencies.
+The GoVote project uses [Docker](https://docs.docker.com/install/) and [docker-compose](https://docs.docker.com/compose/install/). You will need to install both to properly run the project.
 
 ### Getting Started
 In order to get the project running on your local machine, you must first [fork](https://help.github.com/articles/fork-a-repo/) the project to your GitHub account.
@@ -20,13 +20,14 @@ This will create a new directory on your machine called "GoVote", that you shoul
 $ cd GoVote
 ```
 
-The project has been properly cloned at this point, and it is time to get it up and running. Run the following commands to install the project's dependencies, and start the project's development server:
+The project has been properly cloned at this point, and it is time to get it up and running. Run the following commands to build the govote image, create and seed the database, and start the containers.
+``` bash
+$ npm run docker:build # Builds the govote image.
+$ npm run docker:dev # Starts the services. You can now access the project at http://localhost:3000
+$ npm run docker:createTables # Creates tables
+$ npm run docker:seed # Pulls data from the NC Board of Elections site into the db.
 ```
-$ npm install
-$ npm run start
-```
-
-The `npm run start` command should prompt your browser, and begin running a process on `localhost:3000`; however, the application will not function without appropriate database credentials. Contact @blake or at @schaestewart on [Slack](http://slack.codeforgreensboro.org/) for a set of environmental variables to get you connected to our Postgres DB.
+To stop the project run `npm run docker:stop`
 
 ### Project Details
 The project uses [ReactJS](https://reactjs.org/) as a UI library, and the server runs on NodeJS utilizing the [Express](https://expressjs.com/) framework. Our code linting is done with [ESLint](https://eslint.org/), and if you have followed the Getting Started steps, any linting errors should be present in your console. Please confirm that all linter errors are resolved before [Creating a Pull Request](https://help.github.com/articles/creating-a-pull-request/).
