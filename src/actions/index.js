@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const openDataBaseUrl = 'http://data-greensboro.opendata.arcgis.com/datasets';
+const openDataBaseUrl = 'https://data-greensboro.opendata.arcgis.com/datasets';
 
 function getCouncilDistricts() {
   return axios.get(`${openDataBaseUrl}/829c58aaaf0c4bf0b59f93bfe3cb4c13_3.geojson`);
