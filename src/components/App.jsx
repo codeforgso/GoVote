@@ -20,7 +20,6 @@ class App extends Component {
     voterInfo: [],
     voterAddress: '',
     layers: {
-      councilDist: null,
       commissionerDist: null,
     },
     firstNameValidationState: null,
@@ -119,7 +118,7 @@ class App extends Component {
     const regInfoModalShow = () => this.setState({ regInfoModalShow: false });
 
     return (
-      this.state.layers.councilDist && this.state.layers.commissionerDist &&
+      this.state.layers.commissionerDist &&
         <div className="app__wrapper">
           <Header showVoterInfoModal={this._showVoterInfoModal} showAboutModal={this._handleShowAboutModal} />
           <MapContainer data={this.state.layers} voterAddress={this.state.voterAddress} />
