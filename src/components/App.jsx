@@ -109,7 +109,13 @@ class App extends Component {
   }
 
   render() {
-    const voterModalShow = () => this.setState({ voterModalShow: false, voterInfo: [] });
+    const voterModalShow = () => this.setState({
+      voterModalShow: false,
+      voterInfo: [],
+      formErrors: [],
+      firstNameValidationState: null,
+      lastNameValidationState: null,
+    });
     const regInfoModalShow = () => this.setState({ regInfoModalShow: false });
 
     return (
