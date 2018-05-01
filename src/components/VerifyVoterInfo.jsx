@@ -8,13 +8,7 @@ class VerifyVoterInfo extends Component {
     this.state = {
       selectedAddress: {},
       showUserStatus: false,
-      mayoralCandidates: ['Nancy Vaughan (i)', 'Diane Moffett'],
-      atLargeCandidates: ['Marikay Abuzuaiter (i)', 'Mike Barber (i)', 'Yvonne Johnson (i)', 'T. Dianne Bellamy-Small', 'Michelle Kennedy', 'Dave Wils'],
-      districtOne: ['Sharon Hightower (i)', 'Paula Ritter-Lipscomb'],
-      districtTwo: ['Goldie Wells (i)', 'Jim Kee'],
-      districtThree: ['Justin Outling (i)', 'Craig Martin'],
-      districtFour: ['Nancy Hoffmann (i)', 'Gary Kenton'],
-      districtFive: ['Tony Wilkins (i)', 'Tammi Thurm'],
+      mayoralCandidates: ['Nancy Vaughan (i)'],
     };
   }
 
@@ -85,26 +79,6 @@ class VerifyVoterInfo extends Component {
               <b>Mayoral:</b>
               {this.state.mayoralCandidates.map(this._renderCandidates)}
               <br />
-              <b>At Large (Vote for three):</b>
-              {this.state.atLargeCandidates.map(this._renderCandidates)}
-              <br />
-              <b>District {this.state.selectedAddress.ward_abbrv.substring(2, 3)}:</b>
-              {(() => {
-                switch (this.state.selectedAddress.ward_abbrv.substring(2, 3)) {
-                  case '1':
-                    return this.state.districtOne.map(this._renderCandidates);
-                  case '2':
-                    return this.state.districtTwo.map(this._renderCandidates);
-                  case '3':
-                    return this.state.districtThree.map(this._renderCandidates);
-                  case '4':
-                    return this.state.districtFour.map(this._renderCandidates);
-                  case '5':
-                    return this.state.districtFive.map(this._renderCandidates);
-                  default:
-                    return null;
-                }
-              })()}
             </div>
             : null
         }

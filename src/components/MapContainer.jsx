@@ -16,9 +16,6 @@ class MapContainer extends Component {
     if (feature.properties && feature.properties.Commission) {
       layer.bindPopup(`<h5>GUILFORD COUNTY COMMISSIONER</h5><h5>DISTRICT: ${feature.properties.District}</br>COMMISSIONER: ${feature.properties.Commission.toUpperCase()}</h5>`);
     }
-    if (feature.properties && feature.properties.MEMBER) {
-      layer.bindPopup(`<h5>GREENSBORO CITY COUNCIL</h5><h5>DISTRICT: ${feature.properties.DISTRICT}</br>MEMBER: ${feature.properties.MEMBER.toUpperCase()}</h5>`);
-    }
   }
 
   _getGeocodeResult = (result) => {
@@ -31,11 +28,6 @@ class MapContainer extends Component {
   render() {
     const { data } = this.props;
     const center = [36.0726, -79.7920];
-    const councilStyle = {
-      color: '#006400',
-      weight: 2,
-      opacity: 0.85,
-    };
     const commissionerStyle = {
       color: '#640000',
       weight: 2,
@@ -66,9 +58,6 @@ class MapContainer extends Component {
           }
         </Control>
         <LayersControl position="topleft">
-          <LayersControl.Overlay name="City Council Districts" checked>
-            <GeoJSON data={data.councilDist} onEachFeature={this._onEachFeature} style={councilStyle} />
-          </LayersControl.Overlay>
           <LayersControl.Overlay name="County Commissioner Districts">
             <GeoJSON data={data.commissionerDist} onEachFeature={this._onEachFeature} style={commissionerStyle} />
           </LayersControl.Overlay>
