@@ -20,7 +20,6 @@ class App extends Component {
     voterInfo: [],
     voterAddress: '',
     layers: {
-      councilDist: null,
       commissionerDist: null,
     },
     firstNameValidationState: null,
