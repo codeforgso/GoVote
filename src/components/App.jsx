@@ -118,10 +118,10 @@ class App extends Component {
     const regInfoModalShow = () => this.setState({ regInfoModalShow: false });
 
     return (
-      this.state.layers.commissionerDist &&
+      this.state.layers.length > 0 &&
         <div className="app__wrapper">
           <Header showVoterInfoModal={this._showVoterInfoModal} showAboutModal={this._handleShowAboutModal} />
-          <MapContainer data={this.state.layers} voterAddress={this.state.voterAddress} />
+          <MapContainer layers={this.state.layers} />
 
           <AboutModal show={this.state.aboutModalShow} hide={this._handleHideAboutModal} onClick={this._handleShowAboutModal} />
           <RegistrationInfoModal show={this.state.regInfoModalShow} hide={regInfoModalShow} />
