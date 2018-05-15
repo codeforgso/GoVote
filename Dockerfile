@@ -1,22 +1,22 @@
 FROM node:carbon
 
 # Create app directory
-WORKDIR /usr/src/app
+RUN mkdir -p /opt/app
 
-# Install app dependencies
-COPY package.json package-lock.json ./
-
-RUN npm install
+# install dependencies first, in a different location for easier app bind mounting for local development
+WORKDIR /opt
+COPY package.json package-lock.json* ./
+RUN npm install && npm cache clean --force
+ENV PATH /opt/node_modules/.bin:$PATH
 
 # Bundle app source
-COPY . .
+WORKDIR /opt/app
+COPY . /opt/app
 
 # Express server
 EXPOSE 3001
 # React port
 EXPOSE 3000
-
-VOLUME /usr/src/app
 
 # Prevents browser from launching inside of the container
 ENV BROWSER=none
