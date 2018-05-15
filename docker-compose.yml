@@ -12,10 +12,10 @@ services:
   govote:
     restart: always
     build: .
-    ports: 
+    ports:
       - 3000:3000
     volumes:
-      - .:/usr/src/app
+      - .:/opt/app
     environment:
       - DB_HOST=db
       - DB_NAME=GoVoteGSO
