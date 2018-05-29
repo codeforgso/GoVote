@@ -10,7 +10,9 @@ import VerifyVoterInfo from './VerifyVoterInfo';
 import VoterInfoForm from './VoterInfoForm';
 import VoterModal from './VoterModal';
 
+
 class App extends Component {
+
   state = {
     voterModalShow: true,
     regInfoModalShow: false,
@@ -18,6 +20,7 @@ class App extends Component {
     firstName: '',
     lastName: '',
     voterInfo: [],
+    isloading: false,
     voterAddress: '',
     layers: {
       commissionerDist: null,
@@ -40,11 +43,14 @@ class App extends Component {
         lastNameValidationState: null,
       });
 
+      this.setState({ isloading: true });
+
       getVoterInfo(this.state.firstName, this.state.lastName)
         .then((voterInfo) => {
           this.setState({
             voterInfo,
             voterInfoFound: voterInfo.length > 0,
+            isloading: false,
           });
         });
     } else {
@@ -126,7 +132,7 @@ class App extends Component {
           <AboutModal show={this.state.aboutModalShow} hide={this._handleHideAboutModal} onClick={this._handleShowAboutModal} />
           <RegistrationInfoModal show={this.state.regInfoModalShow} hide={regInfoModalShow} />
           <VoterModal show={this.state.voterModalShow} hide={voterModalShow}>
-            <VoterInfoForm onSubmit={this._getVoterInfo} onUpdate={this._handleInputChange} voterInfoFound={this.state.voterInfoFound} firstNameValidationState={this.state.firstNameValidationState} lastNameValidationState={this.state.lastNameValidationState} formErrors={this.state.formErrors} />
+            <VoterInfoForm onSubmit={this._getVoterInfo} onUpdate={this._handleInputChange} voterInfoFound={this.state.voterInfoFound} firstNameValidationState={this.state.firstNameValidationState} lastNameValidationState={this.state.lastNameValidationState} formErrors={this.state.formErrors} isLoading={this.state.isloading} />
             <VerifyVoterInfo voterInfo={this.state.voterInfo} showRegInfoModal={this._showRegInfoModal} voterAddress={this._getVoterAddress} />
           </VoterModal>
         </div>

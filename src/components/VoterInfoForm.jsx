@@ -10,6 +10,7 @@ const VoterInfoForm = (props) => {
     onSubmit,
     onUpdate,
     voterInfoFound,
+    isLoading,
   } = props;
 
   const renderErrors = (el, index) => (
@@ -46,6 +47,9 @@ const VoterInfoForm = (props) => {
             <Alert bsStyle="warning">No Voter Registration Info Found</Alert>
           : null
         }
+        {
+          isLoading && <h3><span className="glyphicon glyphicon-refresh glyphicon-spin"></span> Loading.....</h3>
+        }
       </FormGroup>
     </div>
   );
@@ -58,6 +62,7 @@ VoterInfoForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired,
   voterInfoFound: PropTypes.bool,
+  isLoading: PropTypes.bool,
 };
 
 export default VoterInfoForm;
