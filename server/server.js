@@ -32,7 +32,7 @@ const client = new Client({
 client.connect();
 
 router.get('/api/:fn/:ln', async (req, res) => {
-  const query = `SELECT * FROM ${process.env.DB_TABLE} WHERE first_name ilike $1::text and last_name ilike $2::text`;
+  const query = `SELECT * FROM ${process.env.DB_TABLE} WHERE voter_status_desc NOT LIKE 'REMOVED' and first_name ilike $1::text and last_name ilike $2::text`;
   const { rows } = await client.query(query, [req.params.fn, req.params.ln]);
   res.send(rows);
 });
