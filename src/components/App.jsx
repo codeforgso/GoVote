@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { Row, Col, Grid } from 'react-bootstrap';
 
 import { getGISData, getVoterInfo } from '../actions';
-import AboutModal from './AboutModal';
+import Home from './pages/Home';
+import About from './pages/About';
 import Header from './Header';
-import MapContainer from './MapContainer';
-import RegistrationInfoModal from './RegistrationInfoModal';
-import VerifyVoterInfo from './VerifyVoterInfo';
-import VoterInfoForm from './VoterInfoForm';
-import VoterModal from './VoterModal';
 
 
 class App extends Component {
@@ -105,37 +103,26 @@ class App extends Component {
     });
   }
 
-  _handleShowAboutModal = () => {
-    this.setState({ aboutModalShow: true });
-  }
-
-  _handleHideAboutModal = () => {
-    this.setState({ aboutModalShow: false });
-  }
-
   render() {
-    const voterModalShow = () => this.setState({
-      voterModalShow: false,
-      voterInfo: [],
-      formErrors: [],
-      firstNameValidationState: null,
-      lastNameValidationState: null,
-    });
-    const regInfoModalShow = () => this.setState({ regInfoModalShow: false });
-
     return (
-      this.state.layers.length > 0 &&
+      <Router>
         <div className="app__wrapper">
-          <Header showVoterInfoModal={this._showVoterInfoModal} showAboutModal={this._handleShowAboutModal} />
-          <MapContainer layers={this.state.layers} />
-
-          <AboutModal show={this.state.aboutModalShow} hide={this._handleHideAboutModal} onClick={this._handleShowAboutModal} />
-          <RegistrationInfoModal show={this.state.regInfoModalShow} hide={regInfoModalShow} />
-          <VoterModal show={this.state.voterModalShow} hide={voterModalShow}>
-            <VoterInfoForm onSubmit={this._getVoterInfo} onUpdate={this._handleInputChange} voterInfoFound={this.state.voterInfoFound} firstNameValidationState={this.state.firstNameValidationState} lastNameValidationState={this.state.lastNameValidationState} formErrors={this.state.formErrors} isLoading={this.state.isloading} />
-            <VerifyVoterInfo voterInfo={this.state.voterInfo} showRegInfoModal={this._showRegInfoModal} voterAddress={this._getVoterAddress} />
-          </VoterModal>
+          <Header>
+            <Link to="/" className="btn btn-link header__details-action">Home</Link>
+            <Link to="/about" className="btn btn-link header__details-action">About</Link>
+          </Header>
+          <div className="app">
+            <Grid >
+              <Row>
+                <Col md={8} mdOffset={2}>
+                  <Route exact path="/" component={Home} />
+                  <Route path="/about" component={About} />
+                </Col>
+              </Row>
+            </Grid>
+          </div>
         </div>
+      </Router>
     );
   }
 }

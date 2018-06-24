@@ -16,6 +16,12 @@ html, body, #app {
   height: 100%;
 }
 
+.app {
+  background: white;
+  width: 100%;
+  height: 100%;
+}
+
 .map {
   flex: 1;
 }
