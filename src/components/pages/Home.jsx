@@ -6,7 +6,7 @@ const Home = () => (
     <h1>Home</h1>
     <ul>
       <li>
-        <Link to="/">Placeholder</Link>
+        <Link to="/voter-lookup">Voter Registration Lookup</Link>
       </li>
       <li>
         <Link to="/">Placeholder</Link>
