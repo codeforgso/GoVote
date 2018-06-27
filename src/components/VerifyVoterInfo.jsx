@@ -24,6 +24,7 @@ class VerifyVoterInfo extends Component {
       selectedAddress: el,
       showUserStatus: true,
     });
+    window.scrollTo(0, 0);
   }
 
   _renderUserStatus = (status) => {
@@ -50,15 +51,7 @@ class VerifyVoterInfo extends Component {
         this.props.voterInfo.length ?
           <h4>Verify Your Address:</h4>
           : null
-        }
-        <ButtonGroup vertical>
-          {this.props.voterInfo.map(this._renderVoterInfo)}
-          {
-          this.props.voterInfo.length ?
-            <Button name="notMyAddress" onClick={this.props.showRegInfoModal}>{'I DON\'T SEE MY ADDRESS'}</Button>
-            : null
-          }
-        </ButtonGroup>
+        },
         {
           this.state.showUserStatus ?
             <div>
@@ -90,6 +83,14 @@ class VerifyVoterInfo extends Component {
             </div>
             : null
         }
+        <ButtonGroup vertical>
+          {this.props.voterInfo.map(this._renderVoterInfo)}
+          {
+            this.props.voterInfo.length ?
+              <Button name="notMyAddress" onClick={this.props.showRegInfoModal}>{'I DON\'T SEE MY ADDRESS'}</Button>
+              : null
+          }
+        </ButtonGroup>
       </FormGroup>
     );
   }
