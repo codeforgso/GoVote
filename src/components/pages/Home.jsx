@@ -1,16 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import routes from './routes';
 
 const Home = () => (
   <div>
     <h1>Home</h1>
     <ul>
-      <li>
-        <Link to="/voter-lookup">Voter Registration Lookup</Link>
-      </li>
-      <li>
-        <Link to="/">Placeholder</Link>
-      </li>
+      {
+        routes.map((route) => {
+          return (
+            <li>
+              <Link to={route.to}>{route.labelLong ? route.labelLong : route.label}</Link>
+            </li>
+          );
+        })
+      }
     </ul>
   </div>
 );
