@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import cfgLogo from '../static/CfGLogoWhite.png';
 
 const Header = ({ children }) => (
   <div className="header">
     <div className="header__title">
-      GoVoteGSO
+      <Link to="/">GoVoteGSO</Link>
     </div>
     <div className="header__details">
       <div className="header__details-item">
