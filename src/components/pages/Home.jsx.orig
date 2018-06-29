@@ -15,9 +15,12 @@ const Home = () => (
           );
         })
       }
+<<<<<<< HEAD
       <li>
         <Link to="/voter-lookup">Find Your Voter Registration Status</Link>
       </li>
+=======
+>>>>>>> 38509e7b969e4640d1a4a48f470bfb33d61bf6d9
     </ul>
   </div>
 );
