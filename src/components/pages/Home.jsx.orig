@@ -1,0 +1,28 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import routes from './routes';
+
+const Home = () => (
+  <div>
+    <h1>Home</h1>
+    <ul>
+      {
+        routes.map((route) => {
+          return (
+            <li>
+              <Link to={route.to}>{route.labelLong ? route.labelLong : route.label}</Link>
+            </li>
+          );
+        })
+      }
+<<<<<<< HEAD
+      <li>
+        <Link to="/voter-lookup">Find Your Voter Registration Status</Link>
+      </li>
+=======
+>>>>>>> 38509e7b969e4640d1a4a48f470bfb33d61bf6d9
+    </ul>
+  </div>
+);
+
+module.exports = Home;
