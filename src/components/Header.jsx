@@ -1,15 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import cfgLogo from '../static/CfGLogoWhite.png';
+import routes from './pages/routes';
 
-const Header = ({ children }) => (
+const Header = () => (
   <div className="header">
     <div className="header__title">
-      GoVoteGSO
+      <Link to="/">GoVoteGSO</Link>
     </div>
     <div className="header__details">
       <div className="header__details-item">
-        {children}
+        {
+          routes.map((route, index) => <Link to={route.to} key={index} className="btn btn-link header__details-action">{route.label}</Link>)
+        }
       </div>
       <div className="header__details-item">
         <img alt="" target="_blank" src={cfgLogo} className="header__details-logo" />
@@ -17,9 +20,5 @@ const Header = ({ children }) => (
     </div>
   </div>
 );
-
-Header.propTypes = {
-  children: PropTypes.object.isRequired,
-};
 
 export default Header;
