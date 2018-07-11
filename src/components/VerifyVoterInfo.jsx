@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Button, ButtonGroup, FormGroup } from 'react-bootstrap';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Button, ButtonGroup, FormGroup } from "react-bootstrap";
 
 class VerifyVoterInfo extends Component {
   constructor(props) {
@@ -8,7 +8,7 @@ class VerifyVoterInfo extends Component {
     this.state = {
       selectedAddress: {},
       showUserStatus: false,
-      mayoralCandidates: ['Nancy Vaughan (i)']
+      mayoralCandidates: ["Nancy Vaughan (i)"]
     };
   }
 
@@ -18,7 +18,7 @@ class VerifyVoterInfo extends Component {
     }
   }
 
-  _handleAddressClick = (el) => {
+  _handleAddressClick = el => {
     this.props.voterAddress(el.resident_address);
     this.setState({
       selectedAddress: el,
@@ -27,7 +27,7 @@ class VerifyVoterInfo extends Component {
     window.scrollTo(0, 0);
   };
 
-  _renderUserStatus = (status) => {
+  _renderUserStatus = status => {
     const upperStatus = status.toUpperCase();
     return (
       <div>
@@ -91,7 +91,7 @@ class VerifyVoterInfo extends Component {
         {this.state.showUserStatus && !this.state.selectedAddress.ward_abbrv ? (
           <div>
             <br />
-            {this._renderUserStatus('NOT WITHIN GREENSBORO CITY LIMIT')}
+            {this._renderUserStatus("NOT WITHIN GREENSBORO CITY LIMIT")}
           </div>
         ) : null}
         <ButtonGroup vertical>
