@@ -155,7 +155,7 @@ class VoterInfoForm extends Component {
             {this.state.voterInfo.map(this._renderVoterInfo)}
             {
               this.state.voterInfo.length ?
-                <Button name="notMyAddress" onClick={() => { alert('Placeholder. Will need to navigate to how to register page'); }}>{'I DON\'T SEE MY ADDRESS'}</Button>
+                <Button name="notMyAddress">{'I DON\'T SEE MY ADDRESS'}</Button>
                 : null
             }
           </ButtonGroup>
