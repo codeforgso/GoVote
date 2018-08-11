@@ -17,7 +17,12 @@ class VoterRegLookup extends Component {
       selectedAddress,
       showUserStatus: Object.keys(selectedAddress).length > 0,
     }, () => {
-      window.scrollTo(0, document.body.scrollHeight);
+      // window.scrollTo(0, document.body.scrollHeight);
+      window.scrollTo({
+        left: 0,
+        top: 0,
+        behavior: 'smooth'
+      });
     });
   }
 
@@ -47,29 +52,6 @@ class VoterRegLookup extends Component {
         <VoterInfoForm
           returnVerifiedVoter={this._handleAddressSelect}
         />
-        {
-          this.state.showUserStatus ?
-            <div>
-              <br />
-              {this._renderUserStatus(`VOTER REGISTRATION STATUS: ${this.state.selectedAddress.voter_status_desc}`)}
-            </div>
-            : null
-        }
-        {
-          this.state.showUserStatus && this.state.selectedAddress.ward_abbrv ?
-            <div>
-              <br />
-              {this._renderUserStatus(`GREENSBORO CITY COUNCIL DISTRICT: ${this.state.selectedAddress.ward_abbrv.substring(2, 3)}`)}
-              <br />
-              <b>YOUR GREENSBORO CITY COUNCIL CANDIDATES:</b>
-              <br />
-              <br />
-              <b>Mayoral:</b>
-              {this.state.mayoralCandidates.map(this._renderCandidates)}
-              <br />
-            </div>
-            : null
-        }
       </div>
     );
   }
