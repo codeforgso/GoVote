@@ -3,7 +3,6 @@ import { Form, FormGroup, ControlLabel, Button, FormControl, Alert, ButtonGroup 
 import PropTypes from 'prop-types';
 import { getVoterInfo } from '../actions';
 
-
 class VoterInfoForm extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +17,6 @@ class VoterInfoForm extends Component {
       formErrors: [],
       voterInfoFound: true,
       selectedAddress: '',
-      mayoralCandidates: ['Nancy Vaughan (i)'],
     };
   }
 

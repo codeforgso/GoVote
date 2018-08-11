@@ -13,9 +13,6 @@ const Home = () => (
           </li>
         )
       )}
-      <li>
-        <Link to="/voter-lookup">Find Your Voter Registration Status</Link>
-      </li>
     </ul>
   </div>
 );
