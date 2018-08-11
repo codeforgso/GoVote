@@ -18,6 +18,7 @@ class VoterInfoForm extends Component {
       formErrors: [],
       voterInfoFound: true,
       selectedAddress: '',
+      mayoralCandidates: ['Nancy Vaughan (i)'],
     };
   }
 
@@ -101,6 +102,37 @@ class VoterInfoForm extends Component {
 
   _renderSelectedAddress = () => (<p><b>{this.state.selectedAddress.resident_address}</b></p>)
 
+  _renderSelectedRegistrationInfo = () => (
+    <p><b>
+      {
+          this.state.showUserStatus ?
+            <div>
+              <br />
+              {(`VOTER REGISTRATION STATUS: ${this.state.selectedAddress.voter_status_desc}`)}
+            </div>
+            : null
+        }
+      {
+          this.state.showUserStatus && this.state.selectedAddress.ward_abbrv ?
+            <div>
+              <br />
+              {(`GREENSBORO CITY COUNCIL DISTRICT: ${this.state.selectedAddress.ward_abbrv.substring(2, 3)}`)}
+              <br />
+              <b>YOUR GREENSBORO CITY COUNCIL CANDIDATES:</b>
+              <br />
+              <b>Mayoral:</b>
+              {this.state.mayoralCandidates.map(this._renderCandidates)}
+              <br />
+            </div>
+            : null
+        }
+    </b></p>
+    )
+
+  _renderCandidates = (candidate, index) => (
+    <p key={index}>{candidate}</p>
+    )
+
   _renderErrors = (el, index) => {
     if (this.state.formErrors.length) {
       return (
@@ -151,11 +183,12 @@ class VoterInfoForm extends Component {
           }
           { this._renderNotInCityLimits() }
           { this._renderSelectedAddress() }
+          { this._renderSelectedRegistrationInfo() }
           <ButtonGroup vertical>
             {this.state.voterInfo.map(this._renderVoterInfo)}
             {
               this.state.voterInfo.length ?
-                <Button name="notMyAddress">{'I DON\'T SEE MY ADDRESS'}</Button>
+                <Button href="/can-i-vote" name="notMyAddress">{'I DON\'T SEE MY ADDRESS'}</Button>
                 : null
             }
           </ButtonGroup>
