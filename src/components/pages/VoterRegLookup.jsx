@@ -21,7 +21,7 @@ class VoterRegLookup extends Component {
       window.scrollTo({
         left: 0,
         top: 0,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     });
   }
