@@ -3,6 +3,45 @@ import { Form, FormGroup, ControlLabel, Button, FormControl, Alert, ButtonGroup 
 import PropTypes from 'prop-types';
 import { getVoterInfo } from '../actions';
 
+class GetData extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: {},
+    }
+  }
+
+  render() {
+    return (
+      <Button onClick={() => {
+        //getData
+        this.setState({data})
+      }} />
+
+      this.state.data.map((el, index) => (<DisplayData
+       id={el.id}
+       body={el.body}
+       />))
+    )
+  }
+}
+
+
+class GridItem extends Component {
+  constructor(props) {
+    
+  }
+
+  _updateBody = async (newBody) => {
+    //make a update request with new body
+    const myVar = await fetch(./)
+  }
+
+  render() {
+    return (<div>Id: {this.props.id}. Body: {this.props.body}</div>)
+  }
+}
+
 
 class VoterInfoForm extends Component {
   constructor(props) {
@@ -101,6 +140,37 @@ class VoterInfoForm extends Component {
 
   _renderSelectedAddress = () => (<p><b>{this.state.selectedAddress.resident_address}</b></p>)
 
+  _renderSelectedRegistrationInfo = () => (
+    <p><b>
+      {
+          this.state.showUserStatus ?
+            <div>
+              <br />
+              {(`VOTER REGISTRATION STATUS: ${this.state.selectedAddress.voter_status_desc}`)}
+            </div>
+            : null
+        }
+      {
+          this.state.showUserStatus && this.state.selectedAddress.ward_abbrv ?
+            <div>
+              <br />
+              {(`GREENSBORO CITY COUNCIL DISTRICT: ${this.state.selectedAddress.ward_abbrv.substring(2, 3)}`)}
+              <br />
+              <b>YOUR GREENSBORO CITY COUNCIL CANDIDATES:</b>
+              <br />
+              <b>Mayoral:</b>
+              {this.state.mayoralCandidates.map(this._renderCandidates)}
+              <br />
+            </div>
+            : null
+        }
+    </b></p>
+    )
+
+  _renderCandidates = (candidate, index) => (
+    <p key={index}>{candidate}</p>
+    )
+
   _renderErrors = (el, index) => {
     if (this.state.formErrors.length) {
       return (
@@ -151,11 +221,12 @@ class VoterInfoForm extends Component {
           }
           { this._renderNotInCityLimits() }
           { this._renderSelectedAddress() }
+          { this._renderSelectedRegistrationInfo() }
           <ButtonGroup vertical>
             {this.state.voterInfo.map(this._renderVoterInfo)}
             {
               this.state.voterInfo.length ?
-                <Button name="notMyAddress">{'I DON\'T SEE MY ADDRESS'}</Button>
+                <Button href="/can-i-vote" name="notMyAddress">{'I DON\'T SEE MY ADDRESS'}</Button>
                 : null
             }
           </ButtonGroup>
