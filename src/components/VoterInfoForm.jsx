@@ -189,7 +189,6 @@ class VoterInfoForm extends Component {
             {
               this.state.voterInfo.length ?
                 <Button href="/can-i-vote" name="notMyAddress">{'I DON\'T SEE MY ADDRESS'}</Button>
-                // <Button name="notMyAddress">{'I DON\'T SEE MY ADDRESS'}</Button>
                 : null
             }
           </ButtonGroup>
