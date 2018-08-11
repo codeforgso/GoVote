@@ -3,46 +3,6 @@ import { Form, FormGroup, ControlLabel, Button, FormControl, Alert, ButtonGroup 
 import PropTypes from 'prop-types';
 import { getVoterInfo } from '../actions';
 
-class GetData extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: {},
-    }
-  }
-
-  render() {
-    return (
-      <Button onClick={() => {
-        //getData
-        this.setState({data})
-      }} />
-
-      this.state.data.map((el, index) => (<DisplayData
-       id={el.id}
-       body={el.body}
-       />))
-    )
-  }
-}
-
-
-class GridItem extends Component {
-  constructor(props) {
-    
-  }
-
-  _updateBody = async (newBody) => {
-    //make a update request with new body
-    const myVar = await fetch(./)
-  }
-
-  render() {
-    return (<div>Id: {this.props.id}. Body: {this.props.body}</div>)
-  }
-}
-
-
 class VoterInfoForm extends Component {
   constructor(props) {
     super(props);
