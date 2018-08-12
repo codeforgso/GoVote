@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, ControlLabel, Button, FormControl, Alert, ButtonGroup } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getVoterInfo } from '../actions';
 
@@ -186,7 +187,7 @@ class VoterInfoForm extends Component {
             {this.state.voterInfo.map(this._renderVoterInfo)}
             {
               this.state.voterInfo.length ?
-                <Button href="/can-i-vote" name="notMyAddress">{'I DON\'T SEE MY ADDRESS'}</Button>
+                <Link to="/can-i-vote"><Button name="notMyAddress">{'I DON\'T SEE MY ADDRESS'}</Button></Link>
                 : null
             }
           </ButtonGroup>
