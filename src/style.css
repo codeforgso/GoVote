@@ -26,15 +26,12 @@ html, body, #app {
 }
 
 .header {
-  padding: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #283944;
+  /* This shorthand also overrides default Bootstrap gradient)*/
+  background: #283944;
 }
 
 .header__title {
-  color: #e6e4d5;
+  color: #e6e4d5 !important;
   font-size: 26px;
 }
 
@@ -52,7 +49,7 @@ html, body, #app {
 
 .header__details-action {
   font-size: 18px;
-  color: #ddd;
+  color: #ddd !important;
 }
 
 .header__details-logo {

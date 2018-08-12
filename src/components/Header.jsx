@@ -1,16 +1,14 @@
 import React from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-// import cfgLogo from '../static/CfGLogoWhite.png';
+import cfgLogo from '../static/CfGLogoWhite.png';
 import routes from './pages/routes';
 
 const Header = () => (
-  <Navbar collapseOnSelect fluid>
+  <Navbar collapseOnSelect fluid className="header">
     <Navbar.Header>
-      <Navbar.Brand>
-        <div className="header__title">
-          <Link to="/">GoVoteGSO</Link>
-        </div>
+      <Navbar.Brand className="header__title">
+        <Link to="/">GoVoteGSO</Link>
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
@@ -20,15 +18,19 @@ const Header = () => (
           routes.map((route, index) => {
             return (
               <NavItem>
-                <Link to={route.to} key={index}>
+                <Link to={route.to} key={index} className="btn btn-link header__details-action">
                   {route.label}
                 </Link>
               </NavItem>
             );
           })
         }
+        <NavItem>
+          <img alt="" target="_blank" src={cfgLogo} className="header__details-logo" />
+        </NavItem>
       </Nav>
     </Navbar.Collapse>
+
   </Navbar>
 );
 
