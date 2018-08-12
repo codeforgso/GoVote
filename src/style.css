@@ -13,7 +13,6 @@ html, body, #app {
 .app__wrapper {
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 .app__body {

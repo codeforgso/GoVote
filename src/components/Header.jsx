@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import routes from './pages/routes';
 
 const Header = () => (
-  <Navbar collapseOnSelect staticTop fluid>
+  <Navbar collapseOnSelect fluid>
     <Navbar.Header>
       <Navbar.Brand>
         <div className="header__title">
