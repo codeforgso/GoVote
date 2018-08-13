@@ -6,7 +6,7 @@ import routes from './pages/routes';
 
 const Header = () => (
   <Navbar collapseOnSelect fluid className="header">
-    <Navbar.Header>
+    <Navbar.Header className="header__brand">
       <Navbar.Brand className="header__title">
         <Link to="/">GoVoteGSO</Link>
       </Navbar.Brand>
@@ -35,17 +35,3 @@ const Header = () => (
 );
 
 export default Header;
-// <div className="header">
-//   <div className="header__title">
-//     <Link to="/">GoVoteGSO</Link>
-//   </div>
-//   <div className="header__details">
-//     <div className="header__details-item">
-//       {
-//         routes.map((route, index) => <Link to={route.to} key={index} className="btn btn-link header__details-action">{route.label}</Link>)
-//       }
-//     </div>
-//     <div className="header__details-item">
-//       <img alt="" target="_blank" src={cfgLogo} className="header__details-logo" />
-//     </div>
-//   </div>
