@@ -117,6 +117,11 @@ class VoterInfoForm extends Component {
               <br />
               {(`GREENSBORO CITY COUNCIL DISTRICT: ${this.state.selectedAddress.ward_abbrv.substring(2, 3)}`)}
               <br />
+              <b>YOUR GREENSBORO CITY COUNCIL CANDIDATES:</b>
+              <br />
+              <b>Mayoral:</b>
+              {this.state.mayoralCandidates.map(this._renderCandidates)}
+              <br />
             </div>
             : null
         }
