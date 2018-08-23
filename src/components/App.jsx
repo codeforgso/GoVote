@@ -6,6 +6,7 @@ import { Row, Col, Grid } from 'react-bootstrap';
 import Header from './Header';
 import Home from './pages/Home';
 import VoterRegLookup from './pages/VoterRegLookup';
+import VoterRequirements from './pages/VoterRequirements';
 import routes from './pages/routes';
 
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
                   }
                   <Route exact path="/" component={Home} />
                   <Route path="/voter-lookup" component={VoterRegLookup} />
+                  <Route path="/voter-requirements" component={VoterRequirements} />
                 </Col>
               </Row>
             </Grid>
