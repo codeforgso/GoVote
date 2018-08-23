@@ -119,9 +119,6 @@ class VoterInfoForm extends Component {
               <br />
               <b>YOUR GREENSBORO CITY COUNCIL CANDIDATES:</b>
               <br />
-              <b>Mayoral:</b>
-              {this.state.mayoralCandidates.map(this._renderCandidates)}
-              <br />
             </div>
             : null
         }
