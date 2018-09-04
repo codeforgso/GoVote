@@ -21,7 +21,7 @@ const Header = () => (
                 {route.label}
               </Link>
             </NavItem>
-          )
+          ));
         }
         <NavItem>
           <img alt="" target="_blank" src={cfgLogo} className="header__details-logo" />
