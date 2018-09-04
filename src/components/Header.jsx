@@ -15,15 +15,13 @@ const Header = () => (
     <Navbar.Collapse>
       <Nav pullRight>
         {
-          routes.map((route, index) => {
-            return (
-              <NavItem>
-                <Link to={route.to} key={index} className="btn btn-link header__details-action">
-                  {route.label}
-                </Link>
-              </NavItem>
-            );
-          })
+          routes.map((route, index) => (
+            <NavItem>
+              <Link to={route.to} key={index} className="btn btn-link header__details-action">
+                {route.label}
+              </Link>
+            </NavItem>
+          )
         }
         <NavItem>
           <img alt="" target="_blank" src={cfgLogo} className="header__details-logo" />
