@@ -1,54 +1,31 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import VoterInfoForm from '../VoterInfoForm';
+import React from 'react';
+import { Button, Row, Col } from 'react-bootstrap';
+import { Link, Route } from 'react-router-dom';
+// import VoterInfoForm from '../VoterInfoForm';
+import VoterRequirements from './VoterRequirements';
+import CanIVoteCheckStatus from './CanIVoteCheckStatus';
+import CanIVoteRegistered from './CanIVoteRegistered.jsx';
 
-
-class CanIVote extends Component {
-  constructor() {
-    super();
-    this.state = {
-      voterStatus: false,
-    };
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>Can I Vote?</h1>
-        <VoterInfoForm
-          returnVerifiedVoter={(voter) => {
-            this.setState({ voterStatus: voter.voter_status_desc }, () => {
-              window.scrollTo({
-                left: 0,
-                top: document.body.scrollHeight,
-                behavior: 'smooth',
-              });
-            });
-          }}
-        />
-        {
-          this.state.voterStatus === 'ACTIVE' && (
-            <div>
-              <h2>You are registered!</h2>
-              <ul>
-                <li><Link to="/where-and-when">See Where &amp; When to Vote</Link></li>
-                <li><Link to="/candidates">Who are the candidates?</Link></li>
-              </ul>
-            </div>)
-        }
-        {
-            this.state.voterStatus === 'INACTIVE' && (
-              <div>
-                <h2>You are not registered</h2>
-                <ul>
-                  <li><Link to="/voter-requirements">Learn more about voter registration and requirements</Link></li>
-                  <li><a href="https://www.ncsbe.gov/Voter-Information/VR-Form" target="_blank">NC Board Of Elections Voter Registration Form</a></li>
-                </ul>
-              </div>)
-        }
-      </div>
-    );
-  }
-}
+const CanIVote = () => (
+  <div>
+    <h1>Can I Vote?</h1>
+    <h2>Are you registered to vote?</h2>
+    <Row>
+      <Col md={4}>
+        <Link to="/can-i-vote/registered"><Button>Yes, I am registered</Button></Link>
+      </Col>
+      <Col md={4}>
+        { /* Show links to candidates and where vote */}
+        <Link to="/can-i-vote/voter-requirements"><Button>No, I am not registered</Button></Link>
+      </Col>
+      <Col md={4}>
+        <Link to="/can-i-vote/voter-status"><Button>I am not sure </Button></Link>
+      </Col>
+    </Row>
+    <Route path="/can-i-vote/registered" component={CanIVoteRegistered} />
+    <Route path="/can-i-vote/voter-requirements" component={VoterRequirements} />
+    <Route path="/can-i-vote/voter-status" component={CanIVoteCheckStatus} />
+  </div>
+);
 
 module.exports = CanIVote;

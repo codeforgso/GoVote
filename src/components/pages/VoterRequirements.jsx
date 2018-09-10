@@ -10,7 +10,8 @@ const VoterRequirements = () => (
     <p>Voter registration applicants who have met the voter registration deadline should expect to receive their voter card within 1 to 2 weeks. Applicants should contact their county board of elections if they do not receive their voter card within two weeks. Note: The applicant must have transmitted the registration application by the registration deadline; otherwise, the voter card will not be mailed until after the completion of the election.</p>
 
     <h2>Qualifications to Vote</h2>
-    <p>To register to vote in North Carolina, a prospective voter must meet all of the following qualifications:
+    <section>
+      <p>To register to vote in North Carolina, a prospective voter must meet all of the following qualifications:</p>
       <ul>
         <li>Must be a citizen of the United States.</li>
         <li>Must live in the county of his/her registration, and have resided there for at least 30 days prior to the date of the election.</li>
@@ -18,7 +19,7 @@ const VoterRequirements = () => (
         <li>Must not be serving a sentence for a felony conviction (including probation or parole). If a prospective voter has previously been convicted of a felony, his/her citizenship rights must be restored. For more information on voting rights for those in the North Carolina criminal justice system, click here.</li>
         <li>Must rescind any previous registration in any other county or state.</li>
       </ul>
-    </p>
+    </section>
 
     <h3>Updating Voter Registration Information</h3>
     <p>The North Carolina Voter Registration Application may be used to change any voting information, including: name, address and party affiliation. The change notification must be signed, and should be sent to the appropriate County Board of Elections by the voter registration deadline (25 days before each election).</p>
