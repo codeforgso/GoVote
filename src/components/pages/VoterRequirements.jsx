@@ -1,21 +1,25 @@
 import React from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '../../static/VoterRequirements.css';
 
 const VoterRequirements = () => (
   <div className="VoterRequirements">
     <Row>
-      <Col md={8} mdOffset={4}>
-        <a title="See page for author [Public domain], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Vote_with_check_for_v.svg">
-          <img width="256" alt="Vote with check for v" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Vote_with_check_for_v.svg/256px-Vote_with_check_for_v.svg.png" />
-        </a>
+      { /*
+        <Col md={3} mdOffset={1} className="vertical-center">
+          <a title="See page for author [Public domain], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Vote_with_check_for_v.svg">
+            <img width="175" alt="Vote with check for v" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Vote_with_check_for_v.svg/256px-Vote_with_check_for_v.svg.png" />
+          </a>
+        </Col>
+      */ }
+      <Col md={8} mdOffset={2} className="vertical-center">
+        <p className="text-large">
+          If you haven’t voted before, or haven’t voted in North Carolina, one of your first questions is probably “Can I Vote?” We can help you answer that!
+        </p>
       </Col>
-      <p>
-        If you haven’t voted before, or haven’t voted in North Carolina, one of your first questions is probably “Can I Vote?” We can help you answer that!
-      </p>
     </Row>
-    <h2 className="VoterRequirements-heading">Step 1 Review Qualifications to Vote</h2>
+    <h2 className="VoterRequirements-heading">Step 1: Review Qualifications to Vote</h2>
     <p>To register to vote in North Carolina, a prospective voter must meet all of the following qualifications: </p>
     <ul>
       <li>Must be a citizen of the United States.</li>
@@ -26,15 +30,18 @@ const VoterRequirements = () => (
     </ul>
     <h2 className="VoterRequirements-heading">Step 2: Register to Vote</h2>
     <Row>
-      <Col md={8} mdOffset={4}>
+      <Col md={2}>
         <a title="By Hillary for America [Public domain or Public domain], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Register_to_vote_here._1.png">
-          <img width="256" alt="Register to vote here. 1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Register_to_vote_here._1.png/512px-Register_to_vote_here._1.png" />
+          <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Register_to_vote_here._1.png/512px-Register_to_vote_here._1.png" width="128" />
+          { /* <img width="256" alt="Register to vote here. 1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Register_to_vote_here._1.png/512px-Register_to_vote_here._1.png" /> */ }
         </a>
       </Col>
+      <Col md={8} mdOffset={1}>
+        <p>
+          If you meet the qualifications, your next step is registering to vote. In order to do this, you will need to complete and submit a voter registration form, which you can access <a href="https://www.ncsbe.gov/Voter-Information/VR-Form">here</a>. You will need the following information:
+        </p>
+      </Col>
     </Row>
-    <p>
-      If you meet the qualifications, your next step is registering to vote. In order to do this, you will need to complete and submit a voter registration form, which you can access <a href="https://www.ncsbe.gov/Voter-Information/VR-Form">here</a>. You will need the following information:
-    </p>
     <ul>
       <li>Full Name</li>
       <li>Residential Address</li>
