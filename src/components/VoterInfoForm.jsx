@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, ControlLabel, Button, FormControl, Alert } from 'react-bootstrap';
-import VerifyVoterInfo from './VerifyVoterInfo';
+import { Form, FormGroup, ControlLabel, Button, FormControl, Alert, ButtonGroup } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getVoterInfo } from '../actions';
-
-const renderErrors = (el, index) => (
-  <li key={index} className="text-danger">Please enter your {el}</li>
-);
 
 class VoterInfoForm extends Component {
   constructor(props) {
@@ -20,6 +17,7 @@ class VoterInfoForm extends Component {
       lastNameValidationState: null,
       formErrors: [],
       voterInfoFound: true,
+      selectedAddress: '',
     };
   }
 
@@ -75,13 +73,87 @@ class VoterInfoForm extends Component {
       selectedAddress: {},
       showUserStatus: false,
     });
+    this.props.returnVerifiedVoter({});
+  }
+
+  _handleAddressClick = (el) => {
+    this.setState({
+      selectedAddress: el,
+      showUserStatus: true,
+    });
+    this.props.returnVerifiedVoter(el);
+  }
+
+  _renderVoterInfo = el => (
+    <Button name="voterAddressGroup" key={el.voter_reg_num} onClick={() => this._handleAddressClick(el)}>{el.resident_address}</Button>
+  )
+
+  _renderNotInCityLimits = () => {
+    if (this.state.showUserStatus && !this.state.selectedAddress.ward_abbrv) {
+      return (
+        <div>
+          { 'NOT WITHIN GREENSBORO CITY LIMIT' }
+        </div>
+      );
+    }
+    return null;
+  }
+
+  _renderSelectedAddress = () => (<p><b>{this.state.selectedAddress.resident_address}</b></p>)
+
+  _renderSelectedRegistrationInfo = () => (
+    <p><b>
+      {
+          this.state.showUserStatus ?
+            <div>
+              <br />
+              {(`VOTER REGISTRATION STATUS: ${this.state.selectedAddress.voter_status_desc}`)}
+            </div>
+            : null
+        }
+      {
+          this.state.showUserStatus && this.state.selectedAddress.ward_abbrv ?
+            <div>
+              <br />
+              {(`GREENSBORO CITY COUNCIL DISTRICT: ${this.state.selectedAddress.ward_abbrv.substring(2, 3)}`)}
+              <br />
+              <b>YOUR GREENSBORO CITY COUNCIL CANDIDATES:</b>
+              <br />
+              <b>Mayoral:</b>
+              {this.state.mayoralCandidates.map(this._renderCandidates)}
+              <br />
+            </div>
+            : null
+        }
+    </b></p>
+    )
+
+  _renderCandidates = (candidate, index) => (
+    <p key={index}>{candidate}</p>
+    )
+
+  _renderErrors = (el, index) => {
+    if (this.state.formErrors.length) {
+      return (
+        <ul>
+          {this.state.formErrors.map(() => (<li key={index} className="text-danger">Please enter your {el}</li>))}
+        </ul>
+      );
+    }
+    return null;
+  }
+
+  _renderNoVoterRegistration = () => {
+    if (!this.state.voterInfoFound && this.state.formErrors.length === 0) {
+      return (<Alert bsStyle="warning">No Voter Registration Info Found</Alert>);
+    }
+    return null;
   }
 
   render() {
     return (
       <div>
         <Form>
-          <h4>Enter your name to find your current voter registration status</h4>
           <FormGroup controlId="formFirstName" validationState={this.state.firstNameValidationState}>
             <ControlLabel>First Name</ControlLabel>
             <FormControl type="text" name="firstName" onChange={this._handleInputChange} placeholder="Jane" />
@@ -95,30 +167,38 @@ class VoterInfoForm extends Component {
           </Button>
         </Form>
         <FormGroup>
-          {
-            this.state.formErrors.length ?
-              <ul>
-                {this.state.formErrors.map(renderErrors)}
-              </ul>
-            : null
-          }
+          { this._renderErrors() }
           <br />
-          {
-            !this.state.voterInfoFound && this.state.formErrors.length === 0 ?
-              <Alert bsStyle="warning">No Voter Registration Info Found</Alert>
-            : null
-          }
+          { this._renderNoVoterRegistration() }
           {
             this.state.isLoading && <h3><span className="glyphicon glyphicon-refresh glyphicon-spin"></span> Loading.....</h3>
           }
         </FormGroup>
-        <VerifyVoterInfo
-          voterInfo={this.state.voterInfo}
-          voterAddress={this._getVoterAddress}
-        />
+        <FormGroup>
+          {
+          this.state.voterInfo.length ?
+            <h4>Verify Your Address:</h4>
+            : null
+          }
+          { this._renderNotInCityLimits() }
+          { this._renderSelectedAddress() }
+          { this._renderSelectedRegistrationInfo() }
+          <ButtonGroup vertical>
+            {this.state.voterInfo.map(this._renderVoterInfo)}
+            {
+              this.state.voterInfo.length ?
+                <Link to="/can-i-vote"><Button name="notMyAddress">{'I DON\'T SEE MY ADDRESS'}</Button></Link>
+                : null
+            }
+          </ButtonGroup>
+        </FormGroup>
       </div>
     );
   }
 }
+
+VoterInfoForm.propTypes = {
+  returnVerifiedVoter: PropTypes.func,
+};
 
 export default VoterInfoForm;
