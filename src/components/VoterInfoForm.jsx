@@ -18,6 +18,7 @@ class VoterInfoForm extends Component {
       formErrors: [],
       voterInfoFound: true,
       selectedAddress: '',
+      mayoralCandidates: ['Nancy Vaughan (i)'],
     };
   }
 
