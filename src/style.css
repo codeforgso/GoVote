@@ -10,7 +10,7 @@ html, body, #app {
   background-color: white;
 }
 
-p {
+p, li {
   font-size: 16px;
 }
 

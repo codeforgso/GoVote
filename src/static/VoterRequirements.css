@@ -1,12 +1,10 @@
 .VoterRequirements {
 	padding: 5px;
-	/* text-align: center; */
 }
 
-.vertical-center {
-	display: inline-block;
-	vertical-align: middle;
-	float: none;
+.horizontal-center {
+	display: block;
+	margin: 0 auto;
 }
 
 .text-large {

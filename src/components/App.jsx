@@ -18,7 +18,7 @@ class App extends Component {
           <div className="app__body">
             <Grid >
               <Row>
-                <Col md={8} mdOffset={2}>
+                <Col md={8} mdOffset={2} lg={10} lgOffset={1}>
                   {
                     routes.map((route, index) => <Route key={index} exact={route.exact} path={route.to} component={route.component} />)
                   }
