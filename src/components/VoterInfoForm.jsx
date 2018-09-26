@@ -117,11 +117,6 @@ class VoterInfoForm extends Component {
               <br />
               {(`GREENSBORO CITY COUNCIL DISTRICT: ${this.state.selectedAddress.ward_abbrv.substring(2, 3)}`)}
               <br />
-              <b>YOUR GREENSBORO CITY COUNCIL CANDIDATES:</b>
-              <br />
-              <b>Mayoral:</b>
-              {this.state.mayoralCandidates.map(this._renderCandidates)}
-              <br />
             </div>
             : null
         }
@@ -187,7 +182,7 @@ class VoterInfoForm extends Component {
             {this.state.voterInfo.map(this._renderVoterInfo)}
             {
               this.state.voterInfo.length ?
-                <Link to="/can-i-vote"><Button name="notMyAddress">{'I DON\'T SEE MY ADDRESS'}</Button></Link>
+                <Link to="/voter-requirements"><Button name="notMyAddress">{'I DON\'T SEE MY ADDRESS'}</Button></Link>
                 : null
             }
           </ButtonGroup>

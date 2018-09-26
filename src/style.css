@@ -10,6 +10,10 @@ html, body, #app {
   background-color: white;
 }
 
+p, li {
+  font-size: 16px;
+}
+
 .app__wrapper {
   display: flex;
   flex-direction: column;

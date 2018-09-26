@@ -16,7 +16,7 @@ const Header = () => (
       <Nav pullRight>
         {
           routes.map((route, index) => (
-            <NavItem>
+            <NavItem key={index}>
               <Link to={route.to} key={index} className="btn btn-link header__details-action">
                 {route.label}
               </Link>
