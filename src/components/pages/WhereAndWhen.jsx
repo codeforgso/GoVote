@@ -26,15 +26,15 @@ class WhereAndWhen extends React.Component {
         const { attributes } = response.data.features[0];
         const pollingPlace = {
           name: attributes.POLLING_PLACE,
-          address: attributes.ADDRESS,
-          city: attributes.CITY,
+          address: `${attributes.ADDRESS}, ${attributes.CITY}, NC`,
         };
         this.setState({ pollingPlace, isLoading: false });
       })
       .catch((error) => {
         handleError(error);
         this.setState({ errorGettingPollingPlace: true });
-      });
+      })
+      .finally(() => { window.scrollTo(0, document.body.scrollHeight); });
   }
 
   _createGoogleMapsLink = address => (`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`);
@@ -56,8 +56,12 @@ class WhereAndWhen extends React.Component {
               <ListGroupItem><b>Polling Place Name:</b> {pollingPlace.name}</ListGroupItem>
               <ListGroupItem>
                 <b>Polling Place Address: </b>
-                <a target="_blank" href={this._createGoogleMapsLink(`${pollingPlace.address}, ${pollingPlace.city}`)}>
-                  {pollingPlace.address}, {pollingPlace.city}, NC
+                <a
+                  target="_blank"
+                  href={this._createGoogleMapsLink(pollingPlace.address)}
+                  title="View on Google Maps"
+                >
+                  {pollingPlace.address}
                 </a>
               </ListGroupItem>
             </ListGroup>
