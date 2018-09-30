@@ -1,18 +1,74 @@
 import React from 'react';
+import { ListGroup, ListGroupItem } from 'react-bootstrap';
+import axios from 'axios';
+import { handleError } from '../../actions';
+import VoterInfoForm from '../VoterInfoForm';
 
-const WhereAndWhen = () => (
-  <div>
-    <h1>Where and When to Vote</h1>
-    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.</p>
 
-    <p>Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.</p>
+class WhereAndWhen extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      pollingPlace: undefined,
+      isLoading: false,
+      errorGettingPollingPlace: false,
+    };
+  }
 
-    <p>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat.</p>
+  _getPolingPlaceInfo = (voter) => {
+    if (!voter.precinct_desc) return;
 
-    <p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas auguae, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</p>
+    const precinctDesc = voter.precinct_desc;
+    const url = `http://gis.co.guilford.nc.us/arcgis/rest/services/Elections/Elections/MapServer/0/query?where=UPPER(PRECINCT)%20like%20%27%25${precinctDesc}%25%27&outFields=*&outSR=4326&f=json`;
+    this.setState({ isLoading: true });
+    axios.get(url)
+      .then((response) => {
+        const { attributes } = response.data.features[0];
+        const pollingPlace = {
+          name: attributes.POLLING_PLACE,
+          address: attributes.ADDRESS,
+          city: attributes.CITY,
+        };
+        this.setState({ pollingPlace, isLoading: false });
+      })
+      .catch((error) => {
+        handleError(error);
+        this.setState({ errorGettingPollingPlace: true });
+      });
+  }
 
-    <p>Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. Nam nulla quam, gravida non, commodo a, sodales sit amet, nisi.</p>
-  </div>
-  );
+  _createGoogleMapsLink = address => (`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`);
+
+  render() {
+    const { pollingPlace, isLoading, errorGettingPollingPlace } = this.state;
+    return (
+      <div>
+        <h1>Where and When to Vote</h1>
+        <VoterInfoForm
+          returnVerifiedVoter={this._getPolingPlaceInfo}
+        />
+        {
+          isLoading && <span>Getting Polling Place Info</span>
+        }
+        {
+          !isLoading && pollingPlace ?
+            <ListGroup>
+              <ListGroupItem><b>Polling Place Name:</b> {pollingPlace.name}</ListGroupItem>
+              <ListGroupItem>
+                <b>Polling Place Address: </b>
+                <a target="_blank" href={this._createGoogleMapsLink(`${pollingPlace.address}, ${pollingPlace.city}`)}>
+                  {pollingPlace.address}, {pollingPlace.city}, NC
+                </a>
+              </ListGroupItem>
+            </ListGroup>
+          : null
+        }
+        {
+          errorGettingPollingPlace && <span>Error getting polling place info. Please try again</span>
+        }
+      </div>
+    );
+  }
+}
 
 module.exports = WhereAndWhen;

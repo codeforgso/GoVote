@@ -105,19 +105,19 @@ class VoterInfoForm extends Component {
     <p><b>
       {
           this.state.showUserStatus ?
-            <div>
+            <span>
               <br />
               {(`VOTER REGISTRATION STATUS: ${this.state.selectedAddress.voter_status_desc}`)}
-            </div>
+            </span>
             : null
         }
       {
           this.state.showUserStatus && this.state.selectedAddress.ward_abbrv ?
-            <div>
+            <span>
               <br />
               {(`GREENSBORO CITY COUNCIL DISTRICT: ${this.state.selectedAddress.ward_abbrv.substring(2, 3)}`)}
               <br />
-            </div>
+            </span>
             : null
         }
     </b></p>
