@@ -63,6 +63,7 @@ typings/
 
 # compiled sources
 /dist
+src/css/dist
 
 # IDEs/Editors
 *.swp
