@@ -2,21 +2,23 @@ import React from 'react';
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import axios from 'axios';
 import { handleError } from '../../actions';
-import VoterInfoForm from '../VoterInfoForm';
-
+import VoterRegLookup from '../VoterRegLookup';
 
 class WhereAndWhen extends React.Component {
   constructor() {
     super();
     this.state = {
-      pollingPlace: undefined,
+      pollingPlace: {},
       isLoading: false,
       errorGettingPollingPlace: false,
     };
   }
 
   _getPolingPlaceInfo = (voter) => {
-    if (!voter.precinct_desc) return;
+    if (Object.keys(voter).length === 0) {
+      this.setState({ pollingPlace: {} });
+      return;
+    }
 
     const precinctDesc = voter.precinct_desc;
     const url = `http://gis.co.guilford.nc.us/arcgis/rest/services/Elections/Elections/MapServer/0/query?where=UPPER(PRECINCT)%20like%20%27%25${precinctDesc}%25%27&outFields=*&outSR=4326&f=json`;
@@ -44,14 +46,15 @@ class WhereAndWhen extends React.Component {
     return (
       <div>
         <h1>Where and When to Vote</h1>
-        <VoterInfoForm
-          returnVerifiedVoter={this._getPolingPlaceInfo}
+        <p>Enter your information below to find out where to vote</p>
+        <VoterRegLookup
+          returnSelectedVoter={this._getPolingPlaceInfo}
         />
         {
           isLoading && <span>Getting Polling Place Info</span>
         }
         {
-          !isLoading && pollingPlace ?
+          !isLoading && Object.keys(pollingPlace).length > 0 ?
             <ListGroup>
               <ListGroupItem><b>Polling Place Name:</b> {pollingPlace.name}</ListGroupItem>
               <ListGroupItem>
