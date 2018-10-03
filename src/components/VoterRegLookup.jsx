@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
-import VoterInfoForm from '../VoterInfoForm';
-import VoterList from '../VoterList';
+import VoterInfoForm from './VoterInfoForm';
+import VoterList from './VoterList';
 
 class VoterRegLookup extends Component {
   constructor(props) {

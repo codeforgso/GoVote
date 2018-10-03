@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import CanIVoteRegistered from './CanIVoteRegistered';
-import VoterInfoForm from '../../components/VoterInfoForm';
+import VoterRegLookup from '../VoterRegLookup';
+
 
 export default class CanIVoteCheckStatus extends Component {
   constructor() {
@@ -14,15 +15,9 @@ export default class CanIVoteCheckStatus extends Component {
   render() {
     return (
       <div>
-        <VoterInfoForm
-          returnVerifiedVoter={(voter) => {
-            this.setState({ voterStatus: voter.voter_status_desc }, () => {
-              window.scrollTo({
-                left: 0,
-                top: document.body.scrollHeight,
-                behavior: 'smooth',
-              });
-            });
+        <VoterRegLookup
+          returnSelectedVoter={(voter) => {
+            this.setState({ voterStatus: voter.voter_status_desc });
           }}
         />
         {
