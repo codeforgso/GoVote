@@ -14,12 +14,26 @@ class VoterRegLookup extends Component {
     };
   }
 
+  componentDidMount() {
+    console.log(window.localStorage.getItem('VoterRegLookupState'));
+    const savedState = JSON.parse(window.localStorage.getItem('VoterRegLookupState'));
+    if (savedState) {
+      this.setState({ savedState }); // eslint-disable-line react/no-did-mount-set-state
+      this.props.returnSelectedVoter(savedState.selectedVoter);
+    }
+  }
+
+  _saveState() {
+    window.localStorage.setItem('VoterRegLookupState', JSON.stringify(this.state));
+  }
+
   render() {
     return (
       <div>
         <VoterInfoForm
           returnVoterList={(voterList) => {
             this.setState({ voterList, selectedVoter: {} });
+            this._saveState();
             this.props.returnSelectedVoter({});
           }}
         />
@@ -30,6 +44,7 @@ class VoterRegLookup extends Component {
               returnSelectedVoter={(selectedVoter) => {
                 this.setState({ selectedVoter });
                 this.props.returnSelectedVoter(selectedVoter);
+                this._saveState();
               }}
             />
           :
