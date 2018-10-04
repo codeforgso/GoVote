@@ -15,16 +15,19 @@ class VoterRegLookup extends Component {
   }
 
   componentDidMount() {
-    console.log(window.localStorage.getItem('VoterRegLookupState'));
-    const savedState = JSON.parse(window.localStorage.getItem('VoterRegLookupState'));
-    if (savedState) {
-      this.setState({ savedState }); // eslint-disable-line react/no-did-mount-set-state
-      this.props.returnSelectedVoter(savedState.selectedVoter);
+    const selectedVoter = JSON.parse(window.sessionStorage.getItem('VoterRegLookupSelectedVoter'));
+    if (selectedVoter) {
+      this.setState({ selectedVoter }); // eslint-disable-line react/no-did-mount-set-state
+      this.props.returnSelectedVoter(selectedVoter);
     }
   }
 
-  _saveState() {
-    window.localStorage.setItem('VoterRegLookupState', JSON.stringify(this.state));
+  _saveState = () => {
+    window.sessionStorage.setItem('VoterRegLookupSelectedVoter', JSON.stringify(this.state.selectedVoter));
+  }
+
+  _deleteState = () => {
+    window.sessionStorage.removeItem('VoterRegLookupSelectedVoter');
   }
 
   render() {
@@ -33,7 +36,6 @@ class VoterRegLookup extends Component {
         <VoterInfoForm
           returnVoterList={(voterList) => {
             this.setState({ voterList, selectedVoter: {} });
-            this._saveState();
             this.props.returnSelectedVoter({});
           }}
         />
@@ -42,9 +44,8 @@ class VoterRegLookup extends Component {
             <VoterList
               voterList={this.state.voterList}
               returnSelectedVoter={(selectedVoter) => {
-                this.setState({ selectedVoter });
+                this.setState({ selectedVoter }, this._saveState);
                 this.props.returnSelectedVoter(selectedVoter);
-                this._saveState();
               }}
             />
           :

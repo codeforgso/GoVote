@@ -17,12 +17,6 @@ class VoterInfoForm extends Component {
     };
   }
 
-  componentDidMount() {
-    const savedState = JSON.parse(window.localStorage.getItem('VoterInfoFormState'));
-    this.setState(savedState); // eslint-disable-line react/no-did-mount-set-state
-    this.props.returnVoterList(savedState.voterList);
-  }
-
   _getVoterInfo = () => {
     if (this._validateVoterInput()) {
       this.setState({
@@ -41,7 +35,6 @@ class VoterInfoForm extends Component {
         })
         .finally(() => {
           this.setState({ isLoading: false });
-          window.localStorage.setItem('VoterInfoFormState', JSON.stringify(this.state));
         });
     }
   }
@@ -89,6 +82,9 @@ class VoterInfoForm extends Component {
           </FormGroup>
           <Button type="button" onClick={this._getVoterInfo}>
             Search
+          </Button>
+          <Button type="button" onClick={() => { this.props.returnVoterList([]); }}>
+            Clear
           </Button>
         </Form>
         <FormGroup>
