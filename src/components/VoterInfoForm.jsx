@@ -83,6 +83,9 @@ class VoterInfoForm extends Component {
           <Button type="button" onClick={this._getVoterInfo}>
             Search
           </Button>
+          <Button type="button" onClick={() => { this.props.returnVoterList([]); }}>
+            Clear
+          </Button>
         </Form>
         <FormGroup>
           <ul>

@@ -14,6 +14,22 @@ class VoterRegLookup extends Component {
     };
   }
 
+  componentDidMount() {
+    const selectedVoter = JSON.parse(window.sessionStorage.getItem('VoterRegLookupSelectedVoter'));
+    if (selectedVoter) {
+      this.setState({ selectedVoter }); // eslint-disable-line react/no-did-mount-set-state
+      this.props.returnSelectedVoter(selectedVoter);
+    }
+  }
+
+  _saveState = () => {
+    window.sessionStorage.setItem('VoterRegLookupSelectedVoter', JSON.stringify(this.state.selectedVoter));
+  }
+
+  _deleteState = () => {
+    window.sessionStorage.removeItem('VoterRegLookupSelectedVoter');
+  }
+
   render() {
     return (
       <div>
@@ -28,7 +44,7 @@ class VoterRegLookup extends Component {
             <VoterList
               voterList={this.state.voterList}
               returnSelectedVoter={(selectedVoter) => {
-                this.setState({ selectedVoter });
+                this.setState({ selectedVoter }, this._saveState);
                 this.props.returnSelectedVoter(selectedVoter);
               }}
             />
