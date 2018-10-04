@@ -22,7 +22,7 @@ export default class CanIVoteCheckStatus extends Component {
         />
         {
           this.state.voterStatus === 'ACTIVE' && (
-            <CanIVoteRegistered />
+            <CanIVoteRegistered showHeader />
           )
         }
         {
