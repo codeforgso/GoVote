@@ -1,14 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const CanIVoteRegistered = () => (
+const CanIVoteRegistered = ({ showHeader = false }) => (
   <div>
-    <h2>You are registered!</h2>
-    <ul>
-      <li><Link to="/where-and-when">See Where &amp; When to Vote</Link></li>
-      <li><Link to="/candidates">See who the candidates are</Link></li>
-    </ul>
+    { showHeader && <h2>You are registered!</h2> }
+    <ListGroup>
+      <ListGroupItem><Link to="/where-and-when">See Where &amp; When to Vote</Link></ListGroupItem>
+      <ListGroupItem><Link to="/candidates">See who the candidates are</Link></ListGroupItem>
+    </ListGroup>
   </div>
 );
+
+CanIVoteRegistered.propTypes = {
+  showHeader: PropTypes.bool,
+};
 
 export default CanIVoteRegistered;
