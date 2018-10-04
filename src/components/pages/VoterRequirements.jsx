@@ -63,7 +63,7 @@ const VoterRequirements = () => (
     <h3 className="VoterRequirements-heading">Military & Overseas Citizens Voting Information</h3>
     <p>Some citizens, such as people serving in the military who are away from their permanent home on Election Day, their families, or U.S. citizens who are living abroad, have special voting rights and ways to register to vote. </p>
     <p>If this describes you, you have the choice of either requesting a mail-in absentee ballot the same way as other registered voters, or applying to register and/or vote through special programs for military and overseas voters as described here.</p>
-
+    <h3><a href="https://ncvoter.org/registering-to-vote/">For more information visit this page from Democracy NC</a></h3>
   </div>
 );
 
