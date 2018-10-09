@@ -4,7 +4,6 @@ import Control from 'react-leaflet-control';
 import { Alert } from 'react-bootstrap';
 import { Map, Marker, Popup, TileLayer, GeoJSON, LayersControl } from 'react-leaflet';
 import SearchControl from './SearchControl.js';
-import './MapContainer.css';
 
 class MapContainer extends Component {
   state = {
