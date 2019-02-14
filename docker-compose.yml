@@ -17,10 +17,10 @@ services:
     volumes:
       - .:/opt/app
     environment:
-      - DB_HOST=db
-      - DB_NAME=GoVoteGSO
-      - DB_USER=govoteuser
-      - DB_PASS=password
-      - DB_PORT=5432
-      - DB_TABLE=guilfordvoters
-      - NODE_ENV=development
+      - DB_HOST=${DB_HOST}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_PORT=${DB_PORT}
+      - DB_TABLE=${DB_TABLE}
+      - NODE_ENV=${NODE_ENV}

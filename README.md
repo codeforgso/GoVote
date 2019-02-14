@@ -16,3 +16,7 @@ Interested in contributing? Please read our [contributing guide](./.github/CONTR
 
 ## Development Site
 A live version of our dev branch can be seen [here](http://govotegso-dev-1.us-east-1.elasticbeanstalk.com/)
+
+## Steps to Deploy via Docker
+
+In order to deploy this application, you will need to create a .env file and copy to it the contents of the sample.env file. Make sure to update the variable values with the intended values.
