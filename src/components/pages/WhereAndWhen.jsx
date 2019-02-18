@@ -5,8 +5,7 @@ import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import axios from 'axios';
 // import { handleError } from '../../actions';
 import VoterRegLookup from '../VoterRegLookup';
-import GoogleMap from '../GoogleMap';
-// import MapContainer from '../../components/MapContainer.jsx';
+import VoterPrecintMap from '../VoterPrecintMap';
 
 class WhereAndWhen extends React.Component {
   constructor() {
@@ -25,7 +24,9 @@ class WhereAndWhen extends React.Component {
     }
 
     const precinctDesc = voter.precinct_desc;
-    const url = `http://gis.co.guilford.nc.us/arcgis/rest/services/Elections/Elections/MapServer/0/query?where=UPPER(PRECINCT)%20like%20%27%25${precinctDesc}%25%27&outFields=*&outSR=4326&f=json`;
+    // const url = `http://gis.co.guilford.nc.us/arcgis/rest/services/Elections/Elections/MapServer/0/query?where=UPPER(PRECINCT)%20like%20%27%25${precinctDesc}%25%27&outFields=*&outSR=4326&f=json`;
+    const url = `http://gis.guilfordcountync.gov/arcgis/rest/services/Elections/Elections/MapServer/0/query?where=UPPER(PRECINCT)%20like%20%27%25${precinctDesc}%25%27&outFields=*&outSR=4326&f=json`;
+
     this.setState({ isLoading: true });
     axios
       .get(url)
@@ -35,11 +36,8 @@ class WhereAndWhen extends React.Component {
         const pollingPlace = {
           name: attributes.POLLING_PLACE,
           address: `${attributes.ADDRESS}, ${attributes.CITY}, NC`,
-          // geocode: `{lat: ${attributes.geometry.x} lng: ${attributes.geometry.y}`,
         };
         const geocode = { lat: geometry.y, lng: geometry.x };
-        // eslint-disable-next-line no-console
-        console.log(geocode);
         this.setState({ pollingPlace, isLoading: false, geocode });
       })
       .catch((error) => {
@@ -54,7 +52,7 @@ class WhereAndWhen extends React.Component {
   };
 
 
-  _createGoogleMapsLink = address =>
+  _createVoterPrecintMapsLink = address =>
     `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
       address
     )}`;
@@ -76,15 +74,15 @@ class WhereAndWhen extends React.Component {
               <b>Polling Place Address: </b>
               <a
                 target="_blank"
-                href={this._createGoogleMapsLink(pollingPlace.address)}
+                href={this._createVoterPrecintMapsLink(pollingPlace.address)}
                 title="View on Google Maps"
               >
                 {pollingPlace.address}
               </a>
             </ListGroupItem>
             <ListGroupItem>
-              <GoogleMap geocode={geocode}>
-              </GoogleMap>
+              <VoterPrecintMap geocode={geocode}>
+              </VoterPrecintMap>
             </ListGroupItem>
           </ListGroup>
         ) : null}
