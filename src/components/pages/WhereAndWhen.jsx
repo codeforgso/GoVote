@@ -3,7 +3,7 @@
 import React from 'react';
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import axios from 'axios';
-// import { handleError } from '../../actions';
+import { handleError } from '../../actions';
 import VoterRegLookup from '../VoterRegLookup';
 import VoterPrecintMap from '../VoterPrecintMap';
 
@@ -37,11 +37,11 @@ class WhereAndWhen extends React.Component {
           name: attributes.POLLING_PLACE,
           address: `${attributes.ADDRESS}, ${attributes.CITY}, NC`,
         };
-        const geocode = { lat: geometry.y, lng: geometry.x };
+        const geocode = { lng: geometry.x, lat: geometry.y };
         this.setState({ pollingPlace, isLoading: false, geocode });
       })
       .catch((error) => {
-        // handleError(error);
+        handleError(error);
         // eslint-disable-next-line no-console
         console.error(error);
         this.setState({ errorGettingPollingPlace: true });
@@ -87,7 +87,7 @@ class WhereAndWhen extends React.Component {
           </ListGroup>
         ) : null}
         {errorGettingPollingPlace && (
-          <span>Error getting polling place info. Please try again</span>
+          <span> Error getting polling place info. Please try again</span>
         )}
         <h1>When to Vote</h1>
         <p>

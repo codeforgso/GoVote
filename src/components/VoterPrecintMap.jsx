@@ -10,13 +10,11 @@ class GoogleMap extends React.Component {
   }
 
   componentDidMount() {
-    // ApiKey value needs to b stored in env variable
-    // const ApiKey = '';
-    const ApiKey = 'AIzaSyC_jVntO1agQ5gRABrvZfSkjMy6pvXXNzI';
-    // if ApiKey not provided, then no map
-    if (ApiKey) {
+    const GoogleMapAPIKey = process.env.REACT_APP_GOOGLEMAPAPIKEY;
+    // if GoogleMapAPIKey not provided, then no map
+    if (GoogleMapAPIKey) {
       const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${ApiKey}`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${GoogleMapAPIKey}`;
       script.async = true;
       script.defer = true;
       script.addEventListener('load', () => {

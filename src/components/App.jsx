@@ -8,6 +8,8 @@ import Home from './pages/Home';
 import VoterRequirements from './pages/VoterRequirements';
 import routes from './pages/routes';
 
+require('dotenv').config();
+
 class App extends Component {
   render() {
     return (
