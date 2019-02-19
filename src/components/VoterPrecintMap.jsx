@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import VoteHere from '../static/vote.svg';
+import VoteResidence from '../static/home.svg';
 
 class GoogleMap extends React.Component {
   constructor(props) {
@@ -27,22 +28,11 @@ class GoogleMap extends React.Component {
   }
 
   componentDidUpdate() {
-    // // eslint-disable-next-line no-console
-    // console.log(JSON.parse(this.props.voterAddress));
-    // // eslint-disable-next-line no-console
-    // console.log(JSON.parse(this.props.voterAddress).res_street_address);
-    // // eslint-disable-next-line no-console
-    // console.log(JSON.parse(this.props.voterAddress).res_city_desc);
-    // // eslint-disable-next-line no-console
-    // console.log(JSON.parse(this.props.voterAddress).state_cd);
-    this.state.voterAddressLookup = `${JSON.parse(this.props.voterAddress).res_street_address},${JSON.parse(this.props.voterAddress).res_city_desc},${JSON.parse(this.props.voterAddress).state_cd}`;
-    // eslint-disable-next-line no-console
-    console.log(this.state.voterAddressLookup);
     if (this.state.mapIsReady) {
       // Display the map
       this.map = new window.google.maps.Map(document.getElementById('map'), {
         center: this.props.geocode,
-        zoom: 17,
+        zoom: 15,
         mapTypeId: 'roadmap',
         map: this.map,
       });
@@ -55,6 +45,25 @@ class GoogleMap extends React.Component {
           url: VoteHere,
           scaledSize: new window.google.maps.Size(48, 48),
         },
+      });
+      // add marker on the map for the voter residence
+      this.state.voterAddressLookup = `${JSON.parse(this.props.voterAddress).res_street_address},${JSON.parse(this.props.voterAddress).res_city_desc},${JSON.parse(this.props.voterAddress).state_cd}`;
+    // // eslint-disable-next-line no-console
+    //   console.log(this.state.voterAddressLookup);
+      this.geocoder = new window.google.maps.Geocoder();
+      this.geocoder.geocode({ address: this.state.voterAddressLookup }, (results, status) => {
+        if (status === 'OK') {
+          this.voterAddress = new window.google.maps.Marker({
+            position: results[0].geometry.location,
+            map: this.map,
+            icon: {
+              url: VoteResidence,
+              scaledSize: new window.google.maps.Size(28, 28),
+            },
+          });
+        } else {
+          // alert(`Geocode was not successful for the following reason: ${status}`);
+        }
       });
     }
   }
