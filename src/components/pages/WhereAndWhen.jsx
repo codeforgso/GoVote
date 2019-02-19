@@ -81,7 +81,7 @@ class WhereAndWhen extends React.Component {
               </a>
             </ListGroupItem>
             <ListGroupItem>
-              <VoterPrecintMap geocode={geocode}>
+              <VoterPrecintMap geocode={geocode} voterAddress={window.sessionStorage.getItem('VoterRegLookupSelectedVoter')}>
               </VoterPrecintMap>
             </ListGroupItem>
           </ListGroup>

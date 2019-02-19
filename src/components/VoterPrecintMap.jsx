@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import VoteHere from '../static/vote.svg';
 
 class GoogleMap extends React.Component {
   constructor(props) {
@@ -26,6 +27,17 @@ class GoogleMap extends React.Component {
   }
 
   componentDidUpdate() {
+    // // eslint-disable-next-line no-console
+    // console.log(JSON.parse(this.props.voterAddress));
+    // // eslint-disable-next-line no-console
+    // console.log(JSON.parse(this.props.voterAddress).res_street_address);
+    // // eslint-disable-next-line no-console
+    // console.log(JSON.parse(this.props.voterAddress).res_city_desc);
+    // // eslint-disable-next-line no-console
+    // console.log(JSON.parse(this.props.voterAddress).state_cd);
+    this.state.voterAddressLookup = `${JSON.parse(this.props.voterAddress).res_street_address},${JSON.parse(this.props.voterAddress).res_city_desc},${JSON.parse(this.props.voterAddress).state_cd}`;
+    // eslint-disable-next-line no-console
+    console.log(this.state.voterAddressLookup);
     if (this.state.mapIsReady) {
       // Display the map
       this.map = new window.google.maps.Map(document.getElementById('map'), {
@@ -35,9 +47,14 @@ class GoogleMap extends React.Component {
         map: this.map,
       });
       // add marker on the map for the polling place
-      this.marker = new window.google.maps.Marker({
+      this.voteHereMarker = new window.google.maps.Marker({
         position: this.props.geocode,
+        titlr: 'Vote Here',
         map: this.map,
+        icon: {
+          url: VoteHere,
+          scaledSize: new window.google.maps.Size(48, 48),
+        },
       });
     }
   }
@@ -51,6 +68,7 @@ class GoogleMap extends React.Component {
 
 GoogleMap.propTypes = {
   geocode: PropTypes.object.isRequired,
+  voterAddress: PropTypes.object.isRequired,
 };
 
 module.exports = GoogleMap;

@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.set('port', (process.env.PORT || 3100));
+app.set('port', (process.env.PORT || 3001));
 
 const client = new Client({
   user: process.env.DB_USER,

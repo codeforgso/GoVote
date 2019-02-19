@@ -14,7 +14,7 @@ WORKDIR /opt/app
 COPY . /opt/app
 
 # Express server
-EXPOSE 3100
+EXPOSE 3001
 # React port
 EXPOSE 3000
 
