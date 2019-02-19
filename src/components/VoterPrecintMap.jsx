@@ -32,7 +32,7 @@ class GoogleMap extends React.Component {
       // Display the map
       this.map = new window.google.maps.Map(document.getElementById('map'), {
         center: this.props.geocode,
-        zoom: 15,
+        zoom: 14,
         mapTypeId: 'roadmap',
         map: this.map,
       });
@@ -48,11 +48,10 @@ class GoogleMap extends React.Component {
       });
       // add marker on the map for the voter residence
       this.state.voterAddressLookup = `${JSON.parse(this.props.voterAddress).res_street_address},${JSON.parse(this.props.voterAddress).res_city_desc},${JSON.parse(this.props.voterAddress).state_cd}`;
-    // // eslint-disable-next-line no-console
-    //   console.log(this.state.voterAddressLookup);
       this.geocoder = new window.google.maps.Geocoder();
       this.geocoder.geocode({ address: this.state.voterAddressLookup }, (results, status) => {
         if (status === 'OK') {
+          this.state.voterResidenceGeocode = results[0].geometry.location;
           this.voterAddress = new window.google.maps.Marker({
             position: results[0].geometry.location,
             map: this.map,
@@ -65,6 +64,17 @@ class GoogleMap extends React.Component {
           // alert(`Geocode was not successful for the following reason: ${status}`);
         }
       });
+
+      // add directions on the map.
+      // there is no free tier for this service so the code is commented out for now
+      // *****************************
+      // this.directionsService = new window.google.maps.DirectionsService();
+      // this.directionsService.route({ origin: this.state.voterResidenceGeocode, destination: this.props.geocode, travelMode: 'DRIVING' }, (response, status) => {
+      //   if (status === 'OK') {
+      //     this.map.directionsDisplay.setDirections(response);
+      //   }
+      // });
+      // *****************************
     }
   }
 
