@@ -2,12 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import VoteHere from '../static/vote.svg';
 import VoteResidence from '../static/home.svg';
+import { handleError } from '../actions';
 
 class GoogleMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       mapIsReady: false,
+      flipped: null,
     };
   }
 
@@ -29,6 +31,9 @@ class GoogleMap extends React.Component {
 
   componentDidUpdate() {
     if (this.state.mapIsReady) {
+      // create infoWindow object for the text on the marker mouseover
+      this.infoWindow = new window.google.maps.InfoWindow();
+
       // Display the map
       this.map = new window.google.maps.Map(document.getElementById('map'), {
         center: this.props.geocode,
@@ -46,13 +51,22 @@ class GoogleMap extends React.Component {
           scaledSize: new window.google.maps.Size(48, 48),
         },
       });
-      // add marker on the map for the voter residence
-      this.state.voterAddressLookup = `${JSON.parse(this.props.voterAddress).res_street_address},${JSON.parse(this.props.voterAddress).res_city_desc},${JSON.parse(this.props.voterAddress).state_cd}`;
+      // create event to display address on mouseover of the voter polling place
+      window.google.maps.event.addListener(this.voteHereMarker, 'mouseover', () => {
+        this.infoWindow.setContent(`<p>${this.props.pollingPlaceName}</p><p>${this.props.pollingPlaceAddress}</p>`);
+        this.infoWindow.open(this.map, this.voteHereMarker);
+      });
+      window.google.maps.event.addListener(this.voteHereMarker, 'mouseout', () => {
+        this.infoWindow.close(this.map, this.voteHereMarker);
+      });
+
+      // get the geocode for the voter residence and use it to add marker on the map
+      this.state.voterAddressLookup = `${JSON.parse(this.props.voterAddress).res_street_address}, ${JSON.parse(this.props.voterAddress).res_city_desc}, ${JSON.parse(this.props.voterAddress).state_cd}`;
       this.geocoder = new window.google.maps.Geocoder();
       this.geocoder.geocode({ address: this.state.voterAddressLookup }, (results, status) => {
         if (status === 'OK') {
           this.state.voterResidenceGeocode = results[0].geometry.location;
-          this.voterAddress = new window.google.maps.Marker({
+          this.voterResidenceMarker = new window.google.maps.Marker({
             position: results[0].geometry.location,
             map: this.map,
             icon: {
@@ -60,8 +74,16 @@ class GoogleMap extends React.Component {
               scaledSize: new window.google.maps.Size(28, 28),
             },
           });
+          // create event to display address on mouseover of the voter residence
+          window.google.maps.event.addListener(this.voterResidenceMarker, 'mouseover', () => {
+            this.infoWindow.setContent(`<p>${this.state.voterAddressLookup}</p>`);
+            this.infoWindow.open(this.map, this.voterResidenceMarker);
+          });
+          window.google.maps.event.addListener(this.voterResidenceMarker, 'mouseout', () => {
+            this.infoWindow.close(this.map, this.voterResidenceMarker);
+          });
         } else {
-          // alert(`Geocode was not successful for the following reason: ${status}`);
+          handleError(status);
         }
       });
 
@@ -87,7 +109,9 @@ class GoogleMap extends React.Component {
 
 GoogleMap.propTypes = {
   geocode: PropTypes.object.isRequired,
-  voterAddress: PropTypes.object.isRequired,
+  voterAddress: PropTypes.string.isRequired,
+  pollingPlaceName: PropTypes.string.isRequired,
+  pollingPlaceAddress: PropTypes.string.isRequired,
 };
 
 module.exports = GoogleMap;
