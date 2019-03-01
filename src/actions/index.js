@@ -6,7 +6,7 @@ export function getVoterInfo(firstName, lastName) {
     .catch(handleError);
 }
 
-function handleError(err) {
+export function handleError(err) {
   // eslint-disable-next-line no-console
   console.error(err);
 }
