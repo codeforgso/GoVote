@@ -57,6 +57,15 @@ class WhereAndWhen extends React.Component {
 
   render() {
     const { pollingPlace, isLoading, errorGettingPollingPlace, geocode } = this.state;
+    // render google map for polling place/voter residence only if Google API key provided
+    let renderVoterPrecinctMap = '';
+    if (process.env.REACT_APP_GOOGLEMAPAPIKEY) {
+      renderVoterPrecinctMap =
+      (<ListGroupItem>
+        <VoterPrecintMap geocode={geocode} voterAddress={window.sessionStorage.getItem('VoterRegLookupSelectedVoter')} pollingPlaceAddress={pollingPlace.address} pollingPlaceName={pollingPlace.name}>
+        </VoterPrecintMap>
+      </ListGroupItem>);
+    }
     return (
       <div>
         <h1>Where to Vote</h1>
@@ -78,10 +87,7 @@ class WhereAndWhen extends React.Component {
                 {pollingPlace.address}
               </a>
             </ListGroupItem>
-            <ListGroupItem>
-              <VoterPrecintMap geocode={geocode} voterAddress={window.sessionStorage.getItem('VoterRegLookupSelectedVoter')} pollingPlaceAddress={pollingPlace.address} pollingPlaceName={pollingPlace.name}>
-              </VoterPrecintMap>
-            </ListGroupItem>
+            {renderVoterPrecinctMap}
           </ListGroup>
         ) : null}
         {errorGettingPollingPlace && (
