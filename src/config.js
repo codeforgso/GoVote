@@ -1,6 +1,7 @@
-export {
-const CITY;
-const CITY_NAME_ABBREVIATED; 
-const COUNTRY; 
-const APP_TITLE;
+export default {
+const CITY: 'Greensboro'
+const CITY_NAME_ABBREVIATED: 'GSO'
+const COUNTY: 'Guilford'
+const APP_TITLE: GoVoteGSO
 };
+
