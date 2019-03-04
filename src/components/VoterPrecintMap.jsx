@@ -16,7 +16,9 @@ class GoogleMap extends React.Component {
   componentDidMount() {
     const GoogleMapAPIKey = process.env.REACT_APP_GOOGLEMAPAPIKEY;
     // if GoogleMapAPIKey not provided, then no map
-    if (GoogleMapAPIKey) {
+    if (GoogleMapAPIKey && !this.state.mapIsReady) {
+       // eslint-disable-next-line no-console
+      console.log(`in google api create script ${this.state.mapIsReady}`);
       const script = document.createElement('script');
       script.src = `https://maps.googleapis.com/maps/api/js?key=${GoogleMapAPIKey}`;
       script.async = true;

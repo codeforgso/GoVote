@@ -22,7 +22,6 @@ class WhereAndWhen extends React.Component {
     }
 
     const precinctDesc = voter.precinct_desc;
-    // const url = `http://gis.co.guilford.nc.us/arcgis/rest/services/Elections/Elections/MapServer/0/query?where=UPPER(PRECINCT)%20like%20%27%25${precinctDesc}%25%27&outFields=*&outSR=4326&f=json`;
     const url = `http://gis.guilfordcountync.gov/arcgis/rest/services/Elections/Elections/MapServer/0/query?where=UPPER(PRECINCT)%20like%20%27%25${precinctDesc}%25%27&outFields=*&outSR=4326&f=json`;
 
     this.setState({ isLoading: true });
