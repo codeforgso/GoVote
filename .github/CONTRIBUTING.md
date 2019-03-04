@@ -34,6 +34,17 @@ The project uses [ReactJS](https://reactjs.org/) as a UI library, and the server
 
 All of the client-side React code lives in the `/src` directory of the project, while the server code is located in `/server`.
 
+The client-side code includes use of Google Maps JavaScript API and the GeoCoding API. 
+
+1. Use of these API's requires a Google API key.See https://developers.google.com/maps/documentation/embed/get-api-key for information on obtaining a key.
+
+1. Once you have your API key, we suggest you:
+    1. go to https://console.cloud.google.com
+    1. add an Application Restriction for HTTP referrers for your site or Localhost:3000
+    1. add API Restrictions allowing only the JavaScript and Geocoding API's
+
+1. Your Google API key must be provided in the env file (found in the project root directory) in a variable named REACT_APP_GOOGLEMAPAPIKEY. Do not add any quotes around the key ( example: REACT_APP_GOOGLEMAPAPIKEY = 12345abcd ).
+
 ### Bug Fixes
 
 #### **Did you find a bug?**
