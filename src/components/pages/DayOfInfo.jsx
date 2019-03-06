@@ -7,7 +7,7 @@ const DayOfInfo = () => (
     <h2>What to Expect</h2>
     <h2>How to Report Issues With Your Polling Place</h2>
     <h2>Polling Place</h2>
-    <Link to="/where-and-when"><p>Look Up Your Polling</p></Link>
+    <Link to="/where-and-when"><p>Look Up Your Polling Place</p></Link>
   </div>
   );
 
