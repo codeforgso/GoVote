@@ -4,32 +4,76 @@
 
 We are glad you are here. We need volunteer developers to help this project come to fruition. Contributors of all skill levels are encouraged to get involved! All contributions are subject to our [Code of Conduct](./CODE_OF_CONDUCT.md).
 
-## Development
-The GoVote project uses [Docker](https://docs.docker.com/install/) and [docker-compose](https://docs.docker.com/compose/install/). You will need to install both to properly run the project.
+## Getting Started
 
-### Getting Started
 In order to get the project running on your local machine, you must first [fork](https://help.github.com/articles/fork-a-repo/) the project to your GitHub account.
 
 Having done that, you can now clone the git repository from your profile:
-```
-$ git clone https://github.com/<YOUR_GITHUB_USERNAME>/GoVote.git
+
+```sh
+git clone https://github.com/<YOUR_GITHUB_USERNAME>/GoVote.git
 ```
 
 This will create a new directory on your machine called "GoVote", that you should then `cd` into.
-```
-$ cd GoVote
+
+```sh
+cd GoVote
 ```
 
 The project has been properly cloned at this point, and it is time to get it up and running. Run the following commands to build the govote image, create and seed the database, and start the containers.
-``` bash
+
+## Development
+
+### Run the project with Docker & Docker-Compose
+
+>Recommended for Mac, Linux and Windows 10 Pro users
+
+The GoVote project uses [Docker](https://docs.docker.com/install/) and [docker-compose](https://docs.docker.com/compose/install/). You will need to install both to properly run the project.
+
+#### Install Docker
+
+- [Mac](https://docs.docker.com/docker-for-mac/install/)
+- [Windows 10 Pro](https://docs.docker.com/docker-for-windows/install/)
+- [Ubuntu/Linux](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+  - [Install Docker-Compose](https://docs.docker.com/compose/install/)
+- [Windows 10 Home Edition](https://docs.docker.com/toolbox/overview/)
+
+#### Running the project
+
+After cloning the project and installing Docker/Docker-Compose, run the following commands in a terminal
+
+```sh
 docker-compose build
 docker-compose up -d # Starts the database and server in the background. Access the app at http://localhost:3000
 docker-compose exec govote node ./bin/create-tables.js # Creates the database tables
 docker-compose exec govote node ./bin/etl.js # Seeds the database
 ```
+
 To stop the project run `docker-compose stop`
 
+### Run the project with NodeJS
+
+- Install NodeJS if you do not already have it
+  - Mac/Linux use [Node Version Manager](https://github.com/creationix/nvm)
+  - Windows see [here](https://nodejs.org/en/download/)
+- Create a file called `.env` in the root of the project. The file should have the following keys
+  - The values should all point to a valid postgres database
+
+```sh
+DB_HOST=
+DB_NAME=
+DB_TABLE=
+DB_USER=
+DB_PASS=
+DB_PORT=
+```
+
+- Run `npm install`
+- Run `npm start`
+- To stop the project press `ctrl+c` in your terminal
+
 ### Project Details
+
 The project uses [ReactJS](https://reactjs.org/) as a UI library, and the server runs on NodeJS utilizing the [Express](https://expressjs.com/) framework. Our code linting is done with [ESLint](https://eslint.org/), and if you have followed the Getting Started steps, any linting errors should be present in your console. Please confirm that all linter errors are resolved before [Creating a Pull Request](https://help.github.com/articles/creating-a-pull-request/).
 
 All of the client-side React code lives in the `/src` directory of the project, while the server code is located in `/server`.
@@ -71,6 +115,7 @@ Follow the [Issue template](./ISSUE_TEMPLATE.md) and be sure to include as much 
 * Ask any question about the project or contributing by [opening a new issue](https://github.com/codeforgso/GoVote/issues/new) and labeling it as a question.
 
 ## Thank You!
+
 The GoVote project is a volunteer effort. We encourage you to pitch in!
 
 The Code for Greensboro Team
