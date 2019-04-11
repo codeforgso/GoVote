@@ -87,7 +87,7 @@ The client-side code includes use of Google Maps JavaScript API and the GeoCodin
     1. add an Application Restriction for HTTP referrers for your site or Localhost:3000
     1. add API Restrictions allowing only the JavaScript and Geocoding API's
 
-1. Your Google API key must be provided in the env file (found in the project root directory) in a variable named REACT_APP_GOOGLEMAPAPIKEY. Do not add any quotes around the key ( example: REACT_APP_GOOGLEMAPAPIKEY = 12345abcd ).
+1. Your Google API key must be provided in the env file (found in the project root directory) in a variable named REACT_APP_GOOGLEMAPAPIKEY. Do not add any quotes around the key ( example: REACT_APP_GOOGLEMAPAPIKEY=12345abcd ).
 
 ### Bug Fixes
 
