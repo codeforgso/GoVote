@@ -1,15 +1,8 @@
 import axios from 'axios';
 
 export function getVoterInfo(firstName, lastName) {
-  // TODO: pick up here. 
-  // Move client to GoVote project
-  // Resturcutre server code
-  // Follow this: https://medium.freecodecamp.org/how-to-make-create-react-app-work-with-a-node-backend-api-7c5c48acb1b0
-  return axios.get(`${process.env.REACT_APP_API_URL}/api/${firstName}/${lastName}`)
-    .then(({data}) => {
-      console.log(data, 'voter data')
-      return data
-    })
+  return axios.get(`/api/${firstName}/${lastName}`)
+    .then(({data}) => data)
     .catch(e => {
       console.log(e) // eslint-disable-line no-console
     });
