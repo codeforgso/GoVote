@@ -2,7 +2,6 @@
   "name": "govote",
   "version": "0.0.1",
   "private": true,
-  "proxy": "http://localhost:3001",
   "dependencies": {
     "axios": "^0.16.2",
     "body-parser": "^1.18.3",
@@ -16,18 +15,12 @@
     "unzip": "^0.1.11"
   },
   "scripts": {
-    "start": "concurrently \"node scripts/start.js\" \"babel-node server/server.js\"",
-    "build": "npm run build:client && npm run build:server",
-    "build:client": "node scripts/build.js",
-    "build:server": "NODE_ENV=production webpack --config config/webpackProdServer.config.js",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "server": "nodemon server/server.js",
+    "client": "cd client && npm start",
     "test": "node scripts/test.js --env=jsdom",
     "lint": "eslint src/**/*.jsx",
-    "etl": "NODE_ENV=development node bin/etl.js",
-    "docker:build": "docker-compose build",
-    "docker:createTables": "docker-compose exec govote node ./bin/create-tables.js",
-    "docker:seed": "docker-compose exec govote node ./bin/etl.js",
-    "docker:dev": "docker-compose up -d",
-    "docker:stop": "docker-compose stop"
+    "etl": "NODE_ENV=development node bin/etl.js"
   },
   "devDependencies": {
     "concurrently": "^3.1.0"

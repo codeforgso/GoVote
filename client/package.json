@@ -2,12 +2,10 @@
   "name": "tmp-react-project",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "axios": "^0.18.0",
-    "eslint": "^5.16.0",
-    "eslint-loader": "^1.9.0",
     "esri-leaflet-geocoder": "^2.2.6",
-    "jest": "^21.1.0",
     "leaflet": "^1.4.0",
     "leaflet-geosearch": "^2.7.0",
     "postcss-flexbugs-fixes": "^3.2.0",
