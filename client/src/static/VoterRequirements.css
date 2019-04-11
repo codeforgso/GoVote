@@ -1,0 +1,12 @@
+.VoterRequirements {
+	padding: 5px;
+}
+
+.horizontal-center {
+	display: block;
+	margin: 0 auto;
+}
+
+.text-large {
+	font-size: 1.2em;
+}
