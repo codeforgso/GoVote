@@ -12,7 +12,7 @@ const client = new Client({
 
 client.connect();
 
-const query = `CREATE TABLE guilfordvoters (
+const query = `CREATE TABLE ${process.env.DB_TABLE} (
   county_id                TEXT,
   county_desc              TEXT,
   voter_reg_num            TEXT NOT NULL
