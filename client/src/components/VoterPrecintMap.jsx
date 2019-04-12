@@ -63,11 +63,12 @@ class GoogleMap extends React.Component {
       });
 
       // get the geocode for the voter residence and use it to add marker on the map
-      this.state.voterAddressLookup = `${JSON.parse(this.props.voterAddress).res_street_address}, ${JSON.parse(this.props.voterAddress).res_city_desc}, ${JSON.parse(this.props.voterAddress).state_cd}`;
+      this.setState({voterAddressLookup: `${JSON.parse(this.props.voterAddress).res_street_address}, ${JSON.parse(this.props.voterAddress).res_city_desc}, ${JSON.parse(this.props.voterAddress).state_cd}`
+      });
       this.geocoder = new window.google.maps.Geocoder();
       this.geocoder.geocode({ address: this.state.voterAddressLookup }, (results, status) => {
         if (status === 'OK') {
-          this.state.voterResidenceGeocode = results[0].geometry.location;
+          this.setState({ voterResidenceGeocode: results[0].geometry.location });
           this.voterResidenceMarker = new window.google.maps.Marker({
             position: results[0].geometry.location,
             map: this.map,

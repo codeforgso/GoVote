@@ -16,7 +16,7 @@ const VoterRequirements = () => (
       <li>Must be a citizen of the United States.</li>
       <li>Must live in the county of his/her registration, and have resided there for at least 30 days prior to the date of the election.</li>
       <li>Must be at least 18 years old. A prospective voter can submit a registration form up to two years before his/her 18th birthday, if and only if he/she will be 18 at the time of the next general election.</li>
-      <li>Must not be serving a sentence for a felony conviction (including probation or parole). If a prospective voter has previously been convicted of a felony, his/her citizenship rights must be restored. <a target="_blank" href="https://www.ncsbe.gov/Portals/0/Documents/VotingRightsGuide_CriminalJusticeSystem.pdf">For more information on voting rights for those in the North Carolina criminal justice system, click here.</a></li>
+      <li>Must not be serving a sentence for a felony conviction (including probation or parole). If a prospective voter has previously been convicted of a felony, his/her citizenship rights must be restored. <a target="_blank"  rel="noopener noreferrer" href="https://www.ncsbe.gov/Portals/0/Documents/VotingRightsGuide_CriminalJusticeSystem.pdf">For more information on voting rights for those in the North Carolina criminal justice system, click here.</a></li>
       <li>Must rescind any previous registration in any other county or state.</li>
     </ul>
     <h2 className="VoterRequirements-heading">Step 2: Register to Vote</h2>

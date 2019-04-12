@@ -82,6 +82,7 @@ export default class WhereAndWhen extends React.Component {
                 target="_blank"
                 href={this._createVoterPrecintMapsLink(pollingPlace.address)}
                 title="View on Google Maps"
+                rel="noopener noreferrer"
               >
                 {pollingPlace.address}
               </a>
