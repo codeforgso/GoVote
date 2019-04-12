@@ -9,7 +9,9 @@
   "scripts": {
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "server": "cd server && nodemon server/server.js",
-    "client": "cd client && npm start"
+    "client": "cd client && npm start",
+    "docker:create-tables": "docker-compose exec govote-server node ./bin/create-tables.js",
+    "docker:etl": "docker-compose exec govote-server node ./bin/etl.js"
   },
   "devDependencies": {
     "concurrently": "^3.1.0"
