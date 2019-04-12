@@ -3,25 +3,13 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "axios": "^0.16.2",
-    "body-parser": "^1.18.3",
-    "dotenv": "^4.0.0",
-    "express": "^4.16.3",
-    "express-promise-router": "^2.0.0",
-    "nodemon": "^1.18.11",
-    "pg": "^7.1.0",
-    "pg-copy-streams": "^1.2.0",
-    "pg-query-stream": "^1.1.1",
-    "request": "^2.88.0",
-    "unzip": "^0.1.11"
+    "govote-frontend": "file:client",
+    "govote-server": "file:server"
   },
   "scripts": {
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-    "server": "nodemon server/server.js",
-    "client": "cd client && npm start",
-    "test": "node scripts/test.js --env=jsdom",
-    "lint": "eslint src/**/*.jsx",
-    "etl": "NODE_ENV=development node bin/etl.js"
+    "server": "cd server && nodemon server/server.js",
+    "client": "cd client && npm start"
   },
   "devDependencies": {
     "concurrently": "^3.1.0"
