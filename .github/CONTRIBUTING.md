@@ -42,10 +42,6 @@ The GoVote project uses [Docker](https://docs.docker.com/install/) and [docker-c
 
 After cloning the project and installing Docker/Docker-Compose, run the following commands in a terminal
 
-<!-- Create sample.env in project root. Use this for docker db variables -->
-<!-- Create sample.env in client. Use this for other db variables -->
-<!-- Document both behaviors -->
-
 ```sh
 cp sample.env .env # Copy the sample.env to .env. The file has already been filled with default values
 docker-compose build
