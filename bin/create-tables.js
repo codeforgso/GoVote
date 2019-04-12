@@ -1,5 +1,12 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
+// allow script to be run standalone with arg = manual  using .env parameters in local directory
+if (process.argv[2] === 'manual') {
+  // eslint-disable-next-line global-require
+  require('dotenv').config({ path: './manual_env/.env' });
+
+}
+
 const Client = require('pg').Client;
 
 const client = new Client({
@@ -7,12 +14,20 @@ const client = new Client({
   host: process.env.DB_HOST,
   database: process.env.DB_NAME,
   password: process.env.DB_PASS,
-  port: process.env.DB_PORT
+  port: process.env.DB_PORT,
 });
 
 client.connect();
 
-const query = `CREATE TABLE guilfordvoters (
+// attempt to drop the table before creating itg
+// eslint-disable-next-line quotes
+const dropTableQuery = `DROP TABLE IF EXISTS ${process.env.DB_TABLE}`;
+
+client.query(dropTableQuery)
+  .then(res => console.log(res))
+  .catch(error => console.log('Drop Table error:', error));
+
+const query = `CREATE TABLE ${process.env.DB_TABLE} (
   county_id                TEXT,
   county_desc              TEXT,
   voter_reg_num            TEXT NOT NULL

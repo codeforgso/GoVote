@@ -9,7 +9,7 @@ const app = express();
 const router = new Router();
 
 if (process.env.NODE_ENV !== 'production') {
-  dotenv.config();
+  dotenv.config({ path: './manual_env/.env' });
 }
 
 if (process.env.NODE_ENV === 'production') {
