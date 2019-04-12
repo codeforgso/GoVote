@@ -1,7 +1,6 @@
 version: '3'
 services:
   db:
-    restart: always
     image: postgres:10.3
     environment:
       - POSTGRES_USER=govoteuser
@@ -9,13 +8,16 @@ services:
       - POSTGRES_DB=GoVoteGSO
     ports:
       - 9001:5432
-  govote:
-    restart: always
-    build: .
+  govote-server:
+    build: './server'
+    container_name: govote-server
     ports:
-      - 3000:3000
+      - 3001:3001
+    expose:
+      - "3001"
     volumes:
-      - .:/opt/app
+      - './server:/usr/src/app'
+      - '/usr/src/app/node_modules'
     environment:
       - DB_HOST=db
       - DB_NAME=GoVoteGSO
@@ -24,3 +26,15 @@ services:
       - DB_PORT=5432
       - DB_TABLE=guilfordvoters
       - NODE_ENV=development
+    depends_on:
+      - db
+  govote-client:
+    build: './client'
+    container_name: govote-client
+    ports:
+      - 3000:3000
+    volumes:
+      - './client:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    environment:
+      - API_PROXY=http://govote-server:3001
