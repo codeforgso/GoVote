@@ -69,7 +69,10 @@ The project uses [ReactJS](https://reactjs.org/) as a UI library, and the server
 
 All of the client-side React code lives in the `/client` directory of the project, while the server code is located in `/server`.
 
-The client-side code includes use of Google Maps JavaScript API and the GeoCoding API. 
+The client-side code includes use of Google Maps JavaScript API and the GeoCoding API.
+
+The client-side proxies API request to be backend. This prevents CORS errors during development. The default location is defined in the `package.json` as `http://localhost:3001`.  
+The proxy location can be overridden by setting the `API_PROXY` environment variable. For example `API_PROXY=http://localhost:8000 npm start`
 
 1. Use of these API's requires a Google API key.See https://developers.google.com/maps/documentation/embed/get-api-key for information on obtaining a key.
 
