@@ -1,9 +1,8 @@
 /* eslint no-console: 0 */
-import express from 'express';
-import { Client } from 'pg';
-import Router from 'express-promise-router';
-import 'babel-polyfill';
-import dotenv from 'dotenv';
+const express = require('express');
+const { Client } = require('pg');
+const Router = require('express-promise-router')
+const dotenv = require('dotenv');
 
 const app = express();
 const router = new Router();
