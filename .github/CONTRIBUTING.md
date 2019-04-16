@@ -52,25 +52,91 @@ docker-compose exec govote node ./bin/etl.js # Seeds the database
 To stop the project run `docker-compose stop`
 
 ### Run the project with NodeJS
+1. Install NodeJS if you do not already have it
 
-- Install NodeJS if you do not already have it
-  - Mac/Linux use [Node Version Manager](https://github.com/creationix/nvm)
-  - Windows see [here](https://nodejs.org/en/download/)
-- Create a file called `.env` in the root of the project. The file should have the following keys
-  - The values should all point to a valid postgres database
+    - Mac/Linux use [Node Version Manager](https://github.com/creationix/nvm)
+    - Windows see [here](https://nodejs.org/en/download/)
 
-```sh
-DB_HOST=
-DB_NAME=
-DB_TABLE=
-DB_USER=
-DB_PASS=
-DB_PORT=
-```
+1. Install Postgresql
 
-- Run `npm install`
-- Run `npm start`
-- To stop the project press `ctrl+c` in your terminal
+    - Postgresql is a database system. This app uses Postgesql to store voter data. When running the app using Node, you have to have a local Postgresql database that will get loaded with the voter data.
+    - Postgresql downloads can be found here: https://www.postgresql.org/download/
+    - For Windows and Mac, use the "Interactive Installer by Enterprise DB" after selecting your OS
+    - Note that the default user and database postgres is assumed for this project. If you provided a password for postgres during the installation, you need to provide the password in DB_PASS in the next step. If you are comfortable with postgresql and want to create your out database/user/table, feel free to do so, just be sure the make the appropriate changes in the net step.
+
+1. Create a file called `.env` in the root of the project. The file should contain the following:
+
+    ```sh
+    REACT_APP_GOOGLEMAPAPIKEY=AIzaSyC_jVntO1agQ5gRABrvZfSkjMy6pvXXNzI
+    DB_HOST=localhost
+    DB_PORT=5432
+    DB_NAME=postgres
+    DB_TABLE=guilfordvoters
+    DB_USER=postgres
+    DB_PASS=
+    ```
+
+1. Open a terminal session at the root of your project and perform the following to initialize and start the application:
+
+    1. Start the postgresql database:
+
+        Windows
+
+        ```sh
+        pg_ctl -D "C:\Program Files\PostgreSQL\11\data" start
+        ```
+
+        Mac
+
+        ```sh
+        pg_ctl -D /usr/local/var/postgres start
+        ```
+
+    1. Create the application table(s) in Postgresql.
+
+        ```sh
+        node ./bin/create-tables.js manual
+        ```
+
+    1. Load data into the table(s) in Postgresql
+
+        ```sh
+        node ./bin/etl.js manual
+        ```
+
+    1. Update your application with all the required node modules
+
+        ```sh
+        npm install
+        ```
+
+    1. Start the application
+
+        ```sh
+        npm start
+        ```
+
+1. Open a browser and go to http://localhost:3000
+
+1. To stop the application, from the terminal session where 'npm start' was run
+
+    ```sh
+    Ctrl+c
+    ```
+
+1. To stop the database server, from a terminal session at the root of the project
+
+    Windows
+
+        ```sh
+        pg_ctl -D "C:\Program Files\PostgreSQL\11\data" stop
+        ```
+
+    Mac
+
+        ```sh
+        pg_ctl -D /usr/local/var/postgres stop
+        ```
 
 ### Project Details
 

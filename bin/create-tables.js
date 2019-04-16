@@ -3,8 +3,7 @@
 // allow script to be run standalone with arg = manual  using .env parameters in local directory
 if (process.argv[2] === 'manual') {
   // eslint-disable-next-line global-require
-  require('dotenv').config({ path: './manual_env/.env' });
-
+  require('dotenv').config();
 }
 
 const Client = require('pg').Client;
