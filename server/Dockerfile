@@ -13,6 +13,6 @@ COPY package.json /usr/src/app/package.json
 RUN npm install
 
 # start app
-CMD ["npm", "start:dev"]
+CMD ["npm", "run", "start:dev"]
 
 # Copied from: https://mherman.org/blog/dockerizing-a-react-app/
