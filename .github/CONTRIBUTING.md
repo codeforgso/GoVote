@@ -43,10 +43,11 @@ The GoVote project uses [Docker](https://docs.docker.com/install/) and [docker-c
 After cloning the project and installing Docker/Docker-Compose, run the following commands in a terminal
 
 ```sh
+cp sample.env .env # Copy the sample.env to .env. The file has already been filled with default values
 docker-compose build
 docker-compose up -d # Starts the database and server in the background. Access the app at http://localhost:3000
-docker-compose exec govote node ./bin/create-tables.js # Creates the database tables
-docker-compose exec govote node ./bin/etl.js # Seeds the database
+npm run docker:create-tables # Creates the database tables
+npm run docker:etl # Loads the board of elections data into the database
 ```
 
 To stop the project run `docker-compose stop`
@@ -142,9 +143,12 @@ To stop the project run `docker-compose stop`
 
 The project uses [ReactJS](https://reactjs.org/) as a UI library, and the server runs on NodeJS utilizing the [Express](https://expressjs.com/) framework. Our code linting is done with [ESLint](https://eslint.org/), and if you have followed the Getting Started steps, any linting errors should be present in your console. Please confirm that all linter errors are resolved before [Creating a Pull Request](https://help.github.com/articles/creating-a-pull-request/).
 
-All of the client-side React code lives in the `/src` directory of the project, while the server code is located in `/server`.
+All of the client-side React code lives in the `/client` directory of the project, while the server code is located in `/server`.
 
-The client-side code includes use of Google Maps JavaScript API and the GeoCoding API. 
+The client-side code includes use of Google Maps JavaScript API and the GeoCoding API.
+
+The client-side proxies API request to be backend. This prevents CORS errors during development. The default location is defined in the `package.json` as `http://localhost:3001`.  
+The proxy location can be overridden by setting the `API_PROXY` environment variable. For example `API_PROXY=http://localhost:8000 npm start`
 
 1. Use of these API's requires a Google API key.See https://developers.google.com/maps/documentation/embed/get-api-key for information on obtaining a key.
 
@@ -159,26 +163,26 @@ The client-side code includes use of Google Maps JavaScript API and the GeoCodin
 
 #### **Did you find a bug?**
 
-* **Ensure the bug was not already reported** by searching on GitHub under [Issues](https://github.com/codeforgso/GoVote/issues/new).
+- **Ensure the bug was not already reported** by searching on GitHub under [Issues](https://github.com/codeforgso/GoVote/issues/new).
 
-* If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/codeforgso/GoVote/issues/new).
+- If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/codeforgso/GoVote/issues/new).
 Follow the [Issue template](./ISSUE_TEMPLATE.md) and be sure to include as much information as possible in the bug section of the issue template. Required information for reported bugs include: **Expected Behavior**, **Current Behavior**, **Possible Solution**, and **Steps to Reproduce**.
 
 #### **Did you write a patch that fixes a bug?**
 
-* Open a new GitHub pull request with the patch.
+- Open a new GitHub pull request with the patch.
 
-* Ensure the PR description clearly describes the problem and solution. Include the relevant issue number if applicable.
+- Ensure the PR description clearly describes the problem and solution. Include the relevant issue number if applicable.
 
-* Fill out the information requested in the [Pull Request Template](./PULL_REQUEST_TEMPLATE.md) to the best extent possible.
+- Fill out the information requested in the [Pull Request Template](./PULL_REQUEST_TEMPLATE.md) to the best extent possible.
 
 #### **Do you want to add a new feature or change an existing one?**
 
-* Suggest and [discuss your change in a new issue](https://github.com/codeforgso/GoVote/issues/new) using the the **feature discussion** section of the issue template. Gennerally, it is a good idea to discuss a path forward relating to a proposed, or existing feature change prior to submitting a pull request to avoid a rejected contribution.
+- Suggest and [discuss your change in a new issue](https://github.com/codeforgso/GoVote/issues/new) using the the **feature discussion** section of the issue template. Gennerally, it is a good idea to discuss a path forward relating to a proposed, or existing feature change prior to submitting a pull request to avoid a rejected contribution.
 
 #### **Do you have questions about the source code?**
 
-* Ask any question about the project or contributing by [opening a new issue](https://github.com/codeforgso/GoVote/issues/new) and labeling it as a question.
+- Ask any question about the project or contributing by [opening a new issue](https://github.com/codeforgso/GoVote/issues/new) and labeling it as a question.
 
 ## Thank You!
 
