@@ -7,7 +7,7 @@ if (process.argv[2] === 'manual') {
 }
 
 const Client = require('pg').Client;
-
+console.log(`process.env: ${JSON.stringify(process.env)}`);
 const client = new Client({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
