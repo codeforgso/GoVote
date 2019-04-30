@@ -8,9 +8,8 @@ const app = express();
 const router = new Router();
 
 if (process.env.NODE_ENV !== 'production') {
-  dotenv.config();
+  dotenv.config({ path: '../.env' })
 }
-console.log(`server.js: ${process.env}`);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('./'));
@@ -18,7 +17,7 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile('./index.html');
   });
 }
-
+console.log(`node_env: ${process.env.NODE_ENV}`)
 app.set('port', (process.env.PORT || 3001));
 
 const client = new Client({

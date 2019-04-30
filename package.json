@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "dotenv": "^7.0.0",
     "govote-frontend": "file:client",
     "govote-server": "file:server"
   },

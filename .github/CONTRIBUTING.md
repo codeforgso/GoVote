@@ -44,6 +44,7 @@ After cloning the project and installing Docker/Docker-Compose, run the followin
 
 ```sh
 cp sample.env .env # Copy the sample.env to .env. The file has already been filled with default values
+docker-compose down -v  # forces the stop and removal of containers that may have been previously built
 docker-compose build
 docker-compose up -d # Starts the database and server in the background. Access the app at http://localhost:3000
 npm run docker:create-tables # Creates the database tables
@@ -51,6 +52,8 @@ npm run docker:etl # Loads the board of elections data into the database
 ```
 
 To stop the project run `docker-compose stop`
+
+
 
 ### Run the project with NodeJS
 1. Install NodeJS if you do not already have it
@@ -61,9 +64,13 @@ To stop the project run `docker-compose stop`
 1. Install Postgresql
 
     - Postgresql is a database system. This app uses Postgesql to store voter data. When running the app using Node, you have to have a local Postgresql database that will get loaded with the voter data.
-    - Postgresql downloads can be found here: https://www.postgresql.org/download/
-    - For Windows and Mac, use the "Interactive Installer by Enterprise DB" after selecting your OS
-    - Note that the default user and database postgres is assumed for this project. If you provided a password for postgres during the installation, you need to provide the password in DB_PASS in the next step. If you are comfortable with postgresql and want to create your out database/user/table, feel free to do so, just be sure the make the appropriate changes in the net step.
+    - MAC: the easist way to install Postgresql is with homebrew using the command below. It can also be downloaded from https://www.postgresql.org/download/, however, you will need to change your PATH.
+        ```sh
+        brew install postgresql
+        ```
+    - Windows: Postgresql downloads can be found here: https://www.postgresql.org/download/
+        - use the "Interactive Installer by Enterprise DB" after selecting your OS
+    - Note that the default user "postgres" and database "postgres" is assumed for this project. If you provided a password for postgres during the installation, you need to provide the password in DB_PASS in the next step. If you are comfortable with postgresql and want to create your out database/user/table, feel free to do so, just be sure the make the appropriate changes in the net step.
 
 1. Create a file called `.env` in the root of the project. The file should contain the following:
 
@@ -96,13 +103,13 @@ To stop the project run `docker-compose stop`
     1. Create the application table(s) in Postgresql.
 
         ```sh
-        node ./bin/create-tables.js manual
+        node ./server/bin/create-tables.js manual
         ```
 
     1. Load data into the table(s) in Postgresql
 
         ```sh
-        node ./bin/etl.js manual
+        node ./server/bin/etl.js manual
         ```
 
     1. Update your application with all the required node modules
