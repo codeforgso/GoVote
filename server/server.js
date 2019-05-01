@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile('./index.html');
   });
 }
-console.log(`node_env: ${process.env.NODE_ENV}`)
+
 app.set('port', (process.env.PORT || 3001));
 
 const client = new Client({
