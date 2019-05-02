@@ -64,10 +64,12 @@ To stop the project run `docker-compose stop`
 1. Install Postgresql
 
     - Postgresql is a database system. This app uses Postgesql to store voter data. When running the app using Node, you have to have a local Postgresql database that will get loaded with the voter data.
-    - MAC: the easist way to install Postgresql is with homebrew using the command below. It can also be downloaded from https://www.postgresql.org/download/, however, you will need to change your PATH.
+    - MAC: the easist way to install Postgresql is with homebrew using the command below. It can also be downloaded from <https://www.postgresql.org/download/,> however, you will need to change your PATH.
+
         ```sh
         brew install postgresql
         ```
+
     - Windows: Postgresql downloads can be found here: https://www.postgresql.org/download/
         - use the "Interactive Installer by Enterprise DB" after selecting your OS
     - Note that the default user "postgres" and database "postgres" is assumed for this project. If you provided a password for postgres during the installation, you need to provide the password in DB_PASS in the next step. If you are comfortable with postgresql and want to create your out database/user/table, feel free to do so, just be sure the make the appropriate changes in the net step.
@@ -86,33 +88,21 @@ To stop the project run `docker-compose stop`
 
 1. Open a terminal session at the root of your project and perform the following to initialize and start the application:
 
-    1. Start the postgresql database:
+    1. Start the postgresql database and load voter data to it:
 
         Windows
 
         ```sh
-        pg_ctl -D "C:\Program Files\PostgreSQL\11\data" start
+        npm run loadDataWin
         ```
 
         Mac
 
         ```sh
-        pg_ctl -D /usr/local/var/postgres start
+        npm run loadDataMac
         ```
 
-    1. Create the application table(s) in Postgresql.
-
-        ```sh
-        node ./server/bin/create-tables.js manual
-        ```
-
-    1. Load data into the table(s) in Postgresql
-
-        ```sh
-        node ./server/bin/etl.js manual
-        ```
-
-    1. Update your application with all the required node modules
+    1. Update your application with all the required node modules. Normally, this only needs to be one time.
 
         ```sh
         npm install
