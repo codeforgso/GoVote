@@ -16,7 +16,7 @@ class GoogleMap extends React.Component {
   componentDidMount() {
 
     // this logic is used to prevent the script for maps.googleapis from having to be in index.html
-    // and having the api key exposed in index.html
+    // and having the api key exposed there
     // this method allows the key to be stored in an .env file and the script tag added to the DOM when needed
     const GoogleMapAPIKey = process.env.REACT_APP_GOOGLEMAPAPIKEY;
     // if GoogleMapAPIKey not provided, then no map
