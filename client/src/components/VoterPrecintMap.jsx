@@ -14,11 +14,13 @@ class GoogleMap extends React.Component {
   }
 
   componentDidMount() {
+
+    // this logic is used to prevent the script for maps.googleapis from having to be in index.html
+    // and having the api key exposed there
+    // this method allows the key to be stored in an .env file and the script tag added to the DOM when needed
     const GoogleMapAPIKey = process.env.REACT_APP_GOOGLEMAPAPIKEY;
     // if GoogleMapAPIKey not provided, then no map
-    if (GoogleMapAPIKey && !this.state.mapIsReady) {
-       // eslint-disable-next-line no-console
-      console.log(`in google api create script ${this.state.mapIsReady}`);
+    if (GoogleMapAPIKey) {
       const script = document.createElement('script');
       script.src = `https://maps.googleapis.com/maps/api/js?key=${GoogleMapAPIKey}`;
       script.async = true;
@@ -27,8 +29,12 @@ class GoogleMap extends React.Component {
         this.setState({ mapIsReady: true });
       });
 
-      document.body.appendChild(script);
-    }
+      // only load the script one time
+      this.loadedScript = Array.from(document.body.getElementsByTagName('script')).includes(script);
+      if (!this.loadedScript) {
+        document.body.appendChild(script);
+      };
+    };
   }
 
   componentDidUpdate() {
@@ -54,21 +60,21 @@ class GoogleMap extends React.Component {
         },
       });
       // create event to display address on mouseover of the voter polling place
-      window.google.maps.event.addListener(this.voteHereMarker, 'mouseover', () => {
+      this.mapsEvent = window.google.maps.event;
+      this.mapsEvent.addListener(this.voteHereMarker, 'mouseover', () => {
         this.infoWindow.setContent(`<p>${this.props.pollingPlaceName}</p><p>${this.props.pollingPlaceAddress}</p>`);
         this.infoWindow.open(this.map, this.voteHereMarker);
       });
-      window.google.maps.event.addListener(this.voteHereMarker, 'mouseout', () => {
+      this.mapsEvent.addListener(this.voteHereMarker, 'mouseout', () => {
         this.infoWindow.close(this.map, this.voteHereMarker);
       });
 
       // get the geocode for the voter residence and use it to add marker on the map
-      this.setState({voterAddressLookup: `${JSON.parse(this.props.voterAddress).res_street_address}, ${JSON.parse(this.props.voterAddress).res_city_desc}, ${JSON.parse(this.props.voterAddress).state_cd}`
-      });
+      this.voterAddressLookup = `${JSON.parse(this.props.voterAddress).res_street_address},${JSON.parse(this.props.voterAddress).res_city_desc} ${JSON.parse(this.props.voterAddress).state_cd}`;
       this.geocoder = new window.google.maps.Geocoder();
-      this.geocoder.geocode({ address: this.state.voterAddressLookup }, (results, status) => {
+      this.geocoder.geocode({ address: this.voterAddressLookup }, (results, status) => {
         if (status === 'OK') {
-          this.setState({ voterResidenceGeocode: results[0].geometry.location });
+          this.voterResidenceGeocode = results[0].geometry.location;
           this.voterResidenceMarker = new window.google.maps.Marker({
             position: results[0].geometry.location,
             map: this.map,
@@ -78,28 +84,17 @@ class GoogleMap extends React.Component {
             },
           });
           // create event to display address on mouseover of the voter residence
-          window.google.maps.event.addListener(this.voterResidenceMarker, 'mouseover', () => {
-            this.infoWindow.setContent(`<p>${this.state.voterAddressLookup}</p>`);
+          this.mapsEvent.addListener(this.voterResidenceMarker, 'mouseover', () => {
+            this.infoWindow.setContent(`<p>${this.voterAddressLookup}</p>`);
             this.infoWindow.open(this.map, this.voterResidenceMarker);
           });
-          window.google.maps.event.addListener(this.voterResidenceMarker, 'mouseout', () => {
+          this.mapsEvent.addListener(this.voterResidenceMarker, 'mouseout', () => {
             this.infoWindow.close(this.map, this.voterResidenceMarker);
           });
         } else {
           handleError(status);
         }
       });
-
-      // add directions on the map.
-      // there is no free tier for this service so the code is commented out for now
-      // *****************************
-      // this.directionsService = new window.google.maps.DirectionsService();
-      // this.directionsService.route({ origin: this.state.voterResidenceGeocode, destination: this.props.geocode, travelMode: 'DRIVING' }, (response, status) => {
-      //   if (status === 'OK') {
-      //     this.map.directionsDisplay.setDirections(response);
-      //   }
-      // });
-      // *****************************
     }
   }
 

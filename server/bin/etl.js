@@ -92,8 +92,8 @@ const addResidentAddressField = () => {
   UPDATE ${process.env.DB_TABLE} SET resident_address = regexp_replace(res_street_address, '\\s+', ' ', 'g');`);
 };
 
-const url = 'http://dl.ncsbe.gov/data/ncvoter41.zip';
-const fileName = 'ncvoter41'; // This is left as a variable so other groups can easily replace this name with the file name for their county
+const url = process.env.VOTER_URL;
+const fileName = url.split('/').pop().split('.').shift(); // assumes the filename includes an extension (voter.zip)
 const extractedFileName = `${fileName}.txt`; // I.E. ncvoter41.txt
 const extractedFileNameUtf8 = `${fileName}utf8.txt`; // I.E. // ncvoter41utf8.txt
 const zipFileName = `${fileName}.zip`; // I.E. ncvoter41.zip

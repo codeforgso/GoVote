@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "dotenv": "^7.0.0",
     "govote-frontend": "file:client",
     "govote-server": "file:server"
   },
@@ -11,7 +12,9 @@
     "server": "cd server && npm run start:dev",
     "client": "cd client && npm start",
     "docker:create-tables": "docker-compose exec govote-server node ./bin/create-tables.js",
-    "docker:etl": "docker-compose exec govote-server node ./bin/etl.js"
+    "docker:etl": "docker-compose exec govote-server node ./bin/etl.js",
+    "loadDataMac": "pg_ctl -D /usr/local/var/postgres stop ; pg_ctl -D /usr/local/var/postgres start && node ./server/bin/create-tables.js manual && node ./server/bin/etl.js manual",
+    "loadDataWin": "(pg_ctl -D \"C:/Program Files/PostgreSQL/11/data/\" stop || true ) && pg_ctl -D \"C:/Program Files/PostgreSQL/11/data\" start && node ./server/bin/create-tables.js manual && node ./server/bin/etl.js manual"
   },
   "devDependencies": {
     "concurrently": "^3.1.0"
