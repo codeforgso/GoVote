@@ -5,9 +5,9 @@ if (process.argv[2] === 'manual') {
   // eslint-disable-next-line global-require
   require('dotenv').config();
 }
- 
+
 const Client = require('pg').Client;
- 
+
 const client = new Client({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
@@ -15,24 +15,50 @@ const client = new Client({
   password: process.env.DB_PASS,
   port: process.env.DB_PORT,
 });
- 
+
+
+const voterTable = 'voters';
+const pollingTable = 'polling_places';
 
 client.connect();
- 
+
 // attempt to drop the table before creating itg
 // eslint-disable-next-line quotes
-const dropTableQuery = `DROP TABLE IF EXISTS ${process.env.DB_TABLE}`;
- 
+const dropTableQuery = `DROP TABLE IF EXISTS ${voterTable},${pollingTable}`;
+
 client.query(dropTableQuery)
   .then((res) => {
     console.log(res);
-    createTable(client);
+    createPollingTable(client);
   })
- .catch(error => console.log('Drop Table error:', error)
+  .catch(error => console.log('Drop Table error:', error)
   );
- 
-function createTable(useClient) {
-  const query = `CREATE TABLE ${process.env.DB_TABLE} (
+
+function createPollingTable(useClient) {
+  const query = `CREATE TABLE ${pollingTable} (
+      election_dt           TEXT,
+      county_id             TEXT,
+      county_name           TEXT,
+      polling_place_id      TEXT,
+      polling_place_name    TEXT,
+      precinct_name         TEXT,
+      house_num             TEXT,
+      street_name           TEXT,
+      city                  TEXT,
+      state                 TEXT,
+      zip                   TEXT
+    )`
+
+  useClient.query(query)
+    .then(res => {
+      console.log(`Create ${pollingTable}: ${JSON.stringify(res)}`);
+      createVoterTable(useClient);
+    })
+    .catch(error => console.log(`Create ${pollingTable} error:', ${error}`))
+};
+
+function createVoterTable(useClient) {
+  const query = `CREATE TABLE ${voterTable} (
   county_id                TEXT,
   county_desc              TEXT,
   voter_reg_num            TEXT NOT NULL
@@ -106,10 +132,9 @@ function createTable(useClient) {
   ncid                     TEXT,
   vtd_abbrv                TEXT,
   vtd_desc                 TEXT)`;
- 
+
   useClient.query(query)
-    .then(res => console.log(res))
-    .catch(error => console.log('Create tables error:', error))
+    .then(res => console.log(`Create ${voterTable}: ${JSON.stringify(res)}`))
+    .catch(error => console.log(`Create ${voterTable} error:', ${error}`))
     .then(() => client.end());
-}
- 
+};
