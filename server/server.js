@@ -33,12 +33,10 @@ client.connect();
 router.get('/api/:fn/:ln', async (req, res) => {
   const voterTable = 'voters';
   const pollingTable = 'polling_places'
-  // const query = `SELECT * FROM ${voterTable} WHERE voter_status_desc NOT LIKE 'REMOVED' and first_name ilike $1::text and last_name ilike $2::text`;
   const query = 
   `SELECT * FROM ${voterTable} 
   INNER JOIN ${pollingTable} ON ${voterTable}.precinct_abbrv = ${pollingTable}.precinct_name AND ${voterTable}.county_desc = ${pollingTable}.county_name
   WHERE voter_status_desc NOT LIKE 'REMOVED' and first_name ilike $1::text and last_name ilike $2::text`;
-  
   const { rows } = await client.query(query, [req.params.fn, req.params.ln]);
   res.send(rows);
 });
