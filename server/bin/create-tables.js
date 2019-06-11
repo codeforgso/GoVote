@@ -37,7 +37,6 @@ client.query(dropTableQuery)
 function createPollingTable(useClient) {
   const query = `CREATE TABLE ${pollingTable} (
       election_dt           TEXT,
-      county_id             TEXT,
       county_name           TEXT,
       polling_place_id      TEXT,
       polling_place_name    TEXT,
