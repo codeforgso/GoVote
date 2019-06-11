@@ -67,9 +67,9 @@ const convertToUtf8 = (fileName, utf8FileName) =>
       });
  });
 
-const pgCopyFromCsv = fileName => (new Promise((resolve, reject) => {
+const pgCopyFromCsv = (fileName, tableName) => (new Promise((resolve, reject) => {
   console.log('Copying CSV to database');
-  const stream = client.query(copyFrom(`COPY ${process.env.DB_TABLE} FROM STDIN with delimiter E'\\t' quote '"' csv HEADER`));
+  const stream = client.query(copyFrom(`COPY ${tableName} FROM STDIN with delimiter E'\\t' quote '"' csv HEADER`));
   const fileStream = fs.createReadStream(fileName);
   fileStream.on('error', (error) => {
     console.log(error);
@@ -92,12 +92,12 @@ const addResidentAddressField = () => {
   UPDATE ${process.env.DB_TABLE} SET resident_address = regexp_replace(res_street_address, '\\s+', ' ', 'g');`);
 };
 
-const url = process.env.VOTER_URL;
-const fileName = url.split('/').pop().split('.').shift(); // assumes the filename includes an extension (voter.zip)
-const extractedFileName = `${fileName}.txt`; // I.E. ncvoter41.txt
-const extractedFileNameUtf8 = `${fileName}utf8.txt`; // I.E. // ncvoter41utf8.txt
-const zipFileName = `${fileName}.zip`; // I.E. ncvoter41.zip
-const filePath = `${__dirname}/tmp`; // I.E. ./bin/tmp
+
+// const fileName = url.split('/').pop().split('.').shift(); // assumes the filename includes an extension (voter.zip)
+// const extractedFileName = `${fileName}.txt`; // I.E. ncvoter41.txt
+// const extractedFileNameUtf8 = `${fileName}utf8.txt`; // I.E. // ncvoter41utf8.txt
+// const zipFileName = `${fileName}.zip`; // I.E. ncvoter41.zip
+// const filePath = `${__dirname}/tmp`; // I.E. ./bin/tmp
 
 const client = new Client({
   user: process.env.DB_USER,
@@ -106,20 +106,55 @@ const client = new Client({
   password: process.env.DB_PASS,
   port: process.env.DB_PORT,
 });
+
 client.connect();
 
-(async () => {
+const filePath = `${__dirname}/tmp`; // I.E. ./bin/tmp
+const voterTable = 'voters';
+const pollingTable = 'polling_places';
+
+const voterETL = async () => {
+  console.log('Start Voter ETL')
+  const url = process.env.VOTER_URL;
+  const fileName = url.split('/').pop().split('.').shift(); // assumes the filename includes an extension (voter.zip)
+  const extractedFileName = `${fileName}.txt`; // I.E. ncvoter41.txt
+  const extractedFileNameUtf8 = `${fileName}utf8.txt`; // I.E. // ncvoter41utf8.txt
+  const zipFileName = `${fileName}.zip`; // I.E. ncvoter41.zip
+
   await downloadFile(url, `${filePath}/${zipFileName}`);
   await unzipFile(`${filePath}/${zipFileName}`, filePath);
   await convertToUtf8(`${filePath}/${extractedFileName}`, `${filePath}/${extractedFileNameUtf8}`);
-  await truncateTable();
+  await truncateTable(voterTable);
   await deleteResidentAddressField();
-  await pgCopyFromCsv(`${filePath}/${extractedFileNameUtf8}`);
+  await pgCopyFromCsv(`${filePath}/${extractedFileNameUtf8}`, voterTable);
   await addResidentAddressField();
-  console.log('Deleting files');
+
+  console.log('Deleting Voter ETL files');
   fs.unlinkSync(`${filePath}/${zipFileName}`);
   fs.unlinkSync(`${filePath}/${extractedFileName}`);
   fs.unlinkSync(`${filePath}/${extractedFileNameUtf8}`);
+  console.log('End Voter ETL')
+};
+
+const pollingPlaceETL = async () => {
+  console.log('Start Polling Place ETL')
+  const pollingFileName = process.env.POLLING_PLACE_FILE;
+  const fileNameUtf8 = `utf8${pollingFileName}`;
+  const localfile = `${__dirname}/${pollingFileName}`;
+
+  await convertToUtf8(`${localfile}`, `${filePath}/${fileNameUtf8}`);
+  await truncateTable(pollingTable);
+  await pgCopyFromCsv(`${filePath}/${fileNameUtf8}`, pollingTable);
+
+  console.log('Deleting Polling Place ETL files');
+  fs.unlinkSync(`${filePath}/${fileNameUtf8}`);
+  console.log('End Polling Place ETL')
+};
+
+(async () => {
+  // await voterETL();
+  await pollingPlaceETL();
+  await voterETL();
   await client.end();
 })()
-.then(() => process.exit());
+  .then(() => process.exit());

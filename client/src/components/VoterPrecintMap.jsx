@@ -30,10 +30,12 @@ class GoogleMap extends React.Component {
       });
 
       // only load the script one time
-      this.loadedScript = Array.from(document.body.getElementsByTagName('script')).includes(script);
-      if (!this.loadedScript) {
+      this.loadedScript = Array.from(document.body.getElementsByTagName('script')).filter(object => (object.src === script.src ))
+      if (this.loadedScript.length === 0) {
         document.body.appendChild(script);
-      };
+      } else {
+        this.setState({ mapIsReady: true });
+      }
     };
   }
 
