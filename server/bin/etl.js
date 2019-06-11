@@ -183,7 +183,13 @@ const pollingPlaceETL = async () => {
 };
 
 (async () => {
-  await voterETL();
-  await pollingPlaceETL();
-  await client.end();
-})().then(() => process.exit());
+  try {
+    await voterETL();
+    await pollingPlaceETL();
+  } catch (e) {
+    console.error(e, 'error during etl')
+  } finally {
+    // await client.end() // Unsure but this doesn't seem to work
+    await process.exit()
+  }
+})()
