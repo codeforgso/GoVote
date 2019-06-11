@@ -7,6 +7,7 @@ if (process.argv[2] === 'manual') {
 }
 
 const fs = require('fs');
+const { Transform } = require('stream');
 const request = require('request');
 const unzip = require('unzip');
 const iconv = require('iconv-lite');
@@ -15,6 +16,30 @@ const { Client } = require('pg');
 
 const voterTable = 'voters';
 const pollingTable = 'polling_places';
+
+/**
+ * Removes null bytes and unprintable characters from a stream
+ */
+class StreamCleaner extends Transform {
+  constructor(options) {
+    super(options)
+    this.firstRun = false
+  }
+
+  _transform(chunk, encoding, callback) {
+    const transformedChunk = chunk.toString()
+      .replace(/\uFFFD/g, '')
+      .replace(/\0/g, '')
+
+    this.push(transformedChunk)
+    callback()
+  }
+
+  // _flush(callback) {
+  //   this.push()
+  //   callback()
+  // }
+}
 
 const downloadFile = (url, fileName) =>
   new Promise((resolve, reject) => {
@@ -56,9 +81,11 @@ const deleteResidentAddressField = () => {
 
 const convertToUtf8 = (fileName, utf8FileName) =>
  new Promise((resolve, reject) => {
+   const streamCleaner = new StreamCleaner()
    console.log('Converting file to utf8');
    fs.createReadStream(fileName)
       .pipe(iconv.decodeStream('UTF-8'))
+      .pipe(streamCleaner)
       .pipe(fs.createWriteStream(utf8FileName))
       .on('error', (error) => {
         console.log(error);
@@ -135,7 +162,7 @@ const pollingPlaceETL = async () => {
   await downloadFile(url, `${filePath}/${fileName}`)
   await convertToUtf8(`${filePath}/${fileName}`, `${filePath}/${fileNameUtf8}`)
   await truncateTable(pollingTable)
-  // await pgCopyFromCsv(`${filePath}/${fileNameUtf8}`, pollingTable)
+  await pgCopyFromCsv(`${filePath}/${fileNameUtf8}`, pollingTable)
   // await pgCopyFromCsv(`${filePath}/${fileName}`, pollingTable)
   fs.unlinkSync(`${filePath}/${fileName}`)
   fs.unlinkSync(`${filePath}/${fileNameUtf8}`)
