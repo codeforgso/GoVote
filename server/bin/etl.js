@@ -163,7 +163,8 @@ const voterETL = async () => {
   await deleteResidentAddressField();
   await pgCopyFromCsv(`${filePath}/${extractedFileNameUtf8}`, voterTable);
   await addResidentAddressField();
-  console.log('Deleting files');
+
+  console.log('Deleting Voter ETL files');
   fs.unlinkSync(`${filePath}/${zipFileName}`);
   fs.unlinkSync(`${filePath}/${extractedFileName}`);
   fs.unlinkSync(`${filePath}/${extractedFileNameUtf8}`);
