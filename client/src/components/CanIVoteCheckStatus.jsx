@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import CanIVoteRegistered from './CanIVoteRegistered';
-import VoterRegLookup from '../VoterRegLookup';
+import VoterRegLookup from './VoterRegLookup';
 
 
 export default class CanIVoteCheckStatus extends Component {

@@ -1,9 +1,7 @@
 import React from 'react';
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
-import axios from 'axios';
-import { handleError } from '../../actions';
-import VoterRegLookup from '../VoterRegLookup';
-import VoterPrecintMap from '../VoterPrecintMap';
+import VoterRegLookup from '../components/VoterRegLookup';
+import VoterPrecintMap from '../components/VoterPrecintMap';
 
 export default class WhereAndWhen extends React.Component {
   constructor() {
@@ -21,31 +19,8 @@ export default class WhereAndWhen extends React.Component {
       return;
     }
 
-    const precinctDesc = voter.precinct_desc;
-    const url = `http://gis.guilfordcountync.gov/arcgis/rest/services/Elections/Elections/MapServer/0/query?where=UPPER(PRECINCT)%20like%20%27%25${precinctDesc}%25%27&outFields=*&outSR=4326&f=json`;
-
-    this.setState({ isLoading: true });
-    axios
-      .get(url)
-      .then((response) => {
-        const { attributes } = response.data.features[0];
-        const { geometry } = response.data.features[0];
-        const pollingPlace = {
-          name: attributes.POLLING_PLACE,
-          address: `${attributes.ADDRESS}, ${attributes.CITY}, NC`,
-        };
-        const geocode = { lng: geometry.x, lat: geometry.y };
-        this.setState({ pollingPlace, isLoading: false, geocode });
-      })
-      .catch((error) => {
-        handleError(error);
-        // eslint-disable-next-line no-console
-        console.error(error);
-        this.setState({ errorGettingPollingPlace: true });
-      })
-      .finally(() => {
-        window.scrollTo(0, document.body.scrollHeight);
-      });
+    // TODO: pull out polling place info
+    // TODO: replace this with the data returned from our backend
   };
 
 

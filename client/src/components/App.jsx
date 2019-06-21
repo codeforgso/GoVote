@@ -4,9 +4,9 @@ import { HashRouter as Router, Route } from 'react-router-dom';
 import { Row, Col, Grid } from 'react-bootstrap';
 
 import Header from './Header';
-import Home from './pages/Home';
-import VoterRequirements from './pages/VoterRequirements';
-import routes from './pages/routes';
+import Home from '../pages/Home';
+import VoterRequirements from './VoterRequirements';
+import routes from '../pages/routes';
 
 class App extends Component {
   render() {

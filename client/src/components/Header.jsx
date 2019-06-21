@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import cfgLogo from '../static/CfGLogoWhite.png';
-import routes from './pages/routes';
+import routes from '../pages/routes';
 
 const Header = () => (
   <Navbar collapseOnSelect fluid className="header">
