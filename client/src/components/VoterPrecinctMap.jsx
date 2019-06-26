@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import VoteHere from '../static/vote.svg';
 import VoteResidence from '../static/home.svg';
 import { handleError } from '../actions';
+
+// TODO: Test this
 
 class GoogleMap extends React.Component {
   constructor(props) {
@@ -10,6 +13,7 @@ class GoogleMap extends React.Component {
     this.state = {
       mapIsReady: false,
       flipped: null,
+      geocode: null,
     };
   }
 
@@ -36,6 +40,28 @@ class GoogleMap extends React.Component {
       } else {
         this.setState({ mapIsReady: true });
       }
+
+      // Get the geocode information
+
+    const precinctDesc = this.props.voter.precinct_desc;
+    const url = `http://gis.guilfordcountync.gov/arcgis/rest/services/Elections/Elections/MapServer/0/query?where=UPPER(PRECINCT)%20like%20%27%25${precinctDesc}%25%27&outFields=*&outSR=4326&f=json`;
+
+    axios
+      .get(url)
+      .then((response) => {
+        const { geometry } = response.data.features[0];
+        const geocode = { lng: geometry.x, lat: geometry.y };
+        this.setState({ geocode });
+      })
+      .catch((error) => {
+        handleError(error);
+        // eslint-disable-next-line no-console
+        console.error(error);
+        this.setState({ errorGettingPollingPlace: true });
+      })
+      .finally(() => {
+        window.scrollTo(0, document.body.scrollHeight);
+});
     };
   }
 
