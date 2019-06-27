@@ -1,62 +1,49 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export const VoterRegistrationContext = React.createContext();
 
-export class VoterRegistrationProvider extends Component {
-  state = {
-    voter: null,
-  };
+export function VoterRegistrationProvider({ children }) {
+  const VOTER_STORAGE_KEY = 'VoterRegLookupSelectedVoter';
 
-  VOTER_STORAGE_KEY = 'VoterRegLookupSelectedVoter';
-
-  componentDidMount() {
-    const voter = JSON.parse(
-      window.sessionStorage.getItem(this.VOTER_STORAGE_KEY),
-    );
-    if (voter) {
-      this.setState({ voter }); // eslint-disable-line react/no-did-mount-set-state
+  const [voter, setVoter] = useState(null);
+  useEffect(() => {
+    if (!voter) {
+      const storedVoter = JSON.parse(
+        window.sessionStorage.getItem(VOTER_STORAGE_KEY),
+      );
+      if (storedVoter) setVoter(storedVoter);
     }
-  }
-
-  _saveVoter = (voter) => {
-    window.sessionStorage.setItem(
-      this.VOTER_STORAGE_KEY,
-      JSON.stringify(voter),
-    );
-  };
-
-  _deleteVoter = () => {
-    window.sessionStorage.removeItem(this.VOTER_STORAGE_KEY);
-  };
+  });
 
   // Returns polling place address as `STREET_NUM STREET_NAME, CITY, STATE, ZIP`
-  _formatPollingPlaceAddress = (voter) => `${voter.polling_place_house_num} ${
-    voter.polling_place_street_name
-  }, ${voter.polling_place_city}, ${voter.polling_place_state},
-                      ${voter.polling_place_zip}
-`;
+  const formatPollingPlaceAddress = ({
+    polling_place_house_num,
+    polling_place_street_name,
+    polling_place_city,
+    polling_place_state,
+    polling_place_zip,
+  }) =>
+    `${polling_place_house_num} ${polling_place_street_name}, ${polling_place_city}, ${polling_place_state}, ${polling_place_zip}`;
 
-  render() {
-    return (
-      <VoterRegistrationContext.Provider
-        value={{
-          voter: this.state.voter,
-          setVoter: (voter) => {
-            voter.formattedPollingPlaceAddress = this._formatPollingPlaceAddress(
-              voter,
-            );
-            this.setState({ voter });
-            this._saveVoter(voter);
-          },
-          resetVoter: () => {
-            this.setState({ voter: null }, () => {
-              this._deleteVoter()
-            })
-          }
-        }}
-      >
-        {this.props.children}
-      </VoterRegistrationContext.Provider>
-    );
-  }
+  return (
+    <VoterRegistrationContext.Provider
+      value={{
+        voter,
+        resetVoter: () => {
+          setVoter(null);
+          window.sessionStorage.removeItem(VOTER_STORAGE_KEY);
+        },
+        setVoter: (voter) => {
+          voter.formattedPollingPlaceAddress = formatPollingPlaceAddress(voter);
+          setVoter(voter);
+          window.sessionStorage.setItem(
+            VOTER_STORAGE_KEY,
+            JSON.stringify(voter),
+          );
+        },
+      }}
+    >
+      {children}
+    </VoterRegistrationContext.Provider>
+  );
 }
