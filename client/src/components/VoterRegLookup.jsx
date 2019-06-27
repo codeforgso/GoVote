@@ -94,10 +94,6 @@ class VoterRegLookup extends Component {
     };
   }
 
-  componentDidMount() {
-    // TODO: check provider for voter
-  }
-
   _getVoterInfo = async () => {
     if (this._validateVoterInput()) {
       this.setState({
