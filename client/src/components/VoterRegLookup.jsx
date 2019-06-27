@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import {
   ListGroup,
   ListGroupItem,
@@ -14,8 +14,123 @@ import { Link } from 'react-router-dom';
 import { getVoterInfo } from '../actions';
 import { VoterRegistrationContext } from './VoterRegistrationContext';
 
+function VoterRegForm({ resetVoter, voter, setVoterList }) {
+  const [noVotersFound, setNoVotersFound] = useState(false);
+  const [formErrors, setFormErrors] = useState([]);
+  const [firstName, setFirstName] = useState({ value: '', validation: null });
+  const [lastName, setLastName] = useState({ value: '', validation: null });
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleInputChange = (previousVal, setter) => (event) => {
+    resetVoter();
+    setVoterList([]);
+    setter({ ...previousVal, value: event.target.value });
+  };
+
+  const validateInput = () => {
+    let isValid = true;
+    if (firstName.value === '') {
+      setFirstName({ ...firstName, validation: 'error' });
+      setFormErrors([...formErrors, 'Please enter your first name']);
+      isValid = false;
+    }
+    if (lastName.value === '') {
+      setLastName({ ...lastName, validation: 'error' });
+      setFormErrors([...formErrors, 'Please enter your last name']);
+      isValid = false;
+    }
+    return isValid;
+  };
+
+  const handleSubmit = async () => {
+    if (validateInput()) {
+      try {
+        setIsLoading(true);
+        setFormErrors([])
+        const voterList = await getVoterInfo(firstName.value, lastName.value);
+        resetVoter();
+        setVoterList(voterList ? voterList : []);
+        setNoVotersFound(!voterList.length);
+      } catch (e) {
+        setFormErrors([
+          'Error retrieving voter registration information. Please try again',
+        ]);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  };
+
+  const handleClear = () => {
+    setVoterList([]);
+    setFirstName({ value: '', validation: null });
+    setLastName({ value: '', validation: null });
+    resetVoter();
+  };
+
+  const FormErrors = ({ formErrors, noVotersFound, isLoading }) => (
+    <FormGroup>
+      <ul>
+        {formErrors.map((el, index) => (
+          <li key={index} className="text-danger">
+            {el}
+          </li>
+        ))}
+      </ul>
+      {noVotersFound && (
+        <Alert bsStyle="warning">No Voter Registration Info Found</Alert>
+      )}
+      {isLoading && (
+        <h3>
+          <span className="glyphicon glyphicon-refresh glyphicon-spin" />{' '}
+          Loading.....
+        </h3>
+      )}
+    </FormGroup>
+  );
+
+  return (
+    <Form>
+      <FormGroup
+        controlId="formFirstName"
+        validationState={firstName.validation}
+      >
+        <ControlLabel>First Name</ControlLabel>
+        <FormControl
+          type="text"
+          name="firstName"
+          onChange={handleInputChange(firstName, setFirstName)}
+          placeholder="Jane"
+          value={voter ? voter.first_name : firstName.value}
+        />
+      </FormGroup>
+      <FormGroup controlId="formLastName" validationState={lastName.validation}>
+        <ControlLabel>Last Name</ControlLabel>
+        <FormControl
+          type="text"
+          name="lastName"
+          onChange={handleInputChange(lastName, setLastName)}
+          placeholder="Doe"
+          value={voter ? voter.last_name : lastName.value}
+        />
+      </FormGroup>
+      <Button type="button" onClick={handleSubmit}>
+        Search
+      </Button>
+      <Button type="button" onClick={handleClear}>
+        Clear
+      </Button>
+      <FormErrors
+        formErrors={formErrors}
+        noVotersFound={noVotersFound}
+        isLoading={isLoading}
+      />
+    </Form>
+  );
+}
+
 // TODO: jsdoc
-const VoterAddresses = ({ voterList, handleSelectedVoter }) => (
+const VoterAddressList = ({ voterList, handleSelectedVoter }) => (
   <div>
     {voterList.length > 0 && <h3>Verify Your Address:</h3>}
     <ButtonGroup vertical>
@@ -37,7 +152,7 @@ const VoterAddresses = ({ voterList, handleSelectedVoter }) => (
   </div>
 );
 
-const SelectedVoterInformation = ({ selectedVoter }) => (
+const VoterRegistrationInfo = ({ selectedVoter }) => (
   <ListGroup>
     <ListGroupItem>
       <b>NAME: </b>
@@ -54,190 +169,32 @@ const SelectedVoterInformation = ({ selectedVoter }) => (
   </ListGroup>
 );
 
-const FormErrors = ({ formErrors, noVoterList, isLoading }) => (
-  <FormGroup>
-    <ul>
-      {formErrors.map((el, index) => (
-        <li key={index} className="text-danger">
-          Please enter your {el}
-        </li>
-      ))}
-    </ul>
-    {noVoterList && (
-      <Alert bsStyle="warning">No Voter Registration Info Found</Alert>
-    )}
-    {isLoading && (
-      <h3>
-        <span className="glyphicon glyphicon-refresh glyphicon-spin" />{' '}
-        Loading.....
-      </h3>
-    )}
-  </FormGroup>
-);
+function VoterRegLookup() {
+  const [voterList, setVoterList] = useState([]);
 
-// TODO: cleanup this file/components. Use hooks!
-
-class VoterRegLookup extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedVoter: {},
-      voterList: [],
-      noVoterList: false,
-      firstName: '',
-      lastName: '',
-      firstNameValidationState: null,
-      lastNameValidationState: null,
-      formErrors: [],
-      isLoading: false,
-      noVoterListFound: false,
-    };
-  }
-
-  _getVoterInfo = async () => {
-    if (this._validateVoterInput()) {
-      this.setState({
-        firstNameValidationState: null,
-        lastNameValidationState: null,
-        isLoading: true,
-      });
-
-      try {
-        const voterList = await getVoterInfo(
-          this.state.firstName,
-          this.state.lastName,
-        );
-        this.setState({
-          noVoterListFound: voterList.length === 0,
-          voterList,
-        });
-      } catch (e) {
-        console.error(e);
-        this.setState({
-          formErrors: [
-            'Error retrieving voter registration information. Please try again',
-          ],
-        });
-      } finally {
-        this.setState({ isLoading: false });
-      }
-    }
-  };
-
-  _validateVoterInput = () => {
-    let result = true;
-    const errors = [];
-    if (this.state.firstName === '') {
-      this.setState({ firstNameValidationState: 'error' });
-      errors.push('first name');
-      result = false;
-    }
-    if (this.state.lastName === '') {
-      this.setState({ lastNameValidationState: 'error' });
-      errors.push('last name');
-      result = false;
-    }
-    this.setState({ formErrors: errors });
-    return result;
-  };
-
-  _handleInputChange = (event) => {
-    const { name, value } = event.target;
-
-    this.setState({
-      [name]: value,
-      voterList: [],
-    });
-  };
-
-  render() {
-    return (
-      <div>
-        <VoterRegistrationContext.Consumer>
-          {({ voter, setVoter, resetVoter }) => (
-            <React.Fragment>
-              <Form>
-                <FormGroup
-                  controlId="formFirstName"
-                  validationState={this.state.firstNameValidationState}
-                >
-                  <ControlLabel>First Name</ControlLabel>
-                  <FormControl
-                    type="text"
-                    name="firstName"
-                    onChange={(event) => {
-                      resetVoter()
-                      this._handleInputChange(event)
-                    }}
-                    placeholder="Jane"
-                    value={voter ? voter.first_name : this.state.firstName}
-                  />
-                </FormGroup>
-                <FormGroup
-                  controlId="formLastName"
-                  validationState={this.state.lastNameValidationState}
-                >
-                  <ControlLabel>Last Name</ControlLabel>
-                  <FormControl
-                    type="text"
-                    name="lastName"
-                    onChange={(event) => {
-                      resetVoter()
-                      this._handleInputChange(event)
-                    }}
-                    placeholder="Doe"
-                    value={voter ? voter.last_name : this.state.lastName}
-                  />
-                </FormGroup>
-                <Button
-                  type="button"
-                  onClick={() => {
-                    this._getVoterInfo();
-                    resetVoter();
-                  }}
-                >
-                  Search
-                </Button>
-                <Button
-                  type="button"
-                  onClick={() => {
-                    this.setState(
-                      {
-                        voterList: [],
-                        firstName: '',
-                        lastName: '',
-                      },
-                      () => {
-                        console.log(this.state);
-                        resetVoter();
-                      },
-                    );
-                  }}
-                >
-                  Clear
-                </Button>
-                <FormErrors
-                  formErrors={this.state.formErrors}
-                  noVoterList={this.state.noVoterList}
-                  isLoading={this.state.isLoading}
-                />
-              </Form>
-              {!voter ? (
-                <VoterAddresses
-                  voterList={this.state.voterList}
-                  handleSelectedVoter={(selectedVoter) => {
-                    setVoter(selectedVoter);
-                  }}
-                />
-              ) : (
-                <SelectedVoterInformation selectedVoter={voter} />
-              )}
-            </React.Fragment>
-          )}
-        </VoterRegistrationContext.Consumer>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <VoterRegistrationContext.Consumer>
+        {({ voter, setVoter, resetVoter }) => (
+          <React.Fragment>
+            <VoterRegForm
+              voter={voter}
+              resetVoter={resetVoter}
+              setVoterList={setVoterList}
+            />
+            {!voter ? (
+              <VoterAddressList
+                voterList={voterList}
+                handleSelectedVoter={setVoter}
+              />
+            ) : (
+              <VoterRegistrationInfo selectedVoter={voter} />
+            )}
+          </React.Fragment>
+        )}
+      </VoterRegistrationContext.Consumer>
+    </div>
+  );
 }
 
 export default VoterRegLookup;
