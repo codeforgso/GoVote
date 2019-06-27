@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import {
   ListGroup,
   ListGroupItem,
@@ -76,11 +75,7 @@ const FormErrors = ({ formErrors, noVoterList, isLoading }) => (
   </FormGroup>
 );
 
-// TODO: move VoterInfoForm back into component
-// TODO: implement context in this component
-// TODO: update components that use this
-
-// Create context, VoterRegLookup should return context provider
+// TODO: cleanup this file/components. Use hooks!
 
 class VoterRegLookup extends Component {
   constructor(props) {
@@ -100,26 +95,10 @@ class VoterRegLookup extends Component {
   }
 
   componentDidMount() {
-    const selectedVoter = JSON.parse(
-      window.sessionStorage.getItem('VoterRegLookupSelectedVoter'),
-    );
-    if (selectedVoter) {
-      this.setState({ selectedVoter }); // eslint-disable-line react/no-did-mount-set-state
-    }
+    // TODO: check provider for voter
   }
 
-  _saveState = () => {
-    window.sessionStorage.setItem(
-      'VoterRegLookupSelectedVoter',
-      JSON.stringify(this.state.selectedVoter),
-    );
-  };
-
-  _deleteState = () => {
-    window.sessionStorage.removeItem('VoterRegLookupSelectedVoter');
-  };
-
-  _getVoterInfo = () => {
+  _getVoterInfo = async () => {
     if (this._validateVoterInput()) {
       this.setState({
         firstNameValidationState: null,
@@ -127,24 +106,25 @@ class VoterRegLookup extends Component {
         isLoading: true,
       });
 
-      getVoterInfo(this.state.firstName, this.state.lastName)
-        .then((voterList) => {
-          this.setState({
-            noVoterListFound: voterList.length === 0,
-            voterList,
-          });
-        })
-        .catch((e) => {
-          console.error(e);
-          this.setState({
-            formErrors: [
-              'Error retrieving voter registration information. Please try again',
-            ],
-          });
-        })
-        .finally(() => {
-          this.setState({ isLoading: false });
+      try {
+        const voterList = await getVoterInfo(
+          this.state.firstName,
+          this.state.lastName,
+        );
+        this.setState({
+          noVoterListFound: voterList.length === 0,
+          voterList,
         });
+      } catch (e) {
+        console.error(e);
+        this.setState({
+          formErrors: [
+            'Error retrieving voter registration information. Please try again',
+          ],
+        });
+      } finally {
+        this.setState({ isLoading: false });
+      }
     }
   };
 
@@ -171,10 +151,7 @@ class VoterRegLookup extends Component {
     this.setState({
       [name]: value,
       voterList: [],
-      showUserStatus: false,
     });
-
-    // this.props.returnVoterList([]);
   };
 
   render() {
@@ -192,8 +169,12 @@ class VoterRegLookup extends Component {
                   <FormControl
                     type="text"
                     name="firstName"
-                    onChange={this._handleInputChange}
+                    onChange={(event) => {
+                      resetVoter()
+                      this._handleInputChange(event)
+                    }}
                     placeholder="Jane"
+                    value={voter ? voter.first_name : this.state.firstName}
                   />
                 </FormGroup>
                 <FormGroup
@@ -204,17 +185,37 @@ class VoterRegLookup extends Component {
                   <FormControl
                     type="text"
                     name="lastName"
-                    onChange={this._handleInputChange}
+                    onChange={(event) => {
+                      resetVoter()
+                      this._handleInputChange(event)
+                    }}
                     placeholder="Doe"
+                    value={voter ? voter.last_name : this.state.lastName}
                   />
                 </FormGroup>
-                <Button type="button" onClick={this._getVoterInfo}>
+                <Button
+                  type="button"
+                  onClick={() => {
+                    this._getVoterInfo();
+                    resetVoter();
+                  }}
+                >
                   Search
                 </Button>
                 <Button
                   type="button"
                   onClick={() => {
-                    this.setState({ voterList: [] });
+                    this.setState(
+                      {
+                        voterList: [],
+                        firstName: '',
+                        lastName: '',
+                      },
+                      () => {
+                        console.log(this.state);
+                        resetVoter();
+                      },
+                    );
                   }}
                 >
                   Clear
@@ -242,9 +243,5 @@ class VoterRegLookup extends Component {
     );
   }
 }
-
-VoterRegLookup.propTypes = {
-  returnSelectedVoter: PropTypes.func.isRequired,
-};
 
 export default VoterRegLookup;
