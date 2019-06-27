@@ -1,6 +1,6 @@
 import React from 'react';
 import { Thumbnail } from 'react-bootstrap';
-import cfgLogo from '../../static/CfGLogoWhite.png';
+import cfgLogo from '../static/CfGLogoWhite.png';
 
 const About = () => (
   <div>

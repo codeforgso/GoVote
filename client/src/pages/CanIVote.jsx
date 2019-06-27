@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button, Row, Col, Well } from 'react-bootstrap';
 import { Link, Route } from 'react-router-dom';
-import VoterRequirements from './VoterRequirements';
-import CanIVoteCheckStatus from './CanIVoteCheckStatus';
-import CanIVoteRegistered from './CanIVoteRegistered.jsx';
+import VoterRequirements from '../components/VoterRequirements';
+import CanIVoteCheckStatus from '../components/CanIVoteCheckStatus';
+import CanIVoteRegistered from '../components/CanIVoteRegistered.jsx';
 
 const CanIVote = () => (
   <div>
