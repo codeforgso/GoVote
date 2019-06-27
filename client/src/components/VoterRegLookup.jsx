@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import {
   ListGroup,
   ListGroupItem,
@@ -17,9 +17,16 @@ import { VoterRegistrationContext } from './VoterRegistrationContext';
 function VoterRegForm({ resetVoter, voter, setVoterList }) {
   const [noVotersFound, setNoVotersFound] = useState(false);
   const [formErrors, setFormErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
   const [firstName, setFirstName] = useState({ value: '', validation: null });
   const [lastName, setLastName] = useState({ value: '', validation: null });
-  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => { // Hydrates form
+    if(voter && firstName.value === '' && lastName.value === '') {
+      setFirstName({...firstName, value: voter.first_name})
+      setLastName({...lastName, value: voter.last_name})
+    }
+  })
 
   const handleInputChange = (previousVal, setter) => (event) => {
     resetVoter();
@@ -46,7 +53,7 @@ function VoterRegForm({ resetVoter, voter, setVoterList }) {
     if (validateInput()) {
       try {
         setIsLoading(true);
-        setFormErrors([])
+        setFormErrors([]);
         const voterList = await getVoterInfo(firstName.value, lastName.value);
         resetVoter();
         setVoterList(voterList ? voterList : []);
@@ -101,7 +108,7 @@ function VoterRegForm({ resetVoter, voter, setVoterList }) {
           name="firstName"
           onChange={handleInputChange(firstName, setFirstName)}
           placeholder="Jane"
-          value={voter ? voter.first_name : firstName.value}
+          value={firstName.value}
         />
       </FormGroup>
       <FormGroup controlId="formLastName" validationState={lastName.validation}>
@@ -111,7 +118,7 @@ function VoterRegForm({ resetVoter, voter, setVoterList }) {
           name="lastName"
           onChange={handleInputChange(lastName, setLastName)}
           placeholder="Doe"
-          value={voter ? voter.last_name : lastName.value}
+          value={lastName.value}
         />
       </FormGroup>
       <Button type="button" onClick={handleSubmit}>
@@ -171,28 +178,23 @@ const VoterRegistrationInfo = ({ selectedVoter }) => (
 
 function VoterRegLookup() {
   const [voterList, setVoterList] = useState([]);
+  const { voter, setVoter, resetVoter } = useContext(VoterRegistrationContext);
 
   return (
     <div>
-      <VoterRegistrationContext.Consumer>
-        {({ voter, setVoter, resetVoter }) => (
-          <React.Fragment>
-            <VoterRegForm
-              voter={voter}
-              resetVoter={resetVoter}
-              setVoterList={setVoterList}
-            />
-            {!voter ? (
-              <VoterAddressList
-                voterList={voterList}
-                handleSelectedVoter={setVoter}
-              />
-            ) : (
-              <VoterRegistrationInfo selectedVoter={voter} />
-            )}
-          </React.Fragment>
-        )}
-      </VoterRegistrationContext.Consumer>
+      <VoterRegForm
+        voter={voter}
+        resetVoter={resetVoter}
+        setVoterList={setVoterList}
+      />
+      {!voter ? (
+        <VoterAddressList
+          voterList={voterList}
+          handleSelectedVoter={setVoter}
+        />
+      ) : (
+        <VoterRegistrationInfo selectedVoter={voter} />
+      )}
     </div>
   );
 }
