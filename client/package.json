@@ -19,11 +19,13 @@
     "react-scripts": "2.1.8"
   },
   "devDependencies": {
+    "cross-env": "^6.0.3",
     "css-loader": "^0.28.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build-prd": "cross-env GENERATE_SOURCEMAP=false react-scripts build"
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
