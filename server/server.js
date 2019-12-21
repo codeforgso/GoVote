@@ -1,15 +1,14 @@
 /* eslint no-console: 0 */
-import express from 'express';
-import { Client } from 'pg';
-import Router from 'express-promise-router';
-import 'babel-polyfill';
-import dotenv from 'dotenv';
+const express = require('express');
+const { Client } = require('pg');
+const Router = require('express-promise-router');
+const dotenv = require('dotenv');
 
 const app = express();
 const router = new Router();
 
 if (process.env.NODE_ENV !== 'production') {
-  dotenv.config();
+  dotenv.config({ path: '../.env' });
 }
 
 if (process.env.NODE_ENV === 'production') {
@@ -19,7 +18,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.set('port', (process.env.PORT || 3001));
+app.set('port', process.env.PORT || 3001);
 
 const client = new Client({
   user: process.env.DB_USER,
@@ -32,7 +31,23 @@ const client = new Client({
 client.connect();
 
 router.get('/api/:fn/:ln', async (req, res) => {
-  const query = `SELECT * FROM ${process.env.DB_TABLE} WHERE first_name ilike $1::text and last_name ilike $2::text`;
+  const voterTable = 'voters';
+  const pollingTable = 'polling_places';
+  const query = `SELECT ${voterTable}.*,
+    polling_place_id,
+    polling_place_name,
+    precinct_name as "polling_place_precinct_name",
+    house_num     as "polling_place_house_num",
+    street_name   as "polling_place_street_name",
+    city          as "polling_place_city",
+    state         as "polling_place_state",
+    zip           as "polling_place_zip"
+    FROM ${voterTable}
+    INNER JOIN ${pollingTable} ON ${voterTable}.precinct_abbrv = ${pollingTable}.precinct_name 
+      AND ${voterTable}.county_desc = ${pollingTable}.county_name
+    WHERE voter_status_desc NOT LIKE 'REMOVED'
+      AND first_name ilike $1::text
+      AND last_name ilike $2::text`;
   const { rows } = await client.query(query, [req.params.fn, req.params.ln]);
   res.send(rows);
 });

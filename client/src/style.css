@@ -1,0 +1,184 @@
+body {
+  font-family: Helvetica, Arial;
+}
+
+html, body, #app {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+}
+
+p, li {
+  font-size: 16px;
+}
+
+.app__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.app__body {
+  background: white;
+  width: 100%;
+  height: 100%;
+}
+
+.map {
+  flex: 1;
+}
+
+/* Begin override code for Bootstrap's @grid-float-breakpoint in raw CSS
+   Needed because our navbar is so large that if we break at the default media query
+   the menu will stack and it will look bad. This is the recommended way to solve
+   this problem via the docs.
+*/
+@media (max-width: 1245px) {
+  .navbar-header {
+    float: none;
+  }
+  .navbar-toggle {
+    display: block;
+  }
+  .navbar-collapse {
+    border-top: 1px solid transparent;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+  .navbar-collapse.collapse {
+    display: none!important;
+  }
+  .navbar-nav {
+    float: none!important;
+    margin: 7.5px -15px;
+  }
+  .navbar-nav>li {
+    float: none;
+  }
+  .navbar-nav>li>a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .navbar-text {
+    float: none;
+    margin: 15px 0;
+  }
+  /* since 3.1.0 */
+  .navbar-collapse.collapse.in {
+    display: block!important;
+  }
+  .collapsing {
+    overflow: hidden!important;
+  }
+}
+/* end override code */
+
+
+.header {
+  /* This shorthand also overrides default Bootstrap gradient)*/
+  background: #283944;
+}
+
+.header__brand {
+  padding-top: 10px;
+}
+
+.header__title {
+  color: #e6e4d5 !important;
+  font-size: 26px;
+}
+
+.header__details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.header__details-item {
+  display: flex;
+  justify-content: center;
+  min-width: 250px;
+}
+
+.header__details-action {
+  font-size: 18px;
+  color: #ddd !important;
+}
+
+.header__details-logo {
+  max-height: 40px;
+}
+
+.btn-link {
+  transition-duration: .2s;
+}
+
+.btn-link:focus {
+  color: #fff;
+  outline: none;
+  background: none;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.btn-link:hover {
+  color: #168a89;
+  outline: none;
+  background: none;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+
+.about-footer-logo{
+  background: #283944;
+  float: left;
+}
+
+.about-footer-btn{
+  margin-top: 15px;
+}
+
+.leaflet-control.geocoder-control {
+  clear: none;
+}
+
+/* Horizontal Media Queries */
+@media (min-width: 600px) {
+  .header__details-action {
+    font-size: 20px;
+  }
+}
+@media (max-width: 600px) {
+  .header__title {
+    font-size: 22px;
+  }
+  .header {
+    padding: 10px;
+  }
+}
+
+.glyphicon-spin {
+  -webkit-animation: spin 1000ms infinite linear;
+  animation: spin 1000ms infinite linear;
+}
+@-webkit-keyframes spin {
+  0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+  }
+  100% {
+      -webkit-transform: rotate(359deg);
+      transform: rotate(359deg);
+  }
+}
+@keyframes spin {
+  0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+  }
+  100% {
+      -webkit-transform: rotate(359deg);
+      transform: rotate(359deg);
+  }
+}
