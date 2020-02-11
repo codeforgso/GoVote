@@ -29,6 +29,7 @@ class StreamCleaner extends Transform {
     const transformedChunk = chunk
       .toString()
       .replace(/\uFFFD/g, '')
+      .replace(/[^\t\r\n -~]+/g, '')
       .replace(/\0/g, '');
 
     this.push(transformedChunk);
