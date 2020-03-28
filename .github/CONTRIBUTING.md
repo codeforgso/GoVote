@@ -78,12 +78,8 @@ To stop the project run `docker-compose stop`
 
     ```sh
     REACT_APP_GOOGLEMAPAPIKEY=AIzaSyC_jVntO1agQ5gRABrvZfSkjMy6pvXXNzI
-    DB_HOST=localhost
-    DB_PORT=5432
-    DB_NAME=postgres
+    DATABASE_URL=postgres://postgres:@localhost:5432/postgres
     DB_TABLE=voters
-    DB_USER=postgres
-    DB_PASS=
     ```
 
 1. Open a terminal session at the root of your project and perform the following to initialize and start the application:
