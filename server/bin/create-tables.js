@@ -8,19 +8,18 @@ if (process.argv[2] === 'manual') {
 
 const Client = require('pg').Client;
 
-const client = new Client({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASS,
-  port: process.env.DB_PORT,
-});
+const client = new Client({ connectionString: process.env.DATABASE_URL });
+
 
 
 const voterTable = 'voters';
 const pollingTable = 'polling_places';
 
-client.connect();
+client.connect(err => {
+  if (err) {
+    console.error('db connection error', err.stack)
+  }
+});
 
 // attempt to drop the table before creating itg
 // eslint-disable-next-line quotes
