@@ -15,4 +15,4 @@ and [County Commissioner](http://data-greensboro.opendata.arcgis.com/datasets/1b
 Interested in contributing? Please read our [contributing guide](./.github/CONTRIBUTING.md)
 
 ## Development Site
-A live version of our dev branch can be seen [here](http://govotegso-dev-1.us-east-1.elasticbeanstalk.com/)
+A live version of our dev branch can be seen [here](https://dev-govote-api.herokuapp.com/)

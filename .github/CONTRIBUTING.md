@@ -54,7 +54,6 @@ npm run docker:etl # Loads the board of elections data into the database
 To stop the project run `docker-compose stop`
 
 
-
 ### Run the project with NodeJS
 1. Install NodeJS if you do not already have it
 
@@ -122,15 +121,15 @@ To stop the project run `docker-compose stop`
 
     Windows
 
-        ```sh
-        pg_ctl -D "C:\Program Files\PostgreSQL\11\data" stop
-        ```
+    ```sh
+    pg_ctl -D "C:\Program Files\PostgreSQL\11\data" stop
+    ```
 
     Mac
 
-        ```sh
-        pg_ctl -D /usr/local/var/postgres stop
-        ```
+    ```sh
+    pg_ctl -D /usr/local/var/postgres stop
+    ```
 
 ### Project Details
 
@@ -176,6 +175,16 @@ Follow the [Issue template](./ISSUE_TEMPLATE.md) and be sure to include as much 
 #### **Do you have questions about the source code?**
 
 - Ask any question about the project or contributing by [opening a new issue](https://github.com/codeforgso/GoVote/issues/new) and labeling it as a question.
+
+## Deploying your code
+Our code is deployed to Heroku to be served to the public. This happens in three stages:
+1. **build**&mdash;Heroku will automatically run `npm install` and cache the project's depedencies. Next, Heroku looks for a `build` task in the root `package.json` file. We use this step to build our React project, which optimizes our React code to be served statically.
+2. **run**&mdash;Heroku runs the `web` task in the `Procfile`, which simply starts our thin Express server to handle incoming requests and serve our compiled React app.
+3. **release**&mdash;Heroku runs the `release` task in the Procfile after deploying the application. Note that this task runs in a separate dyno (Heroku's term for a compute instance), so it will not have access to files from other parts of the build process. In our case, we ensure the database has the correct tables and the data is properly loaded.
+
+When you merge your PR, it will be merged into the project's `dev` branch which will automatically kick off a deploy to our [staging server](https://dev-govote-api.herokuapp.com/). After you have merged your code, please test your changes and other basic flows (including finding your polling place and someone's voter registration) on the staging server.
+
+When you are confident in your changes, merging the `dev` branch into `master` will deploy your changes to production.
 
 ## Thank You!
 
