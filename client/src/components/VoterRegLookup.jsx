@@ -104,6 +104,7 @@ function VoterRegForm({ resetVoter, voter, setVoterList }) {
       >
         <ControlLabel>First Name</ControlLabel>
         <FormControl
+          autoFocus
           type="text"
           name="firstName"
           onChange={handleInputChange(firstName, setFirstName)}
