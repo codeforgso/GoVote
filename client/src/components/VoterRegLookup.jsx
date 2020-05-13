@@ -97,7 +97,7 @@ function VoterRegForm({ resetVoter, voter, setVoterList }) {
   );
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <FormGroup
         controlId="formFirstName"
         validationState={firstName.validation}
@@ -121,7 +121,7 @@ function VoterRegForm({ resetVoter, voter, setVoterList }) {
           value={lastName.value}
         />
       </FormGroup>
-      <Button type="button" onClick={handleSubmit}>
+      <Button type="submit">
         Search
       </Button>
       <Button type="button" onClick={handleClear}>
