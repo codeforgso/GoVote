@@ -10,8 +10,6 @@ const Client = require('pg').Client;
 
 const client = new Client({ connectionString: process.env.DATABASE_URL });
 
-
-
 const voterTable = 'voters';
 const pollingTable = 'polling_places';
 
@@ -134,5 +132,8 @@ function createVoterTable(useClient) {
   useClient.query(query)
     .then(res => console.log(`Create ${voterTable}: ${JSON.stringify(res)}`))
     .catch(error => console.log(`Create ${voterTable} error:', ${error}`))
-    .then(() => client.end());
+    .then(() => {
+      console.log("Finished creating tables!")
+      client.end()
+    });
 };

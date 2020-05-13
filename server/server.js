@@ -3,6 +3,7 @@ const express = require('express');
 const { Client } = require('pg');
 const Router = require('express-promise-router');
 const dotenv = require('dotenv');
+const path = require('path');
 
 const app = express();
 const router = new Router();
@@ -12,10 +13,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('./'));
-  app.get('/', (req, res) => {
-    res.sendFile('./index.html');
-  });
+  // Serve entire build folder as static files.
+  app.use(express.static(path.resolve(__dirname, '../client/build')));
 }
 
 app.set('port', process.env.PORT || 3001);

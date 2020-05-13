@@ -9,7 +9,7 @@ if (process.argv[2] === 'manual') {
 const fs = require('fs');
 const { Transform } = require('stream');
 const request = require('request');
-const unzip = require('unzip');
+const unzip = require('unzipper');
 const iconv = require('iconv-lite');
 const copyFrom = require('pg-copy-streams').from;
 const { Client } = require('pg');
