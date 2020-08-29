@@ -1,22 +1,23 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Row, Col, Button, Well } from 'react-bootstrap';
-import PropTypes from 'prop-types';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Row, Col, Button, Well } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 const Card = ({ title, body, btnText, linkTo, style = {} }) => (
   <Well
-    style={Object.assign({
-      minHeight: '300px',
-    }, style)}
+    style={Object.assign(
+      {
+        minHeight: "300px",
+      },
+      style
+    )}
     bsStyle="primary"
     bsSize="large"
   >
     <h2>{title}</h2>
     <p>{body}</p>
     <Link to={linkTo}>
-      <Button bsStyle="primary">
-        {btnText}
-      </Button>
+      <Button bsStyle="primary">{btnText}</Button>
     </Link>
   </Well>
 );
@@ -55,14 +56,6 @@ const Home = () => (
           body="It's election day and you're unsure what to do! Find out more about what to expect, reporting polling place issues, and how to find your polling place here"
           btnText="Learn more about election day"
           linkTo="/election-day"
-        />
-      </Col>
-      <Col md={6} lg={4} sm={6}>
-        <Card
-          title="Find Out Who Your Candidates Are"
-          body="Confused about who you are voting for? To find your sample ballot click below"
-          btnText="Find your candidates &amp; sample ballot"
-          linkTo="/candidates"
         />
       </Col>
       <Col md={6} lg={4} sm={6}>
