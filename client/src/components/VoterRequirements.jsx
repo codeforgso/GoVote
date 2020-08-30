@@ -25,7 +25,7 @@ const VoterRequirements = () => (
     </h2>
     <p>
       To register to vote in North Carolina, a prospective voter must meet all
-      of the following qualifications:{" "}
+      of the following qualifications:
     </p>
     <ul>
       <li>Must be a citizen of the United States.</li>
@@ -131,7 +131,7 @@ const VoterRequirements = () => (
     <h2 className="VoterRequirements-heading">Need other information?</h2>
     <p>
       If you’re not a first-time voter, you may have different questions -
-      hopefully we can help!{" "}
+      hopefully we can help!
     </p>
     <h3 className="VoterRequirements-heading">
       Changing Registration Information
@@ -151,13 +151,13 @@ const VoterRequirements = () => (
       you do not need the card in order to vote.
     </p>
     <h3 className="VoterRequirements-heading">
-      Military & Overseas Citizens Voting Information
+      Military &amp; Overseas Citizens Voting Information
     </h3>
     <p>
       Some citizens, such as people serving in the military who are away from
       their permanent home on Election Day, their families, or U.S. citizens who
       are living abroad, have special voting rights and ways to register to
-      vote.{" "}
+      vote.
     </p>
     <p>
       If this describes you, you have the choice of either requesting a mail-in
