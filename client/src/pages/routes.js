@@ -28,12 +28,7 @@ const routes = [
     label: "Election Day",
     labelLong: "It's Election Day, What Do I Do?",
   },
-  /*{
-    to: '/candidates',
-    component: Candidates,
-    label: 'Candidates',
-    labelLong: 'Who Are The Candidates?',
-  },*/
+  // deleted route to Candidate Info for 2020v1 per https://github.com/codeforgso/GoVote/pull/190
 ];
 
 export default routes;

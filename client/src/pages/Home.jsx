@@ -58,6 +58,7 @@ const Home = () => (
           linkTo="/election-day"
         />
       </Col>
+      {/* deleted candidate info for 2020v1 component per https://github.com/codeforgso/GoVote/pull/190*/}
       <Col md={6} lg={4} sm={6}>
         <Card
           title="About GoVoteGSO &amp; CodeForGSO"
