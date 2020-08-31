@@ -1,22 +1,23 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Row, Col, Button, Well } from 'react-bootstrap';
-import PropTypes from 'prop-types';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Row, Col, Button, Well } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 const Card = ({ title, body, btnText, linkTo, style = {} }) => (
   <Well
-    style={Object.assign({
-      minHeight: '300px',
-    }, style)}
+    style={Object.assign(
+      {
+        minHeight: "300px",
+      },
+      style
+    )}
     bsStyle="primary"
     bsSize="large"
   >
     <h2>{title}</h2>
     <p>{body}</p>
     <Link to={linkTo}>
-      <Button bsStyle="primary">
-        {btnText}
-      </Button>
+      <Button bsStyle="primary">{btnText}</Button>
     </Link>
   </Well>
 );
@@ -57,14 +58,7 @@ const Home = () => (
           linkTo="/election-day"
         />
       </Col>
-      <Col md={6} lg={4} sm={6}>
-        <Card
-          title="Find Out Who Your Candidates Are"
-          body="Confused about who you are voting for? To find your sample ballot click below"
-          btnText="Find your candidates &amp; sample ballot"
-          linkTo="/candidates"
-        />
-      </Col>
+      {/* deleted candidate info for 2020v1 component per https://github.com/codeforgso/GoVote/pull/190*/}
       <Col md={6} lg={4} sm={6}>
         <Card
           title="About GoVoteGSO &amp; CodeForGSO"
