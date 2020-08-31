@@ -2,7 +2,6 @@ import About from "./About";
 import CanIVote from "./CanIVote";
 import WhereAndWhen from "./WhereAndWhen";
 import DayOfInfo from "./DayOfInfo";
-//import Candidates from './Candidates';
 
 const routes = [
   {
