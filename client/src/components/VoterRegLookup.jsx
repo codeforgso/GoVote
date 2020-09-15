@@ -49,7 +49,8 @@ function VoterRegForm({ resetVoter, voter, setVoterList }) {
     return isValid;
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault()
     if (validateInput()) {
       try {
         setIsLoading(true);
@@ -58,7 +59,7 @@ function VoterRegForm({ resetVoter, voter, setVoterList }) {
         resetVoter();
         setVoterList(voterList ? voterList : []);
         setNoVotersFound(!voterList.length);
-      } catch (e) {
+      } catch (error) {
         setFormErrors([
           'Error retrieving voter registration information. Please try again',
         ]);
