@@ -1,2 +1,2 @@
-release: cd server/ && npm install && node ./bin/create-tables.js && node ./bin/etl.js
+release: cd server/ && npm install
 web: npm run prod-server
