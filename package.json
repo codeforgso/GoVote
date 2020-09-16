@@ -15,7 +15,7 @@
     "server": "cd server && npm run start:dev",
     "prod-server": "cd server && npm run start",
     "client": "cd client && npm start",
-    "build": "cd client && react-scripts build",
+    "build": "cd client && npm install && react-scripts build",
     "docker:create-tables": "docker-compose exec govote-server node ./bin/create-tables.js",
     "docker:etl": "docker-compose exec govote-server node ./bin/etl.js",
     "loadDataMac": "pg_ctl -D /usr/local/var/postgres stop ; pg_ctl -D /usr/local/var/postgres start && node ./server/bin/create-tables.js manual && node ./server/bin/etl.js manual",
