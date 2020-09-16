@@ -2,6 +2,7 @@ import About from "./About";
 import CanIVote from "./CanIVote";
 import WhereAndWhen from "./WhereAndWhen";
 import DayOfInfo from "./DayOfInfo";
+import EarlyVoting from "./EarlyVoting";
 
 const routes = [
   {
@@ -27,6 +28,12 @@ const routes = [
     label: "Election Day",
     labelLong: "It's Election Day, What Do I Do?",
   },
+  {
+    to: "/early-voting",
+    component: EarlyVoting,
+    label: "Early Voting",
+    labelLong: "Early Voting Information"
+  }
   // deleted route to Candidate Info for 2020v1 per https://github.com/codeforgso/GoVote/pull/190
 ];
 
