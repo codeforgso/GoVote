@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ListGroup, ListGroupItem, Button } from 'react-bootstrap';
+import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import VoterRegLookup from '../components/VoterRegLookup';
 import VoterPrecinctMap from '../components/VoterPrecinctMap';
 import { VoterRegistrationContext } from '../components/VoterRegistrationContext';
@@ -15,8 +15,58 @@ export default function WhereAndWhen() {
     )}`;
 
   return (
-    <div>
+    <div className="whenandwhere">
+
+      <h1>When to Vote</h1>
+      <div className="whenvote">
+
+        <p>
+          <strong>Election Day is  <u>Tuesday, November 3rd, 2020</u></strong>.<br/><p>You can vote from 6:30am to
+          7:30 pm at your assigned polling place.</p><br></br>
+        <p><strong>Remember to register to vote by
+           <u> October 9th, 2020</u></strong> if you want to vote on Election Day!</p>
+        </p>
+        <br></br>
+        <p>
+          <strong>Early Voting runs <u>Wednesday, October
+          15th through Saturday, October 31st, 2020</u></strong>.<p></p>This includes &quot;One-Stop Early Voting&quot;, which allows
+          you to register and vote at the same time.
+          <br/><p>However, different
+          restrictions on time apply to different polling sites around Guilford
+          County. Most early voting sites are open business hours on weekdays.</p>
+        <p><Link to="/early-voting">Early Voting Information</Link></p>
+          <a href="https://www.guilfordcountync.gov/Home/ShowDocument?id=10926" target="_blank">
+            Guilford County Board of Elections One-Stop Early Voting Schedule
+            November 3, 2020 General Elections
+          </a>
+        </p>
+        <p>
+          <strong>Mail-In or Absentee Ballot <i>Request</i> Forms may be submitted up until <u>Tuesday, October
+          27th 5:00pm.</u></strong>.  <p></p>
+        <a href="https://s3.amazonaws.com/dl.ncsbe.gov/Forms/NCAbsenteeBallotRequestForm.pdf" target="_blank">
+            Request your Mail-In Ballot / Absentee Ballot here.
+            </a>
+            <p></p>The form may be returned by the voter, the voter’s near relative or
+verifiable legal guardian, or a Multipartisan Assistance Team:
+<ul><li>In-person to the county board of elections;</li>
+<li>By U.S. Postal Service, DHL, FedEx, or UPS; or</li>
+<li>By email or fax.</li></ul>
+
+          <br/><p></p>
+          <div class="highlightbox">
+          <b>Guilford County Board Of Elections</b><br/>
+PO BOX 3427<br/>
+GREENSBORO NC<br/>
+27402-3427<br/>
+336-641-3836<br/>
+336-641-7676 (FAX)<br/>
+ABSENTEE@GUILFORDCOUNTYNC.GOV
+</div>
+        </p>
+      </div>
       <h1>Where to Vote</h1>
+      <div className="wherevote">
+
       <p>Enter your information below to find out where to vote</p>
       <VoterRegLookup />
       {voter && (
@@ -48,15 +98,7 @@ export default function WhereAndWhen() {
           )}
         </ListGroup>
       )}
-      <h1>When to Vote</h1>
-      <p>
-        <Link to="/early-voting"><Button>Early Voting Information</Button></Link>
-      </p>
-      <p>
-        Election Day is Tuesday, November 6th and you can vote from 6:30am to
-        7:30 pm at your assigned polling place. Remember to register to vote by
-        October 12th if you want to vote on Election Day!
-      </p>
+    </div>
     </div>
   );
 }
