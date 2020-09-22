@@ -52,6 +52,14 @@ const Home = () => (
       </Col>
       <Col md={6} lg={4} sm={6}>
         <Card
+         title="Early Voting Information"
+         body="Learn more about Early Voting and Same-Day Registration information"
+         btnText="Early Voting"
+         linkTo="/early-voting"
+        />
+      </Col>
+      <Col md={6} lg={4} sm={6}>
+        <Card
           title="It's Election Day! What do I do?"
           body="It's election day and you're unsure what to do! Find out more about what to expect, reporting polling place issues, and how to find your polling place here"
           btnText="Learn more about election day"
