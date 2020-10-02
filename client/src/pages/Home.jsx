@@ -79,7 +79,7 @@ const Home = () => (
     </Row>
 
     <div class='text-left'>
-      <h3 class='text-center'><a href="/about">About GoVoteGSO &amp; CodeForGSO</a></h3>
+      <h3 class='text-center'><Link to="/about">About GoVoteGSO &amp; CodeForGSO</Link></h3>
 
       <p>Please note that this site does NOT include comprehensive information about <a href='https://www.ncsbe.gov/voting/vote-mail'>vote-by-mail</a> or useing absentee ballots. If you plan to use this method of voting, request your ballot as soon as possible and find more information at the vote-by-mail portal on the State Board of Elections website. Keep yourself and others safe when you go vote this year! Learn about COVID safety and request a free Personal Protective Equipment (PPE) kit from <a href="https://www.safevoternc.org/">SafeVoterNC</a></p>
 
@@ -114,6 +114,7 @@ const Home = () => (
       <h4>Accessibility & Accomodations</h4>
 
       <p>The Help America Vote Act of 2002 stipulated legal requirements for accommodations at all polling places nationwide to ensure that every voter can easily participate. Accommodations include allowing for physical assistance inside the voting booth or curbside voting, in which polling place volunteers help individuals cast a vote from their car. You may request these accommodations on Election Day. Please visit <a href="https://www.ncsbe.gov/voting/help-voters-disabilities">this page</a> for more details about North Carolina’s voter accessibility considerations.</p>
+
     </div>
 
   </div>
