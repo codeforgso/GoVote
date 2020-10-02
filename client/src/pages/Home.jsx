@@ -69,7 +69,7 @@ const Home = () => (
       {/* deleted candidate info for 2020v1 component per https://github.com/codeforgso/GoVote/pull/190*/}
     </Row>
     <div>
-      <h3><a href="/about">About GoVoteGSO &amp; CodeForGSO</a></h3>
+      <h3><Link to="/about">About GoVoteGSO &amp; CodeForGSO</Link></h3>
       <p>Learn more about this website, open source software, civic tech, and CodeForGreensboro</p>
     </div>
   </div>
