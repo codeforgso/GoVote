@@ -144,8 +144,14 @@ button {
 
 
 .header {
-  /* This shorthand also overrides default Bootstrap gradient)*/
+  /* This shorthand also overrides default Bootstrap gradient. Since we're changing the background color,
+     we also need to remove the border since it was set to the same color as the previous background color + remove
+     rounded corners at the top so no color is showing
+   */
   background: #283944;
+  border: none;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
 
 .header__brand {
