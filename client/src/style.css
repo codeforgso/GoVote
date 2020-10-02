@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Open+Sans&display=swap');
+
 body {
-  font-family: Helvetica, Arial;
+  font-family: 'Open Sans', Helvetica, Arial;
+  line-height: 25px;
 }
 
 html, body, #app {
@@ -12,6 +15,10 @@ html, body, #app {
 
 p, li {
   font-size: 16px;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  line-height: 1.5;
 }
 
 .app__wrapper {
@@ -27,6 +34,68 @@ p, li {
 
 .map {
   flex: 1;
+}
+
+.logotop{
+  width: 80%;
+  height: 150px;
+  margin: 40px auto;
+  text-align: center;
+}
+.headerlogo {
+  margin-left: 20px;
+}
+.navbar-right li{
+  line-height: 50pt !important;
+}
+.homecards {
+  width: 100%;
+  height: auto;
+  margin: 40px auto;
+  text-align: center;
+}
+.cardtext{
+  margin-top: 30px;
+}
+button {
+  margin-top: 30px;
+}
+.cardbtn{
+  background-image: none;
+  box-shadow: none;
+}
+.well h2, .well h1{
+  font-family: 'Alata';
+}
+.well {
+  background-image: none;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+.whenandwhere strong{
+  font-size: 16pt;
+}
+.btn-default{
+  background-image: none;
+}
+.whenandwhere h1{
+  font-family: 'Alata';
+  margin-bottom: 30px;
+}
+.whenvote, .wherevote {
+  width: 90%;
+  margin: 0px auto;
+}
+.whenvote p, .wherevote p {
+  margin-bottom: 20px;
+}
+.highlightbox {
+  width: 50%;
+  height: auto;
+  padding: 20px;
+  margin: 0px auto;
+  border: 2px solid #121212;
+  text-align: center;
 }
 
 /* Begin override code for Bootstrap's @grid-float-breakpoint in raw CSS
@@ -75,8 +144,14 @@ p, li {
 
 
 .header {
-  /* This shorthand also overrides default Bootstrap gradient)*/
+  /* This shorthand also overrides default Bootstrap gradient. Since we're changing the background color,
+     we also need to remove the border since it was set to the same color as the previous background color + remove
+     rounded corners at the top so no color is showing
+   */
   background: #283944;
+  border: none;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
 
 .header__brand {
