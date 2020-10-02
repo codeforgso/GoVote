@@ -5,10 +5,9 @@ import { Link } from 'react-router-dom';
 
 const CanIVoteRegistered = ({ showHeader = false }) => (
   <div>
-    { showHeader && <h2>You are registered!</h2> }
+    { showHeader && <h2>You are registered!</h2>}
     <ListGroup>
       <ListGroupItem><Link to="/where-and-when">See Where &amp; When to Vote</Link></ListGroupItem>
-      <ListGroupItem><Link to="/candidates">See who the candidates are</Link></ListGroupItem>
     </ListGroup>
   </div>
 );
