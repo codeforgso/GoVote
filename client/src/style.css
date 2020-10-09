@@ -1,11 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Alata&family=Open+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Alata&family=Open+Sans&display=swap");
 
 body {
-  font-family: 'Open Sans', Helvetica, Arial;
+  font-family: "Open Sans", Helvetica, Arial;
   line-height: 25px;
 }
 
-html, body, #app {
+html,
+body,
+#app {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -13,11 +15,23 @@ html, body, #app {
   background-color: white;
 }
 
-p, li {
+p,
+li {
   font-size: 16px;
 }
 
-.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   line-height: 1.5;
 }
 
@@ -36,7 +50,7 @@ p, li {
   flex: 1;
 }
 
-.logotop{
+.logotop {
   width: 80%;
   height: 150px;
   margin: 40px auto;
@@ -45,7 +59,7 @@ p, li {
 .headerlogo {
   margin-left: 20px;
 }
-.navbar-right li{
+.navbar-right li {
   line-height: 50pt !important;
 }
 .homecards {
@@ -54,39 +68,42 @@ p, li {
   margin: 40px auto;
   text-align: center;
 }
-.cardtext{
+.cardtext {
   margin-top: 30px;
 }
 button {
   margin-top: 30px;
 }
-.cardbtn{
+.cardbtn {
   background-image: none;
   box-shadow: none;
 }
-.well h2, .well h1{
-  font-family: 'Alata';
+.well h2,
+.well h1 {
+  font-family: "Alata";
 }
 .well {
   background-image: none;
   background-color: #f9f9f9;
   text-align: center;
 }
-.whenandwhere strong{
+.whenandwhere strong {
   font-size: 16pt;
 }
-.btn-default{
+.btn-default {
   background-image: none;
 }
-.whenandwhere h1{
-  font-family: 'Alata';
+.whenandwhere h1 {
+  font-family: "Alata";
   margin-bottom: 30px;
 }
-.whenvote, .wherevote {
+.whenvote,
+.wherevote {
   width: 90%;
   margin: 0px auto;
 }
-.whenvote p, .wherevote p {
+.whenvote p,
+.wherevote p {
   margin-bottom: 20px;
 }
 .highlightbox {
@@ -96,6 +113,7 @@ button {
   margin: 0px auto;
   border: 2px solid #121212;
   text-align: center;
+  word-break: break-word;
 }
 
 /* Begin override code for Bootstrap's @grid-float-breakpoint in raw CSS
@@ -112,19 +130,19 @@ button {
   }
   .navbar-collapse {
     border-top: 1px solid transparent;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
   .navbar-collapse.collapse {
-    display: none!important;
+    display: none !important;
   }
   .navbar-nav {
-    float: none!important;
+    float: none !important;
     margin: 7.5px -15px;
   }
-  .navbar-nav>li {
+  .navbar-nav > li {
     float: none;
   }
-  .navbar-nav>li>a {
+  .navbar-nav > li > a {
     padding-top: 10px;
     padding-bottom: 10px;
   }
@@ -134,14 +152,13 @@ button {
   }
   /* since 3.1.0 */
   .navbar-collapse.collapse.in {
-    display: block!important;
+    display: block !important;
   }
   .collapsing {
-    overflow: hidden!important;
+    overflow: hidden !important;
   }
 }
 /* end override code */
-
 
 .header {
   /* This shorthand also overrides default Bootstrap gradient. Since we're changing the background color,
@@ -185,7 +202,7 @@ button {
 }
 
 .btn-link {
-  transition-duration: .2s;
+  transition-duration: 0.2s;
 }
 
 .btn-link:focus {
@@ -204,13 +221,12 @@ button {
   background-color: transparent;
 }
 
-
-.about-footer-logo{
+.about-footer-logo {
   background: #283944;
   float: left;
 }
 
-.about-footer-btn{
+.about-footer-btn {
   margin-top: 15px;
 }
 
@@ -239,21 +255,21 @@ button {
 }
 @-webkit-keyframes spin {
   0% {
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
-      -webkit-transform: rotate(359deg);
-      transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
   }
 }
 @keyframes spin {
   0% {
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
-      -webkit-transform: rotate(359deg);
-      transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
   }
 }
