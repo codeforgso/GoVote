@@ -87,22 +87,10 @@ button {
   background-color: #f9f9f9;
   text-align: center;
 }
-.whenandwhere strong {
-  font-size: 16pt;
-}
 .btn-default {
   background-image: none;
 }
-.whenandwhere h1 {
-  font-family: "Alata";
-  margin-bottom: 30px;
-}
-.whenvote,
-.wherevote {
-  width: 90%;
-  margin: 0px auto;
-}
-.whenvote p,
+
 .wherevote p {
   margin-bottom: 20px;
 }

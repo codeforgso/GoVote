@@ -2,50 +2,112 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const DayOfInfo = () => (
-  <div className="whenandwhere">
+  <main>
 
     <h1>It{'\''}s Election Day, What Do I Do?</h1>
-    <div className="whenvote">
+      
+      <p>That's easy, find your polling place and go vote!</p>
+
+    <h2>What to Expect</h2>
+      <p>
+        Your polling place, depending on how many people live in your area, is
+        likely to have volunteers for candidates - or even the candidates
+        themselves - handing out literature at a legally specified distance from
+        the entrance. There will also be signs for the candidates on the ballot.
+        No one is allowed to advocate for candidates or hand out literature
+        inside the polling place.
+      </p>
 
       <p>
-        <strong><u>What to Expect</u></strong><br/><br/><p>
-          <strong>Election Day is  <u>Tuesday, November 3rd, 2020</u></strong>.<br/><p>You can vote from 6:30am to
-          7:30 pm at your assigned polling place.</p><br></br>
-        <p><strong>Remember to register to vote by
-           <u> October 9th, 2020</u></strong> if you want to vote on Election Day!</p>
-        </p>
-      </p>
-        <p>
-          <strong>What to Bring</strong><p>
-          <ul><li>If you've voted in North Carolina before, you don't need to show ID to vote.</li>
-          <li>If you're a first-time voter who registered by mail, and didn't provide your driver's license number or the last 4 digits of your Social Security number on your registration form, you will need to show ID to vote.</li> <li>Acceptable forms include: a driver's license or state ID; US Passport; employee ID; student ID; military ID; or a copy of a utility bill, bank statement or paycheck.
-          Voters without ID: If you are unable to provide ID, you will still be able to vote a provisional ballot and can bring one of these documents to the board of elections prior to canvass.</li></ul>
-        </p>
-      </p>
-      <p>
-        <strong>How to Report Issues With Your Polling Place</strong>
-        <br/><p>
-          If you encounter problems at the polls or feel unsafe you can take the following steps:
-          <ul>
-            <li>Immediately report the issue to precinct official at the polling place.</li>
-            <li>Report incidents to <a href="https://www.ncsbe.gov/" target="_blank">The North Carolina Board Of Elections</a>
-              <div><li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfFDJqx8zlzRWXSmNNpC5sEgqMguWsYf1Y_npmeet__E1SFZg/viewform" target="_blank">Incident Submission Form</a></li>
-              <li>Phone: (919) 814-0700</li>
-              <li>Email: elections.sboe@ncsbe.gov</li>
-              </div>
-            </li>
-            <li>Consider contacting state authorities depending on the incident.</li>
-
-          </ul>
-        </p>
-      </p>
-      <p>
-        <strong>Polling Place</strong><br/>
-        <p><Link to="/where-and-when">Look Up Your Polling Place</Link></p>
+        You may have to wait in a short line inside the polling place. At the
+        front of the line will be a table with greeters who will take your name
+        and verify your registration status. Beginning in 2020 in North
+        Carolina, you will be required to show a valid, state-approved ID to
+        vote. Please see <a href="https://www.ncsbe.gov/Voter-ID">this page</a>{" "}
+        for more details about which IDs are approved for use and the form you
+        can use to request a free North Carolina Voter ID (you must submit this
+        form in person at your county Board of Elections office).
       </p>
 
-    </div>
-  </div>
+      <p>
+        In Guilford County, voters use electronic voting machines unless they
+        request a provisional ballot or curbside voting accommodations. These
+        machines are touch screen devices that will present the voter’s ballot
+        page by page. As you touch candidate names to select them, the machine
+        will record your choices on a piece of paper that looks like a receipt
+        visible through a small window on the machine. You may change your
+        selections at any point during the process until presented with a final
+        screen to confirm the selections.
+      </p>
+
+      <p>
+        If you need assistance at any time, you can and should request help from
+        the individuals working at the polling place. If they refuse to assist
+        you, please report this using the resources listed below.
+      </p>
+    
+    <h2>How to Report Issues With Your Polling Place</h2>
+      <p>
+        Intimidation and harassment at polling places is a violation of federal
+        law. Make sure that you{" "}
+        <a 
+          href="https://www.aclu.org/know-your-rights/voting-rights/" 
+          target="_blank"
+          rel="noopener noreferrer">
+          know your rights
+        </a>! If you encounter issues on election day, please utilize one of the
+        following resources:
+      </p>
+
+      <ul>
+        <li>
+          U.S. Department of Justice Voting Rights Hotline:{" "}
+          <a href="tel:+1800-253-3931">800-253-3931</a>; TTY line{" "}
+          <a href="tel:+1877-267-8971">877-267-8971</a>
+        </li>
+        <li>
+          <a 
+            href="https://www.ncsbe.gov/voting-accessibility"
+            target="_blank"
+            rel="noopener noreferrer">
+            Department of Justice Election Complaint Report Form
+          </a>
+        </li>
+        <li>
+          American Civil Liberties Union Voter Protection Hotline:{" "}
+          <a href="tel:+1866-687-8683">1-866-OUR-VOTE (1-866-687-8683)</a> or{" "}
+          <a href="tel:+1888-839-8682">1-888-VE-Y-VOTA (1-888-839-8682)</a> (en
+          Español).
+        </li>
+      </ul>
+
+      <h2>Accessibility &amp; Accomodations</h2>
+
+      <p>
+        The Help America Vote Act of 2002 stipulated legal requirements for
+        accommodations at all polling places nationwide to ensure that every
+        voter can easily participate. Accommodations include allowing for
+        physical assistance inside the voting booth or curbside voting, in which
+        polling place volunteers help individuals cast a vote from their car.
+        You may request these accommodations on Election Day. Please visit
+        <a 
+          href="https://www.ncsbe.gov/voting/help-voters-disabilities"
+          target="_blank"
+          rel="noopener noreferrer">
+          {" "}this page{" "}
+        </a>
+         for more details about North Carolina’s voter accessibility
+        considerations.
+      </p>
+
+    <h2>Polling Place</h2>
+      <h4>
+        <Link to="/where-and-when">
+          Look Up Your Polling Place
+        </Link>
+      </h4>
+
+  </main>
 
   );
 
