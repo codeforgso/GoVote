@@ -34,12 +34,12 @@ Card.propTypes = {
 };
 
 const Home = () => (
-  <div class="homecards">
-    <div className="logotop">
-      <img src={gvLogo} alt="" height="100%" />
-    </div>
+  <main class="homecards">
+    <section className="logotop">
+      <img src={gvLogo} alt="Go Vote Greensboro logo" height="100%" />
+    </section>
 
-    <div class="text-left">
+    <section class="text-left">
       <h3 class="text-center">Let your voice be heard! Go Vote!</h3>
 
       <p>
@@ -56,7 +56,7 @@ const Home = () => (
         rules and regulations about voting, and the options that you'll be
         presented with on the ballot.
       </p>
-    </div>
+    </section>
 
     <Row>
       <Col md={6} lg={6} sm={6}>
@@ -102,7 +102,7 @@ const Home = () => (
       {/* deleted candidate info for 2020v1 component per https://github.com/codeforgso/GoVote/pull/190*/}
     </Row>
 
-    <div class="text-left">
+    <section class="text-left">
       <h3 class="text-center">
         <Link to="/about">About GoVoteGSO &amp; CodeForGSO</Link>
       </h3>
@@ -127,8 +127,8 @@ const Home = () => (
         <a href="https://github.com/codeforgso/GoVote">Github repository.</a>
       </p>
 
-    </div>
-  </div>
+    </section>
+  </main>
 );
 
 export default Home;

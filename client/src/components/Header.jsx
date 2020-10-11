@@ -34,12 +34,16 @@ const Header = () => (
           </NavItem>
         ))}
         <NavItem disabled>
-          <img
-            alt=""
+          <a 
+            href="https://codeforgreensboro.org"
             target="_blank"
-            src={cfgLogo}
-            className="header__details-logo"
-          />
+            rel="noopener noreferrer"
+          >
+            <img
+              alt="Code for Greensboro logo"
+              src={cfgLogo}
+              className="header__details-logo"/>
+          </a>
         </NavItem>
       </Nav>
     </Navbar.Collapse>
