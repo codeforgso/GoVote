@@ -15,73 +15,71 @@ export default function WhereAndWhen() {
     )}`;
 
   return (
-    <div className="whenandwhere">
+    <main>
+      <section>
       <h1>When to Vote</h1>
-      <div className="whenvote">
-        <p>
-          <strong>
-            Election Day is <u>Tuesday, November 3rd, 2020</u>
-          </strong>
-          .<br />
+        <h2>Election Day is <u>Tuesday, November 3rd, 2020</u>.</h2>
           <p>
             You can vote from 6:30am to 7:30 pm at your assigned polling place.
           </p>
-          <br />
+          <h3>
+            Register to vote by <u>October 9th, 2020</u>
+            {" "} if you want to vote on Election Day!
+          </h3>
+
+          <h3>
+            Early Voting runs{" "}<u>Wednesday, October 15th</u> through       <u>Saturday, October 31st, 2020</u>.
+          </h3>
           <p>
-            <strong>
-              Remember to register to vote by <u>October 9th, 2020</u>
-            </strong>{" "}
-            if you want to vote on Election Day!
+            This includes &quot;One-Stop Early Voting&quot;, which allows you to register and vote at the same time.
           </p>
-        </p>
-        <br />
-        <p>
-          <strong>
-            Early Voting runs{" "}
-            <u>Wednesday, October 15th through Saturday, October 31st, 2020</u>
-          </strong>
-          .<p></p>This includes &quot;One-Stop Early Voting&quot;, which allows
-          you to register and vote at the same time.
-          <br />
-          <p>
+          <aside>
             However, different restrictions on time apply to different polling
             sites around Guilford County. Most early voting sites are open
             business hours on weekdays.
-          </p>
-          <p>
+          </aside>
+
+          <h4>
             <Link to="/early-voting">Early Voting Information</Link>
-          </p>
-          <a
-            href="https://www.guilfordcountync.gov/Home/ShowDocument?id=10926"
-            target="_blank"
-          >
-            Guilford County Board of Elections One-Stop Early Voting Schedule
-            November 3, 2020 General Elections
-          </a>
-        </p>
-        <p>
-          <strong>
+          </h4>
+          <h4>
+            <a
+              href="https://www.guilfordcountync.gov/Home/ShowDocument?id=10926"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Guilford County Board of Elections One-Stop Early Voting Schedule
+              November 3, 2020 General Elections
+            </a>
+          </h4>
+
+          <hr/>
+
+          <h3>
             Mail-In or Absentee Ballot <i>Request</i> Forms may be submitted up
             until <u>Tuesday, October 27th 5:00pm.</u>
-          </strong>
-          . <p></p>
-          <a
-            href="https://s3.amazonaws.com/dl.ncsbe.gov/Forms/NCAbsenteeBallotRequestForm.pdf"
-            target="_blank"
-          >
-            Request your Mail-In Ballot / Absentee Ballot here.
-          </a>
-          <p></p>The form may be returned by the voter, the voter’s near
-          relative or verifiable legal guardian, or a Multipartisan Assistance
-          Team:
+          </h3>
+          <h4>
+            <a
+              href="https://s3.amazonaws.com/dl.ncsbe.gov/Forms/NCAbsenteeBallotRequestForm.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Request your Mail-In Ballot / Absentee Ballot here.
+            </a>
+          </h4>
+
+          <p>
+            The form may be returned by the voter, the voter’s near relative verifiable legal guardian, or a Multipartisan Assistance Team:
+          </p>
           <ul>
             <li>In-person to the county board of elections;</li>
             <li>By U.S. Postal Service, DHL, FedEx, or UPS; or</li>
             <li>By email or fax.</li>
           </ul>
           <br />
-          <p></p>
-          <div class="highlightbox">
+
+          <address class="highlightbox">
             <b>Guilford County Board Of Elections</b>
             <br />
             PO BOX 3427
@@ -97,11 +95,12 @@ export default function WhereAndWhen() {
             <a href="mailto:ABSENTEE@GUILFORDCOUNTYNC.GOV">
               ABSENTEE@GUILFORDCOUNTYNC.GOV
             </a>
-          </div>
-        </p>
-      </div>
+          </address>
+        <hr />
+      </section>
+
+      <section>
       <h1>Where to Vote</h1>
-      <div className="wherevote">
         <p>Enter your information below to find out where to vote</p>
         <VoterRegLookup />
         {voter && (
@@ -133,7 +132,7 @@ export default function WhereAndWhen() {
             )}
           </ListGroup>
         )}
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
