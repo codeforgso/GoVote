@@ -23,7 +23,7 @@ const DayOfInfo = () => (
         front of the line will be a table with greeters who will take your name
         and verify your registration status. Beginning in 2020 in North
         Carolina, you will be required to show a valid, state-approved ID to
-        vote. Please see <a href="https://www.ncsbe.gov/Voter-ID">this page</a>{" "}
+        vote. Please see <a href="https://www.ncsbe.gov/Voter-ID" target="_blank" rel="noopener noreferrer">this page</a>{" "}
         for more details about which IDs are approved for use and the form you
         can use to request a free North Carolina Voter ID (you must submit this
         form in person at your county Board of Elections office).
