@@ -30,8 +30,19 @@ export default class CanIVoteCheckStatus extends Component {
               <div>
                 <h2>You are not registered</h2>
                 <ul>
-                  <li><Link to="/voter-requirements">Learn more about voter registration and requirements</Link></li>
-                  <li><a rel="noopener noreferrer" href="https://www.ncsbe.gov/Voter-Information/VR-Form" target="_blank">NC Board Of Elections Voter Registration Form</a></li>
+                  <li>
+                    <Link to="/voter-requirements">
+                      Learn more about voter registration and requirements
+                    </Link>
+                  </li>
+                  <li>
+                    <a 
+                      rel="noopener noreferrer" 
+                      href="https://www.ncsbe.gov/Voter-Information/VR-Form" 
+                      target="_blank">
+                        NC Board Of Elections Voter Registration Form
+                    </a>
+                  </li>
                 </ul>
               </div>
             )
