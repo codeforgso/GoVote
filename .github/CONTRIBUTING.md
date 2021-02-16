@@ -71,6 +71,8 @@ To stop the project run `docker-compose stop`
 
     - Windows: Postgresql downloads can be found here: https://www.postgresql.org/download/
         - use the "Interactive Installer by Enterprise DB" after selecting your OS
+    - Linux: The easiest way to install is using the package manager for your distribution: https://www.postgresql.org/download/linux
+        - The command to install on Debian-based distros (including Ubuntu and Mint) is ```sudo apt install postgresql```
     - Note that the default user "postgres" and database "postgres" is assumed for this project. If you provided a password for postgres during the installation, you need to provide the password in DB_PASS in the next step. If you are comfortable with postgresql and want to create your out database/user/table, feel free to do so, just be sure the make the appropriate changes in the net step.
 
 1. Create a file called `.env` in the root of the project. The file should contain the following:
