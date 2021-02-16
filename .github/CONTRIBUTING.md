@@ -97,6 +97,12 @@ To stop the project run `docker-compose stop`
         npm run loadDataMac
         ```
 
+       Linux
+
+        ```sh
+        npm run loadDataLinux
+        ```
+
     1. Update your application with all the required node modules. Normally, this only needs to be one time.
 
         ```sh
@@ -129,6 +135,12 @@ To stop the project run `docker-compose stop`
 
     ```sh
     pg_ctl -D /usr/local/var/postgres stop
+    ```
+
+   Linux
+
+    ```sh
+    service postgresql stop
     ```
 
 ### Project Details
