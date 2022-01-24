@@ -2,7 +2,7 @@
   "name": "govote",
   "version": "0.0.1",
   "engines": {
-    "node": "13.13.x"
+    "node": "16.x.x"
   },
   "private": true,
   "dependencies": {
@@ -18,8 +18,8 @@
     "build": "cd client && npm install && react-scripts build",
     "docker:create-tables": "docker-compose exec govote-server node ./bin/create-tables.js",
     "docker:etl": "docker-compose exec govote-server node ./bin/etl.js",
-    "loadDataMac": "pg_ctl -D /usr/local/var/postgres stop ; pg_ctl -D /usr/local/var/postgres start && node ./server/bin/create-tables.js manual && node ./server/bin/etl.js manual",
-    "loadDataWin": "(pg_ctl -D \"C:/Program Files/PostgreSQL/11/data/\" stop || true ) && pg_ctl -D \"C:/Program Files/PostgreSQL/11/data\" start && node ./server/bin/create-tables.js manual && node ./server/bin/etl.js manual"
+    "db": "docker-compose up -d db",
+    "load-data": "npm run db && node ./server/bin/create-tables.js manual && node ./server/bin/etl.js manual"
   },
   "devDependencies": {
     "concurrently": "^5.3.0"

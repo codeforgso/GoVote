@@ -59,20 +59,7 @@ To stop the project run `docker-compose stop`
 
     - Mac/Linux use [Node Version Manager](https://github.com/creationix/nvm)
     - Windows see [here](https://nodejs.org/en/download/)
-
-1. Install Postgresql
-
-    - Postgresql is a database system. This app uses Postgesql to store voter data. When running the app using Node, you have to have a local Postgresql database that will get loaded with the voter data.
-    - MAC: the easist way to install Postgresql is with homebrew using the command below. It can also be downloaded from <https://www.postgresql.org/download/,> however, you will need to change your PATH.
-
-        ```sh
-        brew install postgresql
-        ```
-
-    - Windows: Postgresql downloads can be found here: https://www.postgresql.org/download/
-        - use the "Interactive Installer by Enterprise DB" after selecting your OS
-    - Note that the default user "postgres" and database "postgres" is assumed for this project. If you provided a password for postgres during the installation, you need to provide the password in DB_PASS in the next step. If you are comfortable with postgresql and want to create your out database/user/table, feel free to do so, just be sure the make the appropriate changes in the net step.
-
+    
 1. Create a file called `.env` in the root of the project. The file should contain the following:
 
     ```sh
@@ -83,24 +70,22 @@ To stop the project run `docker-compose stop`
 
 1. Open a terminal session at the root of your project and perform the following to initialize and start the application:
 
-    1. Start the postgresql database and load voter data to it:
-
-        Windows
-
-        ```sh
-        npm run loadDataWin
-        ```
-
-        Mac
-
-        ```sh
-        npm run loadDataMac
-        ```
-
     1. Update your application with all the required node modules. Normally, this only needs to be one time.
 
         ```sh
         npm install
+        ```
+
+    1. Start the postgresql database and load voter data to it:
+
+        ```sh
+        npm run load-data
+        ```
+
+        If your data is already loaded and you just want to run the database, run the command:
+
+        ```sh
+        npm run db
         ```
 
     1. Start the application
@@ -117,18 +102,10 @@ To stop the project run `docker-compose stop`
     Ctrl+c
     ```
 
-1. To stop the database server, from a terminal session at the root of the project
-
-    Windows
+1. To stop the database server, from a terminal session at the root of the project:
 
     ```sh
-    pg_ctl -D "C:\Program Files\PostgreSQL\11\data" stop
-    ```
-
-    Mac
-
-    ```sh
-    pg_ctl -D /usr/local/var/postgres stop
+    docker-compose stop db
     ```
 
 ### Project Details
@@ -179,8 +156,8 @@ Follow the [Issue template](./ISSUE_TEMPLATE.md) and be sure to include as much 
 ## Deploying your code
 Our code is deployed to Heroku to be served to the public. This happens in three stages:
 1. **build**&mdash;Heroku will automatically run `npm install` and cache the project's depedencies. Next, Heroku looks for a `build` task in the root `package.json` file. We use this step to build our React project, which optimizes our React code to be served statically.
-2. **run**&mdash;Heroku runs the `web` task in the `Procfile`, which simply starts our thin Express server to handle incoming requests and serve our compiled React app.
-3. **release**&mdash;Heroku runs the `release` task in the Procfile after deploying the application. Note that this task runs in a separate dyno (Heroku's term for a compute instance), so it will not have access to files from other parts of the build process. In our case, we ensure the database has the correct tables and the data is properly loaded.
+1. **run**&mdash;Heroku runs the `web` task in the `Procfile`, which simply starts our thin Express server to handle incoming requests and serve our compiled React app.
+1. **release**&mdash;Heroku runs the `release` task in the Procfile after deploying the application. Note that this task runs in a separate dyno (Heroku's term for a compute instance), so it will not have access to files from other parts of the build process. In our case, we ensure the database has the correct tables and the data is properly loaded.
 
 When you merge your PR, it will be merged into the project's `dev` branch which will automatically kick off a deploy to our [staging server](https://dev-govote-api.herokuapp.com/). After you have merged your code, please test your changes and other basic flows (including finding your polling place and someone's voter registration) on the staging server.
 

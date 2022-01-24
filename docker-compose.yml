@@ -1,7 +1,7 @@
 version: '3'
 services:
   db:
-    image: postgres:10.3
+    image: postgres
     environment:
       - "POSTGRES_USER=${DB_USER}"
       - "POSTGRES_PASSWORD=${DB_PASS}"
@@ -10,6 +10,8 @@ services:
       - 9001:5432
     expose:
       - "5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
   govote-server:
     build: './server'
     container_name: govote-server
@@ -38,3 +40,6 @@ services:
     environment:
       - API_PROXY=http://govote-server:3001
     env_file: ./.env
+
+volumes:
+  postgres-data:

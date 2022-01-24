@@ -6,6 +6,7 @@ yarn-debug.log*
 yarn-error.log*
 
 bin/tmp/*
+server/bin/tmp/*
 
 # Runtime data
 postgres-data/*
@@ -67,7 +68,7 @@ typings/
 # IDEs/Editors
 *.swp
 *.swo
-.idea/
+.idea
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
